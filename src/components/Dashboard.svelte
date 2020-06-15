@@ -1,2 +1,2 @@
-<h2>Charts</h2>
+<h2>Dashboard</h2>
 <a href="/#/">New Entry</a>
