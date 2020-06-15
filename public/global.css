@@ -17,6 +17,14 @@ textarea {
 	min-width: 40px;
 }
 
+button { 
+	margin-right: .25rem;
+	background: #fff;
+	border: 2px solid #fff;
+}
+
+button.active { border: 2px outset #333; }
+
 input[type="number"] {
 	font-size: inherit;
 }
@@ -29,12 +37,21 @@ select {
 }
 
 label,
-select { 
-	width: 110px;
-}
+.field-label,
+select,
+hr { width: 110px; }
 
 label { 
 	font-weight: bold;
 	display: inline-block;
 	margin-bottom: .5rem;
 }
+
+.field-label { display: inline-block; }
+
+.tag {
+	height: 30px;
+	font-size: .75rem;
+}
+
+.value { color: #fff; }

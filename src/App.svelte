@@ -8,12 +8,13 @@
 		padding: 0 1rem;
 	}
 	nav {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 		padding: 1rem;
     margin-bottom: 1rem;
 		background: #fff;
-		text-align: right;
-		height: 58px;
-		line-height: 2rem;
+		box-shadow: 0 1px 4px rgba(0, 0, 0, .18);
 	}
   a {
   	text-decoration: none;
@@ -28,13 +29,10 @@
 </style>
 
 <nav>
-	{#if $location === '/dashboard'}
-		<a href="/#/">
-			<img src="/pom-logo.png" alt="pomegranate logo" /> Home
-		</a>
-	{:else}
-		<a href="/#/dashboard">📊 Dashboard</a>
-	{/if}
+	<a href="/#/">
+		<img src="/pom-logo.png" alt="pomegranate logo" />
+	</a>
+	<a href="/#/dashboard">📊 Dashboard</a>
 </nav>
 <div>
 	<Router {routes} />
