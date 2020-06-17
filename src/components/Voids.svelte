@@ -1,3 +1,7 @@
+<script>
+  let nocturia = 0;
+</script>
+
 <style>
   .pee-button-container {
 		display: flex;
@@ -45,7 +49,7 @@
     </div>
     <label class="delta">Delta <span>60min</span></label>
     <label class="nocturia">
-      Nocturia <input type="number" min="0" max="10" value="0" />
+      Nocturia <input type="number" min="0" max="10" bind:value={nocturia} />
     </label>
   </div>
   <div class="pee-chart">pee/poo chart from 5am - 10pm</div>

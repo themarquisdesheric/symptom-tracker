@@ -10,23 +10,37 @@ body {
 button,
 input,
 select,
-textarea { 
+textarea,
+input[type="checkbox"] + label { 
 	font-family: inherit;
 	border-radius: 5px;
 	min-height: 40px;
 	min-width: 40px;
 }
 
-button { 
+button,
+input[type="checkbox"] + label { 
 	margin-right: .25rem;
 	background: #fff;
-	border: 2px solid #fff;
 }
 
-button.active { border: 2px outset #333; }
+input[type="checkbox"] { display: none; }
 
-input[type="number"] {
+input[type="checkbox"] + label {
+	background: #fff;
+	font-weight: normal;
 	font-size: inherit;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	width: fit-content;
+	padding: .5rem;
+}
+
+input[type="checkbox"]:checked + label {
+	background-color: #000;
+	border-color: #000;
+	color: #fff;
 }
 
 input,
@@ -35,6 +49,8 @@ select {
 	background-color: transparent;
 	-webkit-appearance: none;
 }
+
+input[type="number"] { font-size: inherit; }
 
 label,
 .field-label,
@@ -50,7 +66,7 @@ label {
 .field-label { display: inline-block; }
 
 .tag {
-	height: 30px;
+	min-height: 30px;
 	font-size: .75rem;
 }
 

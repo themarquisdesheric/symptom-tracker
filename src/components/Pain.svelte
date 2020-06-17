@@ -1,7 +1,16 @@
-<style>
-  p { margin: .5rem 0; }
+<script>
+  import CheckmarkEmoji from './CheckmarkEmoji.svelte'
+</script>
 
-  p:first-of-type { margin-top: 0; }
+<style>
+  div { margin: .5rem 0; }
+
+  div:first-of-type { margin-top: 0; }
+
+  span {
+    display: inline-block;
+    width: 115px;
+  }
 
   hr {
     position: relative;
@@ -11,13 +20,48 @@
 
 <section>
   <label>Pain</label>
-  <p>Head/neck</p>
-  <p>Shoulders/arms</p>
-  <p>Hips/low back <span style="margin-left: .25rem;">✅</span></p>
-  <p>Pelvis/bladder</p>
-  <p>Sciatica/legs</p>
-  <p>Bowels/rectum <span style="margin-left: .25rem;">✅</span></p>
-  <p>Vulva/perineum</p>
+  <div>
+    <span>
+      Head/neck
+    </span>
+  </div>
+  <div>
+    <span>
+      Shoulders/arms
+    </span>
+    <CheckmarkEmoji /> <CheckmarkEmoji /> <CheckmarkEmoji />
+  </div>
+  <div>
+    <span>
+      Hips/low back
+    </span>
+    <CheckmarkEmoji />
+  </div>
+  <div>
+    <span>
+      Pelvis/bladder
+    </span>
+  </div>
+  <div>
+    <span>
+      Sciatica/legs
+    </span>
+  </div>
+  <div>
+    <span>
+      Bowels/rectum
+    </span>
+    <CheckmarkEmoji /> <CheckmarkEmoji />
+  </div>
+  <div>
+    <span>
+      Vulva/perineum
+    </span>
+  </div>
   <hr />
-  <p>Vision loss</p>
+  <div>
+    <span>
+      Vision loss
+    </span>
+  </div>
 </section>

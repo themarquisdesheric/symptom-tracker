@@ -1,19 +1,47 @@
+<script>
+  let flare = false;
+  let itch = false;
+  let cramps = false;
+  let discharge = false;
+  let sex = true;
+  let headache = 0;
+</script>
+
 <style>
   input { padding-left: 0; }
+
+  select { font-size: 1rem; }
 </style>
+
+<!-- collar: on selection show [+] button -->
 
 <section>
   <label>Symptoms</label>
   <div>
-    <button>flare</button>
-    <button>itch</button>
-    <button>cramps</button>
-    <button>discharge</button>
-    <button class="active">sex</button>
+    <input type="checkbox" id="flare" bind:checked={flare} />
+    <label for="flare">
+      flare
+    </label>
+    <input type="checkbox" id="itch" bind:checked={itch} />
+    <label for="itch">
+      itch
+    </label>
+    <input type="checkbox" id="cramps" bind:checked={cramps} />
+    <label for="cramps">
+      cramps
+    </label>
+    <input type="checkbox" id="discharge" bind:checked={discharge} />
+    <label for="discharge">
+      discharge
+    </label>
+    <input type="checkbox" id="sex" bind:checked={sex} />
+    <label class="active" for="sex">
+      sex
+    </label>
   </div>
 
   <div>
-    <span class="field-label">Headache</span> <input class="value" type="number" min="0" max="10" value="0" />
+    <span class="field-label">Headache</span> <input class="value" type="number" min="0" max="10" bind:value={headache} />
   </div>
 
   <div>
@@ -49,6 +77,7 @@
         night
       </option>
     </select>
+    <button>+</button>
     <div>
       <button class="tag">morning</button>
     </div>
