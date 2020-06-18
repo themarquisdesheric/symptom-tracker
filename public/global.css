@@ -71,3 +71,5 @@ label {
 }
 
 .value { color: #fff; }
+
+.hidden { visibility: hidden; }

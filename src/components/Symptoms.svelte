@@ -4,7 +4,29 @@
   let cramps = false;
   let discharge = false;
   let sex = true;
+  // can also do bind:group if want to receive checkbox values as an array
   let headache = 0;
+  let urgency = '+'
+  let collar = '+'
+  let collarTimes = []
+
+  $: collarTimesFull = collarTimes.length === 4
+  $: rejectCollarChange = collar === '+' || collarTimes.includes(collar)
+
+  const arbitrarySort = (a, b) => {
+    const arbitraryOrder = { morning: 1, day: 2, evening: 3, night: 4 };
+
+    return arbitraryOrder[a] - arbitraryOrder[b];
+  }
+
+  const handleCollarChange = () => {
+    if (rejectCollarChange) return;
+    
+    collarTimes = [
+      ...collarTimes,
+      collar
+    ].sort(arbitrarySort);
+  }
 </script>
 
 <style>
@@ -12,8 +34,6 @@
 
   select { font-size: 1rem; }
 </style>
-
-<!-- collar: on selection show [+] button -->
 
 <section>
   <label>Symptoms</label>
@@ -46,7 +66,7 @@
 
   <div>
     <span class="field-label">Urgency</span>
-    <select class="value">
+    <select class="value" bind:value={urgency}>
       <option>+</option>
       <option>
         calm
@@ -62,24 +82,21 @@
 
   <div>
     <span class="field-label">Collar</span>
-    <select class="value">
+    <select class="value" bind:value={collar} on:blur={handleCollarChange} class:hidden={collarTimesFull}>
       <option>+</option>
-      <option>
-        morning
-      </option>
-      <option>
-        day
-      </option>
-      <option>
-        evening
-      </option>
-      <option>
-        night
-      </option>
+      <option>morning</option>
+      <option>day</option>
+      <option>evening</option>
+      <option>night</option>
     </select>
-    <button>+</button>
+
+    {#if collar !== '+'}
+      <button class:hidden={collarTimesFull}>+</button>
+    {/if}
     <div>
-      <button class="tag">morning</button>
+      {#each collarTimes as time}
+        <button class="tag">{time}</button>
+      {/each}
     </div>
   </div>
 </section>
