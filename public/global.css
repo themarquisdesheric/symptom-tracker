@@ -68,6 +68,7 @@ label {
 .tag {
 	min-height: 30px;
 	font-size: .75rem;
+	margin-top: .5rem;
 }
 
 .value { color: #fff; }

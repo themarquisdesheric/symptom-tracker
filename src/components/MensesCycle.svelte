@@ -1,5 +1,9 @@
 <script>
-  let value = 1;
+  let mensesCycle = 1;
+
+  const endPeriod = () => {
+    mensesCycle = 1;
+  };
 </script>
 
 <style>
@@ -7,7 +11,8 @@
 </style>
 
 <section>
-  <span class="field-label">Menses cycle</span> <input class="value" type="number" min="1" max="31" bind:value />
-  <!-- <button>begin period</button> -->
-  <button>end period</button>
+  <span class="field-label">Menses cycle</span> <input class="value" type="number" min="1" max="31" bind:value={mensesCycle} />
+  {#if mensesCycle > 1}
+    <button on:click={endPeriod}>end period</button>
+  {/if}
 </section>

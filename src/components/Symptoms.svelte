@@ -33,6 +33,8 @@
   input { padding-left: 0; }
 
   select { font-size: 1rem; }
+
+  .collar { width: 70px; }
 </style>
 
 <section>
@@ -82,7 +84,7 @@
 
   <div>
     <span class="field-label">Collar</span>
-    <select class="value" bind:value={collar} on:blur={handleCollarChange} class:hidden={collarTimesFull}>
+    <select class="value collar" bind:value={collar} on:blur={handleCollarChange} class:hidden={collarTimesFull}>
       <option>+</option>
       <option>morning</option>
       <option>day</option>

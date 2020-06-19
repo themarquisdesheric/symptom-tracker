@@ -1,9 +1,45 @@
+<script>
+  let newMedicine = '';
+  let showInput = false;
+  let medications = [];
+
+  const addNewMedicine = () => {
+    if (medications.includes(newMedicine)) return;
+
+    medications = [
+      ...medications,
+      newMedicine
+    ];
+
+    newMedicine = '';
+  };
+
+  const handleClick = () => {
+    if (showInput) {
+      addNewMedicine(newMedicine)
+    }
+    
+    showInput = !showInput;
+  };
+</script>
+
+<style>
+  input {
+    width: 110px;
+    background: #fff;
+    color: #333;
+  }
+</style>
+
 <section>
   <span class="field-label">Medications</span>
-  <button>+</button>
-  <!-- add button slides to right on click to reveal input
-  <input style="width: 150px;" /> -->
+  {#if showInput}
+    <input type="text" bind:value={newMedicine} />
+  {/if}
+  <button on:click={handleClick}>+</button>
   <div>
-    <button class="tag">20mg hydrochlorine (x)</button>
+    {#each medications as medication}
+      <button class="tag">{medication} (x)</button>
+    {/each}
   </div>
 </section>
