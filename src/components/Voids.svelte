@@ -1,31 +1,42 @@
 <script>
+  import CheckmarkEmoji from './CheckmarkEmoji.svelte'
   let nocturia = 0;
+  let pee = false;
+  let poo = false;
 </script>
 
 <style>
-  .pee-button-container {
+  .void-container {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 	}
 
-	.pee-button-container button {
+	.void-container button {
 		font-size: 1.75rem;
 		padding: 0;
 		border: none;
     background: transparent;
-	}
+  }
+  
+  :global(.checkmark-button) {
+    position: absolute;
+    right: 0;
+  }
+
+  .pee,
+  .poo { position: relative; }
 
   .delta span { padding-left: .5rem; }
 
   .nocturia input { margin-bottom: 0; }
   
-  .pee-button-container label { 
+  .void-container label { 
     width: unset;
     margin-bottom: 0;
   }
 
-	.pee-button-container label * { 
+	.void-container label * { 
 		font-weight: normal;
 		color: #fff;
 	}
@@ -40,12 +51,21 @@
 
 <section>
   <label>Voids</label>
-  <div class="pee-button-container">
+  <div class="void-container">
     <div>
-      <button>💧</button>
+      <span class="pee">
+        {#if pee}
+          <CheckmarkEmoji className="checkmark-button" />
+        {/if}
+        <button on:click={() => pee = !pee}>💧</button>
+      </span>
       <!-- renders on pee/poop click <span>🕓</span> -->
-      <button>💩</button>
-      <!-- renders on pee/poop click <span>🕓</span> -->
+      <span class="poo">
+        {#if poo}
+          <CheckmarkEmoji className="checkmark-button" />
+        {/if}
+        <button on:click={() => poo = !poo}>💩</button>
+      </span>
     </div>
     <label class="delta">Delta <span>60min</span></label>
     <label class="nocturia">

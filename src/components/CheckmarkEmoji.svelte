@@ -1,3 +1,7 @@
+<script>
+  export let className = ''
+</script>
+
 <style>
   span {
     margin-left: .25rem;
@@ -5,4 +9,4 @@
   }
 </style>
 
-<span>☑</span>
+<span class={className}>☑</span>
