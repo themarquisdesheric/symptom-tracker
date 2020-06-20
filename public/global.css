@@ -1,7 +1,7 @@
 * { box-sizing: border-box; }
 
 body {
-	background-color: rgba(179,86,75,.5);
+	background-image: linear-gradient(110deg, #CE93D8 40%, #E1BEE7);
 	color: #333;
 	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -64,6 +64,13 @@ label {
 }
 
 .field-label { display: inline-block; }
+
+.add-button {
+	background-color: transparent;
+	border: none;
+	color: #fff;
+	font-size: 1rem;
+}
 
 .tag {
 	min-height: 30px;

@@ -14,21 +14,36 @@
     newMedicine = '';
   };
 
-  const handleClick = () => {
+  const handleAddButtonClick = () => {
     if (showInput) {
-      addNewMedicine(newMedicine)
+      if (!newMedicine.length) return;
+
+      addNewMedicine(newMedicine);
     }
-    
+
     showInput = !showInput;
+  };
+
+  const handleRemoveMedication = (medication) => {
+    if (confirm(`Are you sure you want to remove ${medication}?`)) {
+      medications = medications.filter(med => med !== medication)
+    }
   };
 </script>
 
 <style>
   input {
-    width: 110px;
+    width: 165px;
     background: #fff;
     color: #333;
   }
+
+  .add-button {
+    position: relative;
+    right: 15px;
+  }
+
+  .showInput { right: 0; }
 </style>
 
 <section>
@@ -36,10 +51,10 @@
   {#if showInput}
     <input type="text" bind:value={newMedicine} />
   {/if}
-  <button on:click={handleClick}>+</button>
+  <button class="add-button" class:showInput on:click={handleAddButtonClick}>+</button>
   <div>
     {#each medications as medication}
-      <button class="tag">{medication} (x)</button>
+      <button on:click={() => handleRemoveMedication(medication)} class="tag">{medication}</button>
     {/each}
   </div>
 </section>

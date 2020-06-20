@@ -4,7 +4,6 @@
   let cramps = false;
   let discharge = false;
   let sex = true;
-  // can also do bind:group if want to receive checkbox values as an array
   let headache = 0;
   let urgency = '+'
   let collar = '+'
@@ -26,6 +25,12 @@
       ...collarTimes,
       collar
     ].sort(arbitrarySort);
+  }
+
+  const handleRemoveCollarTime = (collarTime) => {
+    if (confirm(`Are you sure you want to remove ${collarTime}?`)) {
+      collarTimes = collarTimes.filter(time => time !== collarTime)
+    }
   }
 </script>
 
@@ -93,11 +98,11 @@
     </select>
 
     {#if collar !== '+'}
-      <button class:hidden={collarTimesFull}>+</button>
+      <button class="add-button" class:hidden={collarTimesFull}>+</button>
     {/if}
     <div>
-      {#each collarTimes as time}
-        <button class="tag">{time}</button>
+      {#each collarTimes as collarTime}
+        <button on:click={() => handleRemoveCollarTime(collarTime)} class="tag">{collarTime}</button>
       {/each}
     </div>
   </div>
