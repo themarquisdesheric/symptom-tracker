@@ -59,7 +59,6 @@
         {/if}
         <button on:click={() => pee = !pee}>💧</button>
       </span>
-      <!-- renders on pee/poop click <span>🕓</span> -->
       <span class="poo">
         {#if poo}
           <CheckmarkEmoji className="checkmark-button" />

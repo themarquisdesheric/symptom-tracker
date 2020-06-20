@@ -1,5 +1,6 @@
 <script>
-  export let className = ''
+  export let className = '';
+  export let handleClick;
 </script>
 
 <style>
@@ -9,4 +10,4 @@
   }
 </style>
 
-<span class={className}>☑</span>
+<span on:click={handleClick} class={className}>☑</span>
