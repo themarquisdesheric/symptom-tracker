@@ -4,10 +4,7 @@
 </script>
 
 <style>
-  span {
-    margin-left: .25rem;
-    color: #fff;
-  }
+  span { margin-left: .25rem; }
 </style>
 
-<span on:click={handleClick} class={className}>☑</span>
+<span on:click={handleClick} class={`primary ${className}`}>☑</span>

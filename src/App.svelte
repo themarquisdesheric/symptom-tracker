@@ -13,7 +13,7 @@
 		align-items: center;
 		padding: 1rem;
     margin-bottom: 1rem;
-		background: #fff;
+		background: #ce93d8;
 		box-shadow: 0 1px 4px rgba(0, 0, 0, .18);
 	}
 

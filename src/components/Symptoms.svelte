@@ -40,6 +40,11 @@
   select { font-size: 1rem; }
 
   .collar { width: 70px; }
+
+  .add-button {
+    background: #9c64a6;
+    color: #fff;
+  }
 </style>
 
 <section>
@@ -68,12 +73,12 @@
   </div>
 
   <div>
-    <span class="field-label">Headache</span> <input class="value" type="number" min="0" max="10" bind:value={headache} />
+    <span class="field-label">Headache</span> <input class="primary" type="number" min="0" max="10" bind:value={headache} />
   </div>
 
   <div>
     <span class="field-label">Urgency</span>
-    <select class="value" bind:value={urgency}>
+    <select class="primary" bind:value={urgency}>
       <option>+</option>
       <option>
         calm
@@ -89,7 +94,7 @@
 
   <div>
     <span class="field-label">Collar</span>
-    <select class="value collar" bind:value={collar} on:blur={handleCollarChange} class:hidden={collarTimesFull}>
+    <select class="primary collar" bind:value={collar} on:blur={handleCollarChange} class:hidden={collarTimesFull}>
       <option>+</option>
       <option>morning</option>
       <option>day</option>

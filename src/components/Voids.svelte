@@ -36,10 +36,7 @@
     margin-bottom: 0;
   }
 
-	.void-container label * { 
-		font-weight: normal;
-		color: #fff;
-	}
+	.void-container label * { font-weight: normal; }
 
 	.pee-chart {
 		border: 1px solid;
@@ -66,9 +63,9 @@
         <button on:click={() => poo = !poo}>💩</button>
       </span>
     </div>
-    <label class="delta">Delta <span>60min</span></label>
+    <label class="delta">Delta <span class="primary">60min</span></label>
     <label class="nocturia">
-      Nocturia <input type="number" min="0" max="10" bind:value={nocturia} />
+      Nocturia <input type="number" min="0" max="10" bind:value={nocturia} class="primary" />
     </label>
   </div>
   <div class="pee-chart">pee/poo chart from 5am - 10pm</div>

@@ -3,6 +3,8 @@
   let showInput = false;
   let medications = [];
 
+  let input;
+
   const addNewMedicine = () => {
     if (medications.includes(newMedicine)) return;
 
@@ -16,7 +18,10 @@
 
   const handleAddButtonClick = () => {
     if (showInput) {
-      if (!newMedicine.length) return;
+      if (!newMedicine.length) {
+        showInput = false;
+        return;
+      }
 
       addNewMedicine(newMedicine);
     }
@@ -29,9 +34,13 @@
       medications = medications.filter(med => med !== medication)
     }
   };
+
+  $: input && input.focus()
 </script>
 
 <style>
+  section { min-height: 40px; }
+  
   input {
     width: 165px;
     background: #fff;
@@ -40,18 +49,22 @@
 
   .add-button {
     position: relative;
-    right: 15px;
+    right: 11px;
   }
 
-  .showInput { right: 0; }
+  .showInput { 
+    right: 0;
+    background: #9c64a6;
+    color: #fff;
+  }
 </style>
 
 <section>
   <span class="field-label">Medications</span>
   {#if showInput}
-    <input type="text" bind:value={newMedicine} />
+    <input type="text" bind:value={newMedicine} bind:this={input} />
   {/if}
-  <button class="add-button" class:showInput on:click={handleAddButtonClick}>+</button>
+  <button class="add-button primary" class:showInput on:click={handleAddButtonClick}>+</button>
   <div>
     {#each medications as medication}
       <button on:click={() => handleRemoveMedication(medication)} class="tag">{medication}</button>

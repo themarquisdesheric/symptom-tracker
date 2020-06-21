@@ -7,8 +7,7 @@
   div { display: flex; }
 
   button:first-of-type { 
-    border-color: #333;
-    background: #333;
+    background: #9c64a6;
     color: #fff;
     margin-right: .5rem;
   }
