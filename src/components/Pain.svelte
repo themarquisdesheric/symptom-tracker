@@ -1,57 +1,68 @@
-<script>
-  import CheckmarkEmoji from './CheckmarkEmoji.svelte'
+<script>import { type } from 'os';
+  import AddButton from './AddButton.svelte';
 
   let types = {
     headNeck: {
       name: 'Head/neck',
-      entries: [],
+      times: [],
+      value: '+',
     },
     shouldersArms: {
       name: 'Shoulders/arms',
-      entries: [],
+      times: [],
+      value: '+',
     },
     hipsLowBack: {
       name: 'Hips/low back',
-      entries: [],
+      times: [],
+      value: '+',
     },
     pelvisBladder: {
       name: 'Pelvis/bladder',
-      entries: [],
+      times: [],
+      value: '+',
     },
     sciaticaLegs: {
       name: 'Sciatica/legs',
-      entries: [],
+      times: [],
+      value: '+',
     },
     bowelsRectum: {
       name: 'Bowels/rectum',
-      entries: [],
+      times: [],
+      value: '+',
     },
     vulvaPerineum: {
       name: 'Vulva/perineum',
-      entries: [],
+      times: [],
+      value: '+',
     },
     visionLoss: {
       name: 'Vision loss',
-      entries: [],
+      times: [],
+      value: '+',
     },
   };
 
-  const handleAdd = (pain) => {
+  const handleAdd = (painType) => {
+    // need to sort and dedupe
+
     types = {
       ...types,
-      [pain]: {
-        name: types[pain].name,
-        entries: [...types[pain].entries, Date.now()]
+      [painType]: {
+        ...types[painType],
+        times: [...types[painType].times, types[painType].value],
       },
     };
   };
 
-  const handleRemove = (pain, id) => {
+  const handleRemove = (painType, time) => {
+    // make prompt for this first <confirm>
     types = {
       ...types,
-      [pain]: {
-        name: types[pain].name,
-        entries: types[pain].entries.filter(entry => entry !== id)
+      [painType]: {
+        ...types[painType],
+        times: types[painType].times.filter(id => id !== time),
       },
     };
   };
@@ -62,23 +73,47 @@
 
   div:first-of-type { margin-top: 0; }
 
-  span {
+  div > span {
     display: inline-block;
     width: 115px;
   }
+
+  :global(.pain .add-button) {
+    background: #9c64a6;
+    color: #fff;
+  }
+
+  select { font-size: 1rem; }
 </style>
 
-<section>
+<section class="pain">
   <label>Pain</label>
   
   {#each Object.keys(types) as painType}
     <div>
-      <span on:click={() => handleAdd(painType)}>
-        {types[painType].name}
-      </span>
-      {#each types[painType].entries as id}
-        <CheckmarkEmoji handleClick={() => handleRemove(painType, id)} />
-      {/each}
+      <span class="field-label">{types[painType].name}</span>
+      <select class="primary" bind:value={types[painType].value} class:hidden={types[painType].times.length === 4}>
+        <option>+</option>
+        <option>morning</option>
+        <option>day</option>
+        <option>evening</option>
+        <option>night</option>
+        <option>all day</option>
+      </select>
+
+      {#if types[painType].value !== '+'}
+        <AddButton
+          handleClick={() => handleAdd(painType)}
+          classes={
+            types[painType].times.length === 4 ? 'hidden' : ''
+          }
+        />
+      {/if}
+      <div>
+        {#each types[painType].times as time}
+          <button on:click={() => handleRemove(painType, time)} class="tag">{time}</button>
+        {/each}
+      </div>
     </div>
   {/each}
 </section>

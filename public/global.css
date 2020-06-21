@@ -69,13 +69,20 @@ label {
 .field-label { display: inline-block; }
 
 .add-button {
+	position: relative;
+	top: 2px;
 	background-color: transparent;
 	border-radius: 50%;
 	min-height: 2rem;
 	min-width: 2rem;
 	border: none;
 	color: #fff;
-	font-size: 1rem;
+}
+
+.add-button span {
+	position: relative;
+	bottom: 1px;
+	font-size: 1.25rem;
 }
 
 .tag {

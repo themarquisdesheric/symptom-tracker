@@ -1,4 +1,6 @@
 <script>
+  import AddButton from './AddButton.svelte';
+
   let flare = false;
   let itch = false;
   let cramps = false;
@@ -10,7 +12,6 @@
   let collarTimes = []
 
   $: collarTimesFull = collarTimes.length === 4
-  $: rejectCollarChange = collar === '+' || collarTimes.includes(collar)
 
   const arbitrarySort = (a, b) => {
     const arbitraryOrder = { morning: 1, day: 2, evening: 3, night: 4 };
@@ -18,8 +19,12 @@
     return arbitraryOrder[a] - arbitraryOrder[b];
   }
 
-  const handleCollarChange = () => {
-    if (rejectCollarChange) return;
+  const addCollarTime = () => {
+    if (collar === '+' || collarTimes.includes(collar)) return;
+
+    if (collar === 'all day') {
+      return collarTimes = ['morning', 'day', 'evening', 'night'];
+    }
     
     collarTimes = [
       ...collarTimes,
@@ -41,13 +46,13 @@
 
   .collar { width: 70px; }
 
-  .add-button {
+  :global(.symptoms .add-button) {
     background: #9c64a6;
     color: #fff;
   }
 </style>
 
-<section>
+<section class="symptoms">
   <label>Symptoms</label>
   <div>
     <input type="checkbox" id="flare" bind:checked={flare} />
@@ -94,16 +99,20 @@
 
   <div>
     <span class="field-label">Collar</span>
-    <select class="primary collar" bind:value={collar} on:blur={handleCollarChange} class:hidden={collarTimesFull}>
+    <select class="primary collar" bind:value={collar} class:hidden={collarTimesFull}>
       <option>+</option>
       <option>morning</option>
       <option>day</option>
       <option>evening</option>
       <option>night</option>
+      <option>all day</option>
     </select>
 
     {#if collar !== '+'}
-      <button class="add-button" class:hidden={collarTimesFull}>+</button>
+      <AddButton
+        handleClick={addCollarTime}
+        classes={collarTimesFull ? 'hidden' : ''}
+      />
     {/if}
     <div>
       {#each collarTimes as collarTime}

@@ -22,6 +22,12 @@
   	text-decoration: none;
     color: #333;
 	}
+
+	footer {
+		text-align: center;
+    padding: 1rem 0;
+    background: #ffc4ff;
+	}
 </style>
 
 <nav>
@@ -31,3 +37,4 @@
 <div>
 	<Router {routes} />
 </div>
+<footer>The Chronic</footer>

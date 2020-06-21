@@ -1,4 +1,6 @@
 <style>
+  section.wrapper { margin-bottom: 3rem; }
+
   textarea { 
     width: 100%;
     margin-bottom: .5rem;
@@ -13,9 +15,9 @@
   }
 </style>
 
-<section>
+<section class="wrapper">
   <label>Notes</label>
-  <textarea rows="4"></textarea>
+  <textarea rows="7"></textarea>
   <div>
     <button>Save</button>
     <button>Cancel</button>
