@@ -1,5 +1,6 @@
 <script>import { type } from 'os';
   import AddButton from './AddButton.svelte';
+  import { TIMES, arbitrarySort } from '../utils';
 
   let types = {
     headNeck: {
@@ -45,26 +46,43 @@
   };
 
   const handleAdd = (painType) => {
-    // need to sort and dedupe
+    const { times, value } = types[painType];
 
+    if (times.includes(value)) return;
+
+    if (value === 'all day') {
+      return types = {
+        ...types,
+        [painType]: {
+          ...types[painType],
+          times: [...TIMES],
+        },
+      };
+    }
+    
     types = {
       ...types,
       [painType]: {
         ...types[painType],
-        times: [...types[painType].times, types[painType].value],
+        value: '+',
+        times: [
+          ...times,
+          value
+        ].sort(arbitrarySort),
       },
     };
   };
 
   const handleRemove = (painType, time) => {
-    // make prompt for this first <confirm>
-    types = {
-      ...types,
-      [painType]: {
-        ...types[painType],
-        times: types[painType].times.filter(id => id !== time),
-      },
-    };
+    if (confirm(`Are you sure you want to remove '${time}'?`)) {
+      types = {
+        ...types,
+        [painType]: {
+          ...types[painType],
+          times: types[painType].times.filter(id => id !== time),
+        },
+      };
+    }
   };
 </script>
 
@@ -109,9 +127,9 @@
           }
         />
       {/if}
-      <div>
+      <div class:inline={types[painType].times.length === 4}>
         {#each types[painType].times as time}
-          <button on:click={() => handleRemove(painType, time)} class="tag">{time}</button>
+          <button on:click={() => handleRemove(painType, time)} class={`tag ${time}`}>{time}</button>
         {/each}
       </div>
     </div>

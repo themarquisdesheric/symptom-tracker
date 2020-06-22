@@ -68,6 +68,15 @@ label {
 
 .field-label { display: inline-block; }
 
+.primary { color: #ce93d8; }
+.light { color: #ffc4ff; }
+.dark { color: #9c64a6; }
+
+.morning { border-color: #f06292; }
+.day { border-color: #7986cb; }
+.evening { border-color: #4fc3f7; }
+.night { border-color: #4db6ac; }
+
 .add-button {
 	position: relative;
 	top: 2px;
@@ -91,10 +100,6 @@ label {
 	margin-top: .5rem;
 }
 
-.primary { color: #ce93d8; }
+.inline { display: inline; }
 
-.light { color: #ffc4ff; }
-
-.dark { color: #9c64a6; }
-
-.hidden { visibility: hidden; }
+.hidden { display: none; }

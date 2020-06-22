@@ -1,5 +1,6 @@
 <script>
   import AddButton from './AddButton.svelte';
+  import { TIMES, arbitrarySort } from '../utils';
 
   let flare = false;
   let itch = false;
@@ -13,17 +14,11 @@
 
   $: collarTimesFull = collarTimes.length === 4
 
-  const arbitrarySort = (a, b) => {
-    const arbitraryOrder = { morning: 1, day: 2, evening: 3, night: 4 };
-
-    return arbitraryOrder[a] - arbitraryOrder[b];
-  }
-
   const addCollarTime = () => {
     if (collar === '+' || collarTimes.includes(collar)) return;
 
     if (collar === 'all day') {
-      return collarTimes = ['morning', 'day', 'evening', 'night'];
+      return collarTimes = [...TIMES];
     }
     
     collarTimes = [
@@ -114,9 +109,9 @@
         classes={collarTimesFull ? 'hidden' : ''}
       />
     {/if}
-    <div>
+    <div class:inline={collarTimesFull}>
       {#each collarTimes as collarTime}
-        <button on:click={() => handleRemoveCollarTime(collarTime)} class="tag">{collarTime}</button>
+        <button on:click={() => handleRemoveCollarTime(collarTime)} class={`tag ${collarTime}`}>{collarTime}</button>
       {/each}
     </div>
   </div>

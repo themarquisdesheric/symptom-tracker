@@ -1,3 +1,11 @@
+<script>
+  let value = '';
+
+  const handleSave = () => {
+    // form validation
+  };
+</script>
+
 <style>
   section.wrapper { margin-bottom: 3rem; }
 
@@ -8,7 +16,7 @@
 
   div { display: flex; }
 
-  button:first-of-type { 
+  button { 
     background: #9c64a6;
     color: #fff;
     margin-right: .5rem;
@@ -17,9 +25,8 @@
 
 <section class="wrapper">
   <label>Notes</label>
-  <textarea rows="7"></textarea>
+  <textarea bind:value rows="7"></textarea>
   <div>
-    <button>Save</button>
-    <button>Cancel</button>
+    <button on:click={handleSave}>Save</button>
   </div>
 </section>
