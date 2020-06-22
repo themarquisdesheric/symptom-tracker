@@ -1,8 +1,9 @@
 <script>
   import CheckmarkEmoji from './CheckmarkEmoji.svelte'
-  let nocturia = 0;
-  let pee = false;
-  let poo = false;
+
+  let nocturia = 0
+  let pee = false
+  let poo = false
 </script>
 
 <style>

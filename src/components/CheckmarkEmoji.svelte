@@ -1,6 +1,6 @@
 <script>
-  export let className = '';
-  export let handleClick;
+  export let className = ''
+  export let handleClick
 </script>
 
 <style>

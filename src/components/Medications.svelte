@@ -1,41 +1,41 @@
 <script>
-  import AddButton from './AddButton.svelte';
+  import AddButton from './AddButton.svelte'
 
-  let newMedicine = '';
-  let showInput = false;
-  let medications = [];
+  let newMedicine = ''
+  let showInput = false
+  let medications = []
 
-  let input;
+  let input
 
   const addNewMedicine = () => {
-    if (medications.includes(newMedicine)) return;
+    if (medications.includes(newMedicine)) return
 
     medications = [
       ...medications,
       newMedicine
-    ];
+    ]
 
-    newMedicine = '';
-  };
+    newMedicine = ''
+  }
 
   const handleAddButtonClick = () => {
     if (showInput) {
       if (!newMedicine.length) {
-        showInput = false;
-        return;
+        showInput = false
+        return
       }
 
-      addNewMedicine(newMedicine);
+      addNewMedicine(newMedicine)
     }
 
-    showInput = !showInput;
-  };
+    showInput = !showInput
+  }
 
   const handleRemoveMedication = (medication) => {
     if (confirm(`Are you sure you want to remove ${medication}?`)) {
       medications = medications.filter(med => med !== medication)
     }
-  };
+  }
 
   $: input && input.focus()
 </script>

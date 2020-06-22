@@ -1,21 +1,21 @@
 <script>
   // menses cycle needs to auto increment every day
-  let mensesCycle = 1;
-  let endPeriod = false;
+  let mensesCycle = 1
+  let endPeriod = false
   
-  $: showEndPeriodButton = mensesCycle > 3 && endPeriod === false;
-  $: showBeginPeriodButton = mensesCycle > 3 && !showEndPeriodButton;
+  $: showEndPeriodButton = mensesCycle > 3 && endPeriod === false
+  $: showBeginPeriodButton = mensesCycle > 3 && !showEndPeriodButton
 
   const handleBeginPeriod = () => {
-    mensesCycle = 1;
-    endPeriod = false;
-  };
+    mensesCycle = 1
+    endPeriod = false
+  }
 
   const handleEndPeriod = () => {
     // save end period event to db
-    showEndPeriodButton = false;
-    endPeriod = true;
-  };
+    showEndPeriodButton = false
+    endPeriod = true
+  }
 </script>
 
 <style>

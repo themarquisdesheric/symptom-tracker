@@ -1,6 +1,6 @@
-<script>import { type } from 'os';
-  import AddButton from './AddButton.svelte';
-  import { TIMES, arbitrarySort } from '../utils';
+<script>
+  import AddButton from './AddButton.svelte'
+  import { TIMES, arbitrarySort } from '../utils'
 
   let types = {
     headNeck: {
@@ -43,12 +43,12 @@
       times: [],
       value: '+',
     },
-  };
+  }
 
   const handleAdd = (painType) => {
-    const { times, value } = types[painType];
+    const { times, value } = types[painType]
 
-    if (times.includes(value)) return;
+    if (times.includes(value)) return
 
     if (value === 'all day') {
       return types = {
@@ -57,7 +57,7 @@
           ...types[painType],
           times: [...TIMES],
         },
-      };
+      }
     }
     
     types = {
@@ -70,8 +70,8 @@
           value
         ].sort(arbitrarySort),
       },
-    };
-  };
+    }
+  }
 
   const handleRemove = (painType, time) => {
     if (confirm(`Are you sure you want to remove '${time}'?`)) {
@@ -81,9 +81,9 @@
           ...types[painType],
           times: types[painType].times.filter(id => id !== time),
         },
-      };
+      }
     }
-  };
+  }
 </script>
 
 <style>

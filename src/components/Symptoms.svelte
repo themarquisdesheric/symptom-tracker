@@ -1,13 +1,13 @@
 <script>
-  import AddButton from './AddButton.svelte';
-  import { TIMES, arbitrarySort } from '../utils';
+  import AddButton from './AddButton.svelte'
+  import { TIMES, arbitrarySort } from '../utils'
 
-  let flare = false;
-  let itch = false;
-  let cramps = false;
-  let discharge = false;
-  let sex = true;
-  let headache = 0;
+  let flare = false
+  let itch = false
+  let cramps = false
+  let discharge = false
+  let sex = true
+  let headache = 0
   let urgency = '+'
   let collar = '+'
   let collarTimes = []
@@ -15,16 +15,16 @@
   $: collarTimesFull = collarTimes.length === 4
 
   const addCollarTime = () => {
-    if (collar === '+' || collarTimes.includes(collar)) return;
+    if (collar === '+' || collarTimes.includes(collar)) return
 
     if (collar === 'all day') {
-      return collarTimes = [...TIMES];
+      return collarTimes = [...TIMES]
     }
     
     collarTimes = [
       ...collarTimes,
       collar
-    ].sort(arbitrarySort);
+    ].sort(arbitrarySort)
   }
 
   const handleRemoveCollarTime = (collarTime) => {

@@ -1,8 +1,8 @@
 <script>
-  let dairy = false;
-  let gluten = true;
-  let sugar = false;
-  let soy = false;
+  let dairy = false
+  let gluten = true
+  let sugar = false
+  let soy = false
 </script>
 
 <section>

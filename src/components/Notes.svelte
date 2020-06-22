@@ -1,9 +1,9 @@
 <script>
-  let value = '';
+  let value = ''
 
   const handleSave = () => {
     // form validation
-  };
+  }
 </script>
 
 <style>
