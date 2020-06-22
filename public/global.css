@@ -94,6 +94,22 @@ label {
 	font-size: 1.25rem;
 }
 
+.plus-sign {
+	position: absolute;
+	top: 6px;
+	left: 7.5rem;
+	display: flex;
+	justify-content: center;
+	width: 28px;
+	border: 1px solid #ce93d8;
+	border-radius: 5px;
+	padding: .25rem;
+	pointer-events: none;
+	color: #ce93d8;
+}
+
+.plus-sign.hidden { display: none; }
+
 .tag {
 	min-height: 30px;
 	font-size: .75rem;

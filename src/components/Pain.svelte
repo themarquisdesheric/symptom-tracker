@@ -1,54 +1,62 @@
 <script>
-  import AddButton from './AddButton.svelte'
   import { TIMES, arbitrarySort } from '../utils'
 
   let types = {
     headNeck: {
       name: 'Head/neck',
       times: [],
-      value: '+',
+      value: '',
     },
     shouldersArms: {
       name: 'Shoulders/arms',
       times: [],
-      value: '+',
+      value: '',
     },
     hipsLowBack: {
       name: 'Hips/low back',
       times: [],
-      value: '+',
+      value: '',
     },
     pelvisBladder: {
       name: 'Pelvis/bladder',
       times: [],
-      value: '+',
+      value: '',
     },
     sciaticaLegs: {
       name: 'Sciatica/legs',
       times: [],
-      value: '+',
+      value: '',
     },
     bowelsRectum: {
       name: 'Bowels/rectum',
       times: [],
-      value: '+',
+      value: '',
     },
     vulvaPerineum: {
       name: 'Vulva/perineum',
       times: [],
-      value: '+',
+      value: '',
     },
     visionLoss: {
       name: 'Vision loss',
       times: [],
-      value: '+',
+      value: '',
     },
   }
 
   const handleAdd = (painType) => {
     const { times, value } = types[painType]
 
-    if (times.includes(value)) return
+    if (times.includes(value)) {
+      // reset value
+      return types = {
+        ...types,
+        [painType]: {
+          ...types[painType],
+          value: '',
+        },
+      }
+    }
 
     if (value === 'all day') {
       return types = {
@@ -64,7 +72,7 @@
       ...types,
       [painType]: {
         ...types[painType],
-        value: '+',
+        value: '',
         times: [
           ...times,
           value
@@ -87,7 +95,10 @@
 </script>
 
 <style>
-  div { margin: .5rem 0; }
+  div { 
+    margin: .5rem 0;
+    position: relative;
+  }
 
   div:first-of-type { margin-top: 0; }
 
@@ -102,6 +113,13 @@
   }
 
   select { font-size: 1rem; }
+
+  .plus-sign {
+    display: flex;
+    width: 28px;
+  }
+
+  .plus-sign.hidden { display: none; }
 </style>
 
 <section class="pain">
@@ -109,9 +127,22 @@
   
   {#each Object.keys(types) as painType}
     <div>
+      <span
+        class="plus-sign"
+        class:hidden={types[painType].times.length === 4}
+      >
+        +
+      </span>
+
       <span class="field-label">{types[painType].name}</span>
-      <select class="primary" bind:value={types[painType].value} class:hidden={types[painType].times.length === 4}>
-        <option>+</option>
+      <!-- svelte-ignore a11y-no-onchange -->
+      <select
+        bind:value={types[painType].value} 
+        on:change={() => handleAdd(painType)}
+        class="primary" 
+        class:hidden={types[painType].times.length === 4}
+      >
+        <option></option>
         <option>morning</option>
         <option>day</option>
         <option>evening</option>
@@ -119,14 +150,6 @@
         <option>all day</option>
       </select>
 
-      {#if types[painType].value !== '+'}
-        <AddButton
-          handleClick={() => handleAdd(painType)}
-          classes={
-            types[painType].times.length === 4 ? 'hidden' : ''
-          }
-        />
-      {/if}
       <div class:inline={types[painType].times.length === 4}>
         {#each types[painType].times as time}
           <button on:click={() => handleRemove(painType, time)} class={`tag ${time}`}>{time}</button>

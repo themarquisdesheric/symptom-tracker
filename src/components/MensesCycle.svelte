@@ -19,6 +19,8 @@
 </script>
 
 <style>
+  .field-label { width: 115px; }
+  
   button { font-size: .75rem; }
 
   .begin-period { color: green; }

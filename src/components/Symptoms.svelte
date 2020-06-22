@@ -1,6 +1,7 @@
 <script>
-  import AddButton from './AddButton.svelte'
   import { TIMES, arbitrarySort } from '../utils'
+
+  // urgency needs a button with outline too
 
   let flare = false
   let itch = false
@@ -9,13 +10,13 @@
   let sex = true
   let headache = 0
   let urgency = '+'
-  let collar = '+'
+  let collar = ''
   let collarTimes = []
 
   $: collarTimesFull = collarTimes.length === 4
 
   const addCollarTime = () => {
-    if (collar === '+' || collarTimes.includes(collar)) return
+    if (collar === '' || collarTimes.includes(collar)) return
 
     if (collar === 'all day') {
       return collarTimes = [...TIMES]
@@ -25,6 +26,8 @@
       ...collarTimes,
       collar
     ].sort(arbitrarySort)
+
+    collar = ''
   }
 
   const handleRemoveCollarTime = (collarTime) => {
@@ -37,14 +40,13 @@
 <style>
   input { padding-left: 0; }
 
+  .symptoms .field-label { width: 115px; }
+
   select { font-size: 1rem; }
 
-  .collar { width: 70px; }
+  .collar-container { position: relative; }
 
-  :global(.symptoms .add-button) {
-    background: #9c64a6;
-    color: #fff;
-  }
+  .collar { width: 70px; }
 </style>
 
 <section class="symptoms">
@@ -92,10 +94,22 @@
     </select>
   </div>
 
-  <div>
+  <div class="collar-container">
+    <span
+      class="plus-sign"
+      class:hidden={collarTimesFull}
+    >
+      +
+    </span>
     <span class="field-label">Collar</span>
-    <select class="primary collar" bind:value={collar} class:hidden={collarTimesFull}>
-      <option>+</option>
+    <!-- svelte-ignore a11y-no-onchange -->
+    <select
+      bind:value={collar}
+      on:change={addCollarTime}
+      class="primary collar"
+      class:hidden={collarTimesFull}
+    >
+      <option></option>
       <option>morning</option>
       <option>day</option>
       <option>evening</option>
@@ -103,12 +117,6 @@
       <option>all day</option>
     </select>
 
-    {#if collar !== '+'}
-      <AddButton
-        handleClick={addCollarTime}
-        classes={collarTimesFull ? 'hidden' : ''}
-      />
-    {/if}
     <div class:inline={collarTimesFull}>
       {#each collarTimes as collarTime}
         <button on:click={() => handleRemoveCollarTime(collarTime)} class={`tag ${collarTime}`}>{collarTime}</button>
