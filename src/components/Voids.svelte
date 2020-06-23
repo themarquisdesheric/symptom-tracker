@@ -28,9 +28,21 @@
   .pee,
   .poo { position: relative; }
 
+  .delta span,
+  .nocturia-input { font-size: 1rem; }
+
+  .delta { display: flex; }
+
   .delta span { padding-left: .5rem; }
 
-  .nocturia input { margin-bottom: 0; }
+  .void-container .nocturia-label {
+    position: relative;
+    bottom: 1px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .nocturia-input { margin-bottom: 0; }
   
   .void-container label { 
     width: unset;
@@ -65,8 +77,9 @@
       </span>
     </div>
     <label class="delta">Delta <span class="primary">60min</span></label>
-    <label class="nocturia">
-      Nocturia <input type="number" min="0" max="10" bind:value={nocturia} class="primary" />
+    <label>
+      <span class="nocturia-label">Nocturia </span>
+      <input type="number" min="0" max="10" bind:value={nocturia} class="nocturia-input primary" />
     </label>
   </div>
   <div class="pee-chart">pee/poo chart from 5am - 10pm</div>

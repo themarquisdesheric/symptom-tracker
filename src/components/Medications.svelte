@@ -1,5 +1,6 @@
 <script>
   import AddButton from './AddButton.svelte'
+  import PlusSign from './PlusSign.svelte'
 
   let newMedicine = ''
   let showInput = false
@@ -43,11 +44,14 @@
 <style>
   .medications {
     min-height: 40px;
+    position: relative;
+    margin: 0;
   }
 
   :global(.medications .add-button) {
     position: relative;
-    right: 11px;
+    left: 4px;
+    top: 4px;
   }
 
   :global(.medications span ~ .add-button span) { font-size: 1rem; }
@@ -55,26 +59,31 @@
   :global(.medications .add-button.showInput span) { font-size: 1.25rem; }
 
   :global(.medications .showInput) { 
-    right: 0;
+    left: 0;
+    top: 2px;
     background: #9c64a6;
     color: #fff;
   }
 
   input {
     width: 165px;
+    min-height: 2rem;
     background: #fff;
     color: #333;
   }
+
+  :global(.transparent span) { color: transparent; }
 </style>
 
 <section class="medications">
   <span class="field-label">Medications</span>
+  <PlusSign hiddenClass={showInput} />
   {#if showInput}
     <input type="text" bind:value={newMedicine} bind:this={input} />
   {/if}
   <AddButton
     handleClick={handleAddButtonClick}
-    classes={`primary ${showInput ? 'showInput' : ''}`}
+    classes={`primary ${showInput ? 'showInput' : 'transparent'}`}
   />
   <div>
     {#each medications as medication}

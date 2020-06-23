@@ -1,7 +1,6 @@
 <script>
   import { TIMES, arbitrarySort } from '../utils'
-
-  // urgency needs a button with outline too
+  import PlusSign from './PlusSign.svelte'
 
   let flare = false
   let itch = false
@@ -9,7 +8,7 @@
   let discharge = false
   let sex = true
   let headache = 0
-  let urgency = '+'
+  let urgency = ''
   let collar = ''
   let collarTimes = []
 
@@ -33,16 +32,21 @@
   const handleRemoveCollarTime = (collarTime) => {
     if (confirm(`Are you sure you want to remove ${collarTime}?`)) {
       collarTimes = collarTimes.filter(time => time !== collarTime)
+      collar = ''
     }
   }
 </script>
 
 <style>
-  input { padding-left: 0; }
+  :global(.entry-form .symptoms) { margin-bottom: 0; }
 
   .symptoms .field-label { width: 115px; }
 
+  input { padding-left: 0; }
+
   select { font-size: 1rem; }
+
+  .urgency { position: relative; }
 
   .collar-container { position: relative; }
 
@@ -78,10 +82,11 @@
     <span class="field-label">Headache</span> <input class="primary" type="number" min="0" max="10" bind:value={headache} />
   </div>
 
-  <div>
+  <div class="urgency">
     <span class="field-label">Urgency</span>
+    <PlusSign hiddenClass={urgency} />
     <select class="primary" bind:value={urgency}>
-      <option>+</option>
+      <option></option>
       <option>
         calm
       </option>
@@ -95,12 +100,7 @@
   </div>
 
   <div class="collar-container">
-    <span
-      class="plus-sign"
-      class:hidden={collarTimesFull}
-    >
-      +
-    </span>
+    <PlusSign hiddenClass={collarTimesFull} />
     <span class="field-label">Collar</span>
     <!-- svelte-ignore a11y-no-onchange -->
     <select

@@ -1,5 +1,6 @@
 <script>
   import { TIMES, arbitrarySort } from '../utils'
+  import PlusSign from './PlusSign.svelte'
 
   let types = {
     headNeck: {
@@ -87,6 +88,7 @@
         ...types,
         [painType]: {
           ...types[painType],
+          value: '',
           times: types[painType].times.filter(id => id !== time),
         },
       }
@@ -127,13 +129,7 @@
   
   {#each Object.keys(types) as painType}
     <div>
-      <span
-        class="plus-sign"
-        class:hidden={types[painType].times.length === 4}
-      >
-        +
-      </span>
-
+      <PlusSign hiddenClass={types[painType].times.length === 4} />
       <span class="field-label">{types[painType].name}</span>
       <!-- svelte-ignore a11y-no-onchange -->
       <select
