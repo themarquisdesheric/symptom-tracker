@@ -7,7 +7,10 @@
 </script>
 
 <style>
-  section.wrapper { margin-bottom: 3rem; }
+  section.wrapper {
+    padding-bottom: 3rem;
+    margin-bottom: 0;
+  }
 
   textarea { 
     width: 100%;

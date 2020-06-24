@@ -7,13 +7,19 @@
 </script>
 
 <style>
+  section {
+    margin-top: 0;
+    padding-top: 1rem;
+  }
+
   .void-container {
 		display: flex;
 		justify-content: space-between;
-		align-items: center;
+    align-items: center;
+    padding-bottom: .5rem;
 	}
 
-	.void-container button {
+	button {
 		font-size: 1.75rem;
 		padding: 0;
 		border: none;
@@ -35,21 +41,25 @@
 
   .delta span { padding-left: .5rem; }
 
-  .void-container .nocturia-label {
+  .nocturia-label {
     position: relative;
     bottom: 1px;
     font-weight: bold;
     font-size: 14px;
   }
 
-  .nocturia-input { margin-bottom: 0; }
+  .nocturia-input {
+    width: 1rem;
+    min-width: 1rem;
+    margin-bottom: 0;
+  }
   
-  .void-container label { 
+  label { 
     width: unset;
     margin-bottom: 0;
   }
 
-	.void-container label * { font-weight: normal; }
+	label * { font-weight: normal; }
 
 	.pee-chart {
 		border: 1px solid;
@@ -60,7 +70,6 @@
 </style>
 
 <section>
-  <label>Voids</label>
   <div class="void-container">
     <div>
       <span class="pee">

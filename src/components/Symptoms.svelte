@@ -42,6 +42,8 @@
 
   .symptoms .field-label { width: 115px; }
 
+  label[for="sex"] { margin-right: 0; }
+
   input { padding-left: 0; }
 
   select { font-size: 1rem; }
