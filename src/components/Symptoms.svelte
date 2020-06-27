@@ -42,6 +42,12 @@
 
   .symptoms .field-label { width: 115px; }
 
+  .symptom-buttons {
+    display: flex;
+    justify-content: space-between;
+    max-width: 335px;
+  }
+
   label[for="sex"] { margin-right: 0; }
 
   input { padding-left: 0; }
@@ -57,7 +63,7 @@
 
 <section class="symptoms">
   <label>Symptoms</label>
-  <div>
+  <div class="symptom-buttons">
     <input type="checkbox" id="flare" bind:checked={flare} />
     <label for="flare">
       flare

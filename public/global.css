@@ -123,6 +123,8 @@ label {
 	margin-top: .5rem;
 }
 
+.tag:last-of-type { margin-right: 0; }
+
 .inline { display: inline; }
 
 .hidden { display: none; }
