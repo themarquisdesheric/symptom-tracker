@@ -1,9 +1,8 @@
 <script>
+  import entry from '../store'
   import CheckmarkEmoji from './CheckmarkEmoji.svelte'
 
   let nocturia = 0
-  let pee = false
-  let poo = false
 </script>
 
 <style>
@@ -85,22 +84,29 @@
   <div class="void-container">
     <div>
       <span class="pee">
-        {#if pee}
+        {#if $entry.voids.pee.length}
           <CheckmarkEmoji className="checkmark-button" />
         {/if}
-        <button on:click={() => pee = !pee}>💧</button>
+        <button on:click={() => entry.addVoid('pee')}>💧</button>
       </span>
       <span class="poo">
-        {#if poo}
+        {#if $entry.voids.poo.length}
           <CheckmarkEmoji className="checkmark-button" />
         {/if}
-        <button on:click={() => poo = !poo}>💩</button>
+        <button on:click={() => entry.addVoid('poo')}>💩</button>
       </span>
     </div>
     <label class="delta">Delta <span class="primary">60min</span></label>
     <label class="nocturia">
       <span>Nocturia </span>
-      <input type="number" min="0" max="10" bind:value={nocturia} class="primary" />
+      <input
+        type="number"
+        min="0"
+        max="9"
+        bind:value={nocturia}
+        on:change={() => entry.addVoid('nocturia', nocturia)}
+        class="primary"
+      />
     </label>
   </div>
   <div class="pee-chart">pee/poo chart from 5am - 10pm</div>

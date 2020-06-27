@@ -44,11 +44,10 @@
 
   .symptom-buttons {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
     max-width: 335px;
   }
 
-  label[for="sex"] { margin-right: 0; }
 
   input { padding-left: 0; }
 
@@ -87,7 +86,7 @@
   </div>
 
   <div>
-    <span class="field-label">Headache</span> <input class="primary" type="number" min="0" max="10" bind:value={headache} />
+    <span class="field-label">Headache</span> <input class="primary" type="number" min="0" max="5" bind:value={headache} />
   </div>
 
   <div class="urgency">

@@ -5,6 +5,10 @@
   let soy = false
 </script>
 
+<style>
+  div { display: flex; }
+</style>
+
 <section>
   <label>Allergens</label>
   <div>

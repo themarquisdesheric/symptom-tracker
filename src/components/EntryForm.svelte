@@ -8,8 +8,6 @@
   import Notes from './Notes.svelte'
 </script>
 
-<!-- amber thinking about: timestamp for headaches (yes) + maybe changing scale to 0-5 instead of 0-10 -->
-
 <style>
   :global(.entry-form > section) {
     margin: 1rem 0;
