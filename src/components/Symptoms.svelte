@@ -61,96 +61,17 @@
 <section class="symptoms">
   <label>Symptoms</label>
   <div class="symptom-buttons">
-    <input
-      type="checkbox"
-      id="flare"
-      checked={$entry.symptoms.flare}
-      on:click={() => toggleSymptom('flare')}  
-    />
-    <label for="flare">
-      flare
-    </label>
-
-    <input
-      type="checkbox"
-      id="itch"
-      checked={$entry.symptoms.itch}
-      on:click={() => toggleSymptom('itch')}  
-    />
-    <label for="itch">
-      itch
-    </label>
-
-    <input
-      type="checkbox"
-      id="cramps"
-      checked={$entry.symptoms.cramps}
-      on:click={() => toggleSymptom('cramps')}  
-    />
-    <label for="cramps">
-      cramps
-    </label>
-
-    <input
-      type="checkbox"
-      id="discharge"
-      checked={$entry.symptoms.discharge}
-      on:click={() => toggleSymptom('discharge')}  
-    />
-    <label for="discharge">
-      discharge
-    </label>
-
-    <input
-      type="checkbox"
-      id="sex"
-      checked={$entry.symptoms.sex}
-      on:click={() => toggleSymptom('sex')}  
-    />
-    <label class="active" for="sex">
-      sex
-    </label>
-
-
-    <input
-      type="checkbox"
-      id="fatigue"
-      checked={false} 
-      on:click={() => toggleSymptom('fatigue')}  
-    >
-    <label class="active" for="fatigue">
-      fatigue
-    </label>
-
-    <input
-      type="checkbox"
-      id="vertigo"
-      checked={false} 
-      on:click={() => toggleSymptom('vertigo')}  
-    >
-    <label class="active" for="vertigo">
-      vertigo
-    </label>
-
-    <input
-      type="checkbox"
-      id="gait"
-      checked={false} 
-      on:click={() => toggleSymptom('gait')}  
-    >
-    <label class="active" for="gait">
-      gait
-    </label>
-
-    <input
-      type="checkbox"
-      id="nausea"
-      checked={false} 
-      on:click={() => toggleSymptom('nausea')}  
-    >
-    <label class="active" for="nausea">
-      nausea
-    </label>
+    {#each Object.keys($entry.symptoms).slice(0, 9) as symptom}
+      <input
+        type="checkbox"
+        id={symptom}
+        checked={$entry.symptoms[symptom]}
+        on:click={() => toggleSymptom(symptom)}  
+      />
+      <label for={symptom}>
+        {symptom}
+      </label>
+    {/each}
   </div>
 
   <div>

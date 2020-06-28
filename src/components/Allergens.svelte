@@ -11,41 +11,16 @@
 <section>
   <label>Allergens</label>
   <div>
+  {#each Object.keys($entry.allergens) as allergen}
     <input
       type="checkbox"
-      id="dairy"
-      checked={$entry.allergens.dairy}
-      on:click={() => toggleAllergen('dairy')}
+      id={allergen}
+      checked={$entry.allergens[allergen]}
+      on:click={() => toggleAllergen(allergen)}
     />
-    <label for="dairy">
-      dairy
+    <label for={allergen}>
+      {allergen}
     </label>
-    <input
-      type="checkbox"
-      id="gluten"
-      checked={$entry.allergens.gluten}
-      on:click={() => toggleAllergen('gluten')}
-    />
-    <label for="gluten">
-      gluten
-    </label>
-    <input
-      type="checkbox"
-      id="sugar"
-      checked={$entry.allergens.sugar}
-      on:click={() => toggleAllergen('sugar')}
-    />
-    <label for="sugar">
-      sugar
-    </label>
-    <input
-      type="checkbox"
-      id="soy"
-      checked={$entry.allergens.soy}
-      on:click={() => toggleAllergen('soy')}
-    />
-    <label for="soy">
-      soy
-    </label>
+  {/each}
   </div>
 </section>
