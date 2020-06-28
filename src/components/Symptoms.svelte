@@ -1,5 +1,5 @@
 <script>
-  import entry from '../store'
+  import entry from '../stores/entry'
   import { TIMES, arbitrarySort, removeTimeOfDayByCategory } from '../utils'
   import PlusSign from './PlusSign.svelte'
 

@@ -1,5 +1,5 @@
 <script>
-  import entry from '../store'
+  import entry from '../stores/entry'
   import CheckmarkEmoji from './CheckmarkEmoji.svelte'
 
   const handleChange = ({ target }) =>

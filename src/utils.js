@@ -1,4 +1,4 @@
-import entry from './store'
+import entry from './stores/entry'
 
 export const TIMES = ['morning', 'day', 'evening', 'night']
 

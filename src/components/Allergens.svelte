@@ -1,5 +1,5 @@
 <script>
-  import entry from '../store'
+  import entry from '../stores/entry'
 
   const toggleAllergen = entry.toggleCheckbox('allergens')
 </script>

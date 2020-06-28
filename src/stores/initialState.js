@@ -1,0 +1,43 @@
+export default {
+  voids: {
+    pee: [],
+    poo: [],
+    nocturia: 0,
+  },
+  allergens: {
+    dairy: false,
+    gluten: false,
+    sugar: false,
+    soy: false,
+  },
+  pain: {
+    headNeck: [],
+    shouldersArms: [],
+    hipsLowBack: [],
+    pelvisBladder: [],
+    sciaticaLegs: [],
+    bowelsRectum: [],
+    vulvaPerineum: [],
+  },
+  symptoms: {
+    flare: false,
+    itch: false,
+    cramps: false,
+    discharge: false,
+    sex: false,
+    fatigue: false,
+    vertigo: false,
+    gait: false,
+    nausea: false,
+    headache: 0,
+    urgency: '',
+    collar: [],
+    visionLoss: [],
+  },
+  mensesCycle: {
+    mensesCycle: 1,
+    endPeriod: false,
+  },
+  medications: [],
+  notes: '',
+}
