@@ -1,6 +1,6 @@
 <script>
   import entry from '../store'
-  import { TIMES, arbitrarySort } from '../utils'
+  import { TIMES, arbitrarySort, removeTimeOfDayByCategory } from '../utils'
   import PlusSign from './PlusSign.svelte'
 
   // move visionLoss to symptoms, beneath Headache
@@ -42,15 +42,7 @@
     })
   }
 
-  const handleRemoveTimeOfDay = (type, value) => {
-    if (confirm(`Are you sure you want to remove ${value}?`)) {
-      entry.removeTimeOfDayTag({
-        category: 'symptoms',
-        type,
-        value,
-      })
-    }
-  }
+  const handleRemoveTimeOfDay = removeTimeOfDayByCategory('symptoms')
 </script>
 
 <style>
