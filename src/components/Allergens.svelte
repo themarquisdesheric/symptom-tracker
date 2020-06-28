@@ -1,7 +1,7 @@
 <script>
   import entry from '../store'
 
-  const toggleAllergen = entry.toggleField('allergens')
+  const toggleAllergen = entry.toggleCheckbox('allergens')
 </script>
 
 <style>

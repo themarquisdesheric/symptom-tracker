@@ -1,8 +1,8 @@
 import { writable } from 'svelte/store'
 import { TIMES, arbitrarySort } from './utils'
 
-const createEntry = () => {
-	const entry = writable({
+const createEntryStore = () => {
+	const { subscribe, update } = writable({
     voids: {
       pee: [],
       poo: [],
@@ -47,9 +47,9 @@ const createEntry = () => {
   });
 
 	return {
-    subscribe: entry.subscribe,
+    subscribe,
     addVoid: (type, value) =>
-      entry.update(pastEntry => ({
+      update(pastEntry => ({
         ...pastEntry,
         voids: {
           ...pastEntry.voids,
@@ -58,21 +58,21 @@ const createEntry = () => {
             : [...pastEntry.voids[type], Date.now()]
         },
       })),
-    toggleField: field => type =>
-      entry.update(pastEntry => ({
+    toggleCheckbox: category => type =>
+      update(pastEntry => ({
         ...pastEntry,
-        [field]: {
-          ...pastEntry[field],
-          [type]: !pastEntry[field][type]
+        [category]: {
+          ...pastEntry[category],
+          [type]: !pastEntry[category][type]
         },
       })),
-    addPain: (type, value) =>
-      entry.update(pastEntry => {
+    updateSelect: ({ category, type, value }) =>
+      update(pastEntry => {
         if (value === 'all day') {
           return {
             ...pastEntry,
-            pain: {
-              ...pastEntry.pain,
+          [category]: {
+              ...pastEntry[category],
               [type]: [...TIMES]
             },
           }
@@ -80,24 +80,32 @@ const createEntry = () => {
         
         return {
           ...pastEntry,
-          pain: {
-            ...pastEntry.pain,
+          [category]: {
+            ...pastEntry[category],
             [type]: [
-              ...pastEntry.pain[type],
+              ...pastEntry[category][type],
               value
             ].sort(arbitrarySort),
           }
         }
       }),
-    removePain: (type, value) =>
-      entry.update(pastEntry => ({
+    removeTimeOfDayTag: ({ category, type, value }) =>
+      update(pastEntry => ({
         ...pastEntry,
-        pain: {
-          ...pastEntry.pain,
-          [type]: pastEntry.pain[type].filter(v => v !== value)
+        [category]: {
+          ...pastEntry[category],
+          [type]: pastEntry[category][type].filter(v => v !== value)
+        }
+      })),
+    updateSymptom: (type, value) =>
+      update(pastEntry => ({
+        ...pastEntry,
+        symptoms: {
+          ...pastEntry.symptoms,
+          [type]: value
         }
       }))
 	}
 }
 
-export default createEntry()
+export default createEntryStore()

@@ -2,7 +2,10 @@
   import entry from '../store'
   import CheckmarkEmoji from './CheckmarkEmoji.svelte'
 
-  let nocturia = 0
+  const handleChange = ({ target }) =>
+    entry.addVoid('nocturia', Number(target.value))
+
+  // pee/poo need to be able to display/edit/remove multiple events
 </script>
 
 <style>
@@ -103,8 +106,8 @@
         type="number"
         min="0"
         max="9"
-        bind:value={nocturia}
-        on:change={() => entry.addVoid('nocturia', nocturia)}
+        value={$entry.voids.nocturia}
+        on:change={handleChange}
         class="primary"
       />
     </label>

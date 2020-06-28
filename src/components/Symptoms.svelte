@@ -3,34 +3,52 @@
   import { TIMES, arbitrarySort } from '../utils'
   import PlusSign from './PlusSign.svelte'
 
-  const toggleSymptom = entry.toggleField('symptoms')
+  // move visionLoss to symptoms, beneath Headache
 
-  let headache = 0
-  let urgency = ''
-  let collar = ''
-  let collarTimes = []
+  const toggleSymptom = entry.toggleCheckbox('symptoms')
 
-  $: collarTimesFull = collarTimes.length === 4
-
-  const addCollarTime = () => {
-    if (collar === '' || collarTimes.includes(collar)) return
-
-    if (collar === 'all day') {
-      return collarTimes = [...TIMES]
-    }
-    
-    collarTimes = [
-      ...collarTimes,
-      collar
-    ].sort(arbitrarySort)
-
-    collar = ''
+  let types = {
+    visionLoss: '',
+    collar: '',
   }
 
-  const handleRemoveCollarTime = (collarTime) => {
-    if (confirm(`Are you sure you want to remove ${collarTime}?`)) {
-      collarTimes = collarTimes.filter(time => time !== collarTime)
-      collar = ''
+  $: collarTimesFull = $entry.symptoms.collar.length === 4
+
+  const handleHeadache = ({ target }) =>
+    entry.updateSymptom('headache', Number(target.value))
+  
+  const handleUrgency = ({ target }) =>
+    entry.updateSymptom('urgency', target.value)
+
+  const handleAddTimeOfDay = (type) => {
+    const value = types[type]
+    // ignore value if it exists and reset it
+    if ($entry.symptoms[type].includes(value)) {
+      return types = {
+        ...types,
+        [type]: value,
+      }
+    }
+
+    types = {
+      ...types,
+      [type]: ''
+    }
+
+    entry.updateSelect({
+      category: 'symptoms',
+      type,
+      value,
+    })
+  }
+
+  const handleRemoveTimeOfDay = (type, value) => {
+    if (confirm(`Are you sure you want to remove ${value}?`)) {
+      entry.removeTimeOfDayTag({
+        category: 'symptoms',
+        type,
+        value,
+      })
     }
   }
 </script>
@@ -75,23 +93,29 @@
   </div>
 
   <div>
-    <span class="field-label">Headache</span> <input class="primary" type="number" min="0" max="5" bind:value={headache} />
+    <span class="field-label">Headache</span>
+    <input
+      type="number"
+      min="0"
+      max="5"
+      class="primary"
+      value={$entry.symptoms.headache}
+      on:change={handleHeadache}
+    />
   </div>
 
   <div class="urgency">
     <span class="field-label">Urgency</span>
-    <PlusSign hiddenClass={urgency} />
-    <select class="primary" bind:value={urgency}>
+    <PlusSign hiddenClass={$entry.symptoms.urgency} />
+    <!-- svelte-ignore a11y-no-onchange -->
+    <select
+      class="primary"
+      on:change={handleUrgency}
+    >
       <option></option>
-      <option>
-        calm
-      </option>
-      <option>
-        upset
-      </option>
-      <option>
-        very upset
-      </option>
+      <option>calm</option>
+      <option>upset</option>
+      <option>very upset</option>
     </select>
   </div>
 
@@ -100,8 +124,8 @@
     <span class="field-label">Collar</span>
     <!-- svelte-ignore a11y-no-onchange -->
     <select
-      bind:value={collar}
-      on:change={addCollarTime}
+      bind:value={types.collar}
+      on:change={() => handleAddTimeOfDay('collar')}
       class="primary collar"
       class:hidden={collarTimesFull}
     >
@@ -114,8 +138,8 @@
     </select>
 
     <div class:inline={collarTimesFull}>
-      {#each collarTimes as collarTime}
-        <button on:click={() => handleRemoveCollarTime(collarTime)} class={`tag ${collarTime}`}>{collarTime}</button>
+      {#each $entry.symptoms.collar as time}
+        <button on:click={() => handleRemoveTimeOfDay('collar', time)} class={`tag ${time}`}>{time}</button>
       {/each}
     </div>
   </div>

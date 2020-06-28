@@ -38,14 +38,14 @@
     },
   }
 
-  const handleAdd = (painType) => {
-    const { value } = types[painType]
+  const handleAddTimeOfDay = (type) => {
+    const { value } = types[type]
     // ignore value if it exists and reset it
-    if ($entry.pain[painType].includes(value)) {
+    if ($entry.pain[type].includes(value)) {
       return types = {
         ...types,
-        [painType]: {
-          ...types[painType],
+        [type]: {
+          ...types[type],
           value: '',
         },
       }
@@ -53,18 +53,26 @@
 
     types = {
       ...types,
-      [painType]: {
-        ...types[painType],
+      [type]: {
+        ...types[type],
         value: '',
       },
     }
 
-    entry.addPain(painType, value)
+    entry.updateSelect({
+      category: 'pain',
+      type,
+      value,
+    })
   }
 
-  const handleRemove = (painType, time) => {
-    if (confirm(`Are you sure you want to remove '${time}'?`)) {
-      entry.removePain(painType, time)
+  const handleRemoveTimeOfDay = (type, value) => {
+    if (confirm(`Are you sure you want to remove '${value}'?`)) {
+      entry.removeTimeOfDayTag({
+        category: 'pain',
+        type,
+        value,
+      })
     }
   }
 </script>
@@ -99,17 +107,16 @@
 
 <section class="pain">
   <label>Pain</label>
-  
-  {#each Object.keys($entry.pain) as painType}
+  {#each Object.keys($entry.pain) as type}
     <div>
-      <PlusSign hiddenClass={$entry.pain[painType].length === 4} />
-      <span class="field-label">{types[painType].name}</span>
+      <PlusSign hiddenClass={$entry.pain[type].length === 4} />
+      <span class="field-label">{types[type].name}</span>
       <!-- svelte-ignore a11y-no-onchange -->
       <select
-        bind:value={types[painType].value} 
-        on:change={() => handleAdd(painType)}
+        bind:value={types[type].value} 
+        on:change={() => handleAddTimeOfDay(type)}
         class="primary" 
-        class:hidden={$entry.pain[painType].length === 4}
+        class:hidden={$entry.pain[type].length === 4}
       >
         <option></option>
         <option>morning</option>
@@ -119,9 +126,9 @@
         <option>all day</option>
       </select>
 
-      <div class:inline={$entry.pain[painType].length === 4}>
-        {#each $entry.pain[painType] as time}
-          <button on:click={() => handleRemove(painType, time)} class={`tag ${time}`}>{time}</button>
+      <div class:inline={$entry.pain[type].length === 4}>
+        {#each $entry.pain[type] as time}
+          <button on:click={() => handleRemoveTimeOfDay(type, time)} class={`tag ${time}`}>{time}</button>
         {/each}
       </div>
     </div>
