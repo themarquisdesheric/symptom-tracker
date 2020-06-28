@@ -1,4 +1,5 @@
-import { writable } from 'svelte/store';
+import { writable } from 'svelte/store'
+import { TIMES, arbitrarySort } from './utils'
 
 const createEntry = () => {
 	const entry = writable({
@@ -65,7 +66,38 @@ const createEntry = () => {
           [type]: !pastEntry[field][type]
         },
       })),
-	};
+    addPain: (type, value) =>
+      entry.update(pastEntry => {
+        if (value === 'all day') {
+          return {
+            ...pastEntry,
+            pain: {
+              ...pastEntry.pain,
+              [type]: [...TIMES]
+            },
+          }
+        }
+        
+        return {
+          ...pastEntry,
+          pain: {
+            ...pastEntry.pain,
+            [type]: [
+              ...pastEntry.pain[type],
+              value
+            ].sort(arbitrarySort),
+          }
+        }
+      }),
+    removePain: (type, value) =>
+      entry.update(pastEntry => ({
+        ...pastEntry,
+        pain: {
+          ...pastEntry.pain,
+          [type]: pastEntry.pain[type].filter(v => v !== value)
+        }
+      }))
+	}
 }
 
-export default createEntry();
+export default createEntry()
