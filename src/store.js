@@ -27,7 +27,11 @@ const createEntry = () => {
       itch: false,
       cramps: false,
       discharge: false,
-      sex: true,
+      sex: false,
+      fatigue: false,
+      vertigo: false,
+      gait: false,
+      nausea: false,
       headache: 0,
       urgency: '',
       collar: [],
@@ -42,8 +46,8 @@ const createEntry = () => {
   });
 
 	return {
-		subscribe: entry.subscribe,
-    addVoid: (type, value) => 
+    subscribe: entry.subscribe,
+    addVoid: (type, value) =>
       entry.update(pastEntry => ({
         ...pastEntry,
         voids: {
@@ -51,6 +55,14 @@ const createEntry = () => {
           [type]: type === 'nocturia' 
             ? value
             : [...pastEntry.voids[type], Date.now()]
+        },
+      })),
+    toggleField: field => type =>
+      entry.update(pastEntry => ({
+        ...pastEntry,
+        [field]: {
+          ...pastEntry[field],
+          [type]: !pastEntry[field][type]
         },
       })),
 	};

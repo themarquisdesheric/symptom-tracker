@@ -1,12 +1,10 @@
 <script>
+  import entry from '../store'
   import { TIMES, arbitrarySort } from '../utils'
   import PlusSign from './PlusSign.svelte'
 
-  let flare = false
-  let itch = false
-  let cramps = false
-  let discharge = false
-  let sex = true
+  const toggleSymptom = entry.toggleField('symptoms')
+
   let headache = 0
   let urgency = ''
   let collar = ''
@@ -63,25 +61,95 @@
 <section class="symptoms">
   <label>Symptoms</label>
   <div class="symptom-buttons">
-    <input type="checkbox" id="flare" bind:checked={flare} />
+    <input
+      type="checkbox"
+      id="flare"
+      checked={$entry.symptoms.flare}
+      on:click={() => toggleSymptom('flare')}  
+    />
     <label for="flare">
       flare
     </label>
-    <input type="checkbox" id="itch" bind:checked={itch} />
+
+    <input
+      type="checkbox"
+      id="itch"
+      checked={$entry.symptoms.itch}
+      on:click={() => toggleSymptom('itch')}  
+    />
     <label for="itch">
       itch
     </label>
-    <input type="checkbox" id="cramps" bind:checked={cramps} />
+
+    <input
+      type="checkbox"
+      id="cramps"
+      checked={$entry.symptoms.cramps}
+      on:click={() => toggleSymptom('cramps')}  
+    />
     <label for="cramps">
       cramps
     </label>
-    <input type="checkbox" id="discharge" bind:checked={discharge} />
+
+    <input
+      type="checkbox"
+      id="discharge"
+      checked={$entry.symptoms.discharge}
+      on:click={() => toggleSymptom('discharge')}  
+    />
     <label for="discharge">
       discharge
     </label>
-    <input type="checkbox" id="sex" bind:checked={sex} />
+
+    <input
+      type="checkbox"
+      id="sex"
+      checked={$entry.symptoms.sex}
+      on:click={() => toggleSymptom('sex')}  
+    />
     <label class="active" for="sex">
       sex
+    </label>
+
+
+    <input
+      type="checkbox"
+      id="fatigue"
+      checked={false} 
+      on:click={() => toggleSymptom('fatigue')}  
+    >
+    <label class="active" for="fatigue">
+      fatigue
+    </label>
+
+    <input
+      type="checkbox"
+      id="vertigo"
+      checked={false} 
+      on:click={() => toggleSymptom('vertigo')}  
+    >
+    <label class="active" for="vertigo">
+      vertigo
+    </label>
+
+    <input
+      type="checkbox"
+      id="gait"
+      checked={false} 
+      on:click={() => toggleSymptom('gait')}  
+    >
+    <label class="active" for="gait">
+      gait
+    </label>
+
+    <input
+      type="checkbox"
+      id="nausea"
+      checked={false} 
+      on:click={() => toggleSymptom('nausea')}  
+    >
+    <label class="active" for="nausea">
+      nausea
     </label>
   </div>
 
