@@ -1,18 +1,23 @@
 <script>
   import entry from '../stores/entry'
-  import { TIMES, arbitrarySort, removeTimeOfDayByCategory } from '../utils'
+  import { TIMES, arbitrarySort } from '../utils'
+  import TimeOfDayDropDown from './TimeOfDayDropDown.svelte'
   import PlusSign from './PlusSign.svelte'
-
-  // move visionLoss to symptoms, beneath Headache
 
   const toggleSymptom = entry.toggleCheckbox('symptoms')
 
-  let types = {
-    visionLoss: '',
-    collar: '',
-  }
+  // ! make types and handleAddTimeOfDay match Pain's, so make util and see if TimeOfDayDropDown can just take types && type
 
-  $: collarTimesFull = $entry.symptoms.collar.length === 4
+  let types = {
+    visionLoss: {
+      name: 'Vision Loss',
+      value: '',
+    },
+    collar: {
+      name: 'Collar',
+      value: '',
+    },
+  }
 
   const handleHeadache = ({ target }) =>
     entry.updateSymptom('headache', Number(target.value))
@@ -21,18 +26,24 @@
     entry.updateSymptom('urgency', target.value)
 
   const handleAddTimeOfDay = (type) => {
-    const value = types[type]
+    const { value } = types[type]
     // ignore value if it exists and reset it
     if ($entry.symptoms[type].includes(value)) {
       return types = {
         ...types,
-        [type]: value,
+        [type]: {
+          ...types[type],
+          value: '',
+        },
       }
     }
 
     types = {
       ...types,
-      [type]: ''
+      [type]: {
+        ...types[type],
+        value: '',
+      },
     }
 
     entry.updateSelect({
@@ -41,31 +52,31 @@
       value,
     })
   }
-
-  const handleRemoveTimeOfDay = removeTimeOfDayByCategory('symptoms')
 </script>
 
 <style>
   :global(.entry-form .symptoms) { margin-bottom: 0; }
 
-  .symptoms .field-label { width: 115px; }
-
   .symptom-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 335px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: .5rem;
+    grid-row-gap: .5rem;
   }
 
+  .symptom-buttons label {
+    width: unset;
+    margin: 0;
+  }
 
   input { padding-left: 0; }
 
-  select { font-size: 1rem; }
+  div > span { width: 115px; }
 
   .urgency { position: relative; }
 
-  .collar-container { position: relative; }
-
-  .collar { width: 70px; }
+  select { font-size: 1rem; }
 </style>
 
 <section class="symptoms">
@@ -96,43 +107,30 @@
     />
   </div>
 
-  <div class="urgency">
-    <span class="field-label">Urgency</span>
-    <PlusSign hiddenClass={$entry.symptoms.urgency} />
-    <!-- svelte-ignore a11y-no-onchange -->
-    <select
-      class="primary"
-      on:change={handleUrgency}
-    >
-      <option></option>
-      <option>calm</option>
-      <option>upset</option>
-      <option>very upset</option>
-    </select>
-  </div>
-
-  <div class="collar-container">
-    <PlusSign hiddenClass={collarTimesFull} />
-    <span class="field-label">Collar</span>
-    <!-- svelte-ignore a11y-no-onchange -->
-    <select
-      bind:value={types.collar}
-      on:change={() => handleAddTimeOfDay('collar')}
-      class="primary collar"
-      class:hidden={collarTimesFull}
-    >
-      <option></option>
-      <option>morning</option>
-      <option>day</option>
-      <option>evening</option>
-      <option>night</option>
-      <option>all day</option>
-    </select>
-
-    <div class:inline={collarTimesFull}>
-      {#each $entry.symptoms.collar as time}
-        <button on:click={() => handleRemoveTimeOfDay('collar', time)} class={`tag ${time}`}>{time}</button>
-      {/each}
-    </div>
-  </div>
+  {#each Object.keys(types) as type, index}
+    <TimeOfDayDropDown
+      handleChange={handleAddTimeOfDay}
+      hiddenClass={$entry.symptoms[type].length === 4}
+      bind:selectValue={types[type].value}
+      category="symptoms"
+      label={types[type].name}
+      {type}
+    />
+    {#if index === 0}
+      <div class="urgency">
+        <span class="field-label">Urgency</span>
+        <PlusSign hiddenClass={$entry.symptoms.urgency} />
+        <!-- svelte-ignore a11y-no-onchange -->
+        <select
+          class="primary"
+          on:change={handleUrgency}
+        >
+          <option></option>
+          <option>calm</option>
+          <option>upset</option>
+          <option>very upset</option>
+        </select>
+      </div>
+    {/if}
+  {/each}
 </section>

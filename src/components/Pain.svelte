@@ -1,7 +1,7 @@
 <script>
   import entry from '../stores/entry'
-  import { TIMES, arbitrarySort, removeTimeOfDayByCategory } from '../utils'
-  import PlusSign from './PlusSign.svelte'
+  import { TIMES, arbitrarySort } from '../utils'
+  import TimeOfDayDropDown from './TimeOfDayDropDown.svelte'
 
   let types = {
     headNeck: {
@@ -65,64 +65,24 @@
       value,
     })
   }
-
-  const handleRemoveTimeOfDay = removeTimeOfDayByCategory('pain')
 </script>
 
 <style>
-  div { 
-    margin: .5rem 0;
-    position: relative;
-  }
+  :global(.pain div) { margin: .5rem 0; }
 
-  div:first-of-type { margin-top: 0; }
-
-  div > span {
-    display: inline-block;
-    width: 115px;
-  }
-
-  :global(.pain .add-button) {
-    background: #9c64a6;
-    color: #fff;
-  }
-
-  select { font-size: 1rem; }
-
-  .plus-sign {
-    display: flex;
-    width: 28px;
-  }
-
-  .plus-sign.hidden { display: none; }
+  :global(.pain div:first-of-type) { margin-top: 0; }
 </style>
 
 <section class="pain">
   <label>Pain</label>
   {#each Object.keys($entry.pain) as type}
-    <div>
-      <PlusSign hiddenClass={$entry.pain[type].length === 4} />
-      <span class="field-label">{types[type].name}</span>
-      <!-- svelte-ignore a11y-no-onchange -->
-      <select
-        bind:value={types[type].value} 
-        on:change={() => handleAddTimeOfDay(type)}
-        class="primary" 
-        class:hidden={$entry.pain[type].length === 4}
-      >
-        <option></option>
-        <option>morning</option>
-        <option>day</option>
-        <option>evening</option>
-        <option>night</option>
-        <option>all day</option>
-      </select>
-
-      <div class:inline={$entry.pain[type].length === 4}>
-        {#each $entry.pain[type] as time}
-          <button on:click={() => handleRemoveTimeOfDay(type, time)} class={`tag ${time}`}>{time}</button>
-        {/each}
-      </div>
-    </div>
+    <TimeOfDayDropDown
+      handleChange={handleAddTimeOfDay}
+      hiddenClass={$entry.pain[type].length === 4}
+      bind:selectValue={types[type].value}
+      category="pain"
+      label={types[type].name}
+      {type}
+    />
   {/each}
 </section>

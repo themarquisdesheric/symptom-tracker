@@ -7,13 +7,3 @@ export const arbitrarySort = (a, b) => {
 
   return arbitraryOrder[a] - arbitraryOrder[b]
 }
-
-export const removeTimeOfDayByCategory = category => (type, value) => {
-  if (confirm(`Are you sure you want to remove ${value}?`)) {
-    entry.removeTimeOfDayTag({
-      category,
-      type,
-      value,
-    })
-  }
-}
