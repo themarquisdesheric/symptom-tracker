@@ -36,17 +36,18 @@ import AddButton from './components/AddButton.svelte'
 	footer {
 		text-align: center;
     padding: 1rem 0;
-    background: #ffc4ff;
+		background: #ffc4ff;
+		height: 50px;
 	}
 </style>
 
 <nav>
 	<a href="/#/">
-		<img src="/home.png" alt="home" />
+		<img src="/home.svg" alt="home" />
 	</a>
-	<a href="/#/dashboard">📊 Dashboard</a>
+	<a href="/#/dashboard">Dashboard</a>
 </nav>
 <div>
 	<Router {routes} />
 </div>
-<footer>The Chronic</footer>
+<footer />

@@ -20,9 +20,12 @@
   div { display: flex; }
 
   button { 
+    width: 100%;
+    border: none;
+    margin-right: 0;
     background: #9c64a6;
     color: #fff;
-    margin-right: .5rem;
+    font-size: 1rem;
   }
 </style>
 
@@ -30,6 +33,6 @@
   <label>Notes</label>
   <textarea bind:value rows="7"></textarea>
   <div>
-    <button on:click={handleSave}>Save</button>
+    <button on:click={handleSave} class="box-shadow">Save</button>
   </div>
 </section>

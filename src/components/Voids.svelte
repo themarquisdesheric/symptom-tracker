@@ -57,9 +57,11 @@
   .nocturia span {
     position: relative;
     bottom: 1px;
-    font-weight: bold;
     font-size: 14px;
   }
+
+  .delta,
+  .nocturia span { font-weight: 300; }
 
   .nocturia input {
     width: 1rem;
@@ -76,7 +78,7 @@
 
 	.pee-chart {
 		border: 1px solid;
-		border-radius: 5px;
+		border-radius: .25rem;
     padding: 1rem;
     margin-top: 3rem;
 		background: #fff;

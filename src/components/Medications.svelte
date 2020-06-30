@@ -43,26 +43,11 @@
 
 <style>
   .medications {
+    display: flex;
+    align-items: center;
+    position: relative;
     min-height: 40px;
-    position: relative;
     margin: 0;
-  }
-
-  :global(.medications .add-button) {
-    position: relative;
-    left: 4px;
-    top: 4px;
-  }
-
-  :global(.medications span ~ .add-button span) { font-size: 1rem; }
-
-  :global(.medications .add-button.showInput span) { font-size: 1.25rem; }
-
-  :global(.medications .showInput) { 
-    left: 0;
-    top: 2px;
-    background: #9c64a6;
-    color: #fff;
   }
 
   input {
@@ -71,9 +56,8 @@
     background: #fff;
     color: #333;
   }
-
-  :global(.transparent span) { color: transparent; }
 </style>
+
 
 <section class="medications">
   <span class="field-label">Medications</span>
