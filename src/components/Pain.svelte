@@ -71,6 +71,14 @@
   :global(.pain div) { margin: .5rem 0; }
 
   :global(.pain div:first-of-type) { margin-top: 0; }
+
+  .pain { margin-top: .5rem; }
+
+  label {
+    position: relative;
+    top: .25rem;
+    margin-bottom: 0;
+  }
 </style>
 
 <section class="pain">

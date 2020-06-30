@@ -63,6 +63,7 @@
     grid-template-rows: repeat(3, 1fr);
     grid-column-gap: .5rem;
     grid-row-gap: .5rem;
+    margin-bottom: .5rem;
   }
 
   .symptom-buttons label {

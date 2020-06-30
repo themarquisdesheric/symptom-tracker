@@ -5,10 +5,12 @@
 </script>
 
 <style>
+  .allergens { margin-bottom: .5rem; }
+
   div { display: flex; }
 </style>
 
-<section>
+<section class="allergens">
   <label>Allergens</label>
   <div>
   {#each Object.keys($entry.allergens) as allergen}

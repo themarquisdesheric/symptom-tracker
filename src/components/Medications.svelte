@@ -11,10 +11,7 @@
   const addNewMedicine = () => {
     if (medications.includes(newMedicine)) return
 
-    medications = [
-      ...medications,
-      newMedicine
-    ]
+    medications = [...medications, newMedicine]
 
     newMedicine = ''
   }
@@ -42,12 +39,13 @@
 </script>
 
 <style>
-  .medications {
+  .medications { margin: 0; }
+
+  .input-container {
     display: flex;
     align-items: center;
     position: relative;
     min-height: 40px;
-    margin: 0;
   }
 
   input {
@@ -58,17 +56,19 @@
   }
 </style>
 
-
 <section class="medications">
-  <span class="field-label">Medications</span>
-  <PlusSign hiddenClass={showInput} />
-  {#if showInput}
-    <input type="text" bind:value={newMedicine} bind:this={input} />
-  {/if}
-  <AddButton
-    handleClick={handleAddButtonClick}
-    classes={`primary ${showInput ? 'showInput' : 'transparent'}`}
-  />
+  <div class="input-container">
+    <span class="field-label">Medications</span>
+    <PlusSign hiddenClass={showInput} />
+    {#if showInput}
+      <input type="text" bind:value={newMedicine} bind:this={input} />
+    {/if}
+    <AddButton
+      handleClick={handleAddButtonClick}
+      classes={`primary ${showInput ? 'showInput' : 'transparent'}`}
+    />
+  </div>
+
   <div>
     {#each medications as medication}
       <button on:click={() => handleRemoveMedication(medication)} class="tag">{medication}</button>
