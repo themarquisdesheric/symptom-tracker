@@ -3,5 +3,7 @@ import Dashboard from './components/Dashboard.svelte'
 
 export const routes = {
   '/': EntryForm,
-  '/dashboard': Dashboard
+  '/search': Dashboard,
+  '/calendar': Dashboard,
+  '/dashboard': Dashboard,
 }

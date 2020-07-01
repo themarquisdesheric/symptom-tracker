@@ -48,6 +48,7 @@ input[type="checkbox"] + label {
 	justify-content: center;
 	align-items: center;
 	padding: .5rem 1rem;
+	color: #9c64a6;
 }
 
 input[type="checkbox"] + label:last-child { margin-right: 0; }
