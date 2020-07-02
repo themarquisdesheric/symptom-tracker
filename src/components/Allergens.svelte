@@ -1,5 +1,6 @@
 <script>
   import entry from '../stores/entry'
+  import CheckBoxButton from './CheckBoxButton.svelte'
 
   const toggleAllergen = entry.toggleCheckbox('allergens')
 </script>
@@ -8,21 +9,21 @@
   .allergens { margin-bottom: .5rem; }
 
   div { display: flex; }
+
+  :global(.allergens label) {
+    margin-right: .25rem; 
+  }
 </style>
 
 <section class="allergens">
   <label>Allergens</label>
   <div>
   {#each Object.keys($entry.allergens) as allergen}
-    <input
-      type="checkbox"
-      id={allergen}
+    <CheckBoxButton
+      type={allergen}
       checked={$entry.allergens[allergen]}
-      on:click={() => toggleAllergen(allergen)}
+      handleClick={() => toggleAllergen(allergen)}
     />
-    <label for={allergen}>
-      {allergen}
-    </label>
   {/each}
   </div>
 </section>

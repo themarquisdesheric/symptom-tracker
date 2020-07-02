@@ -18,12 +18,12 @@
     color: #333;
 	}
 
-	:global(a.active svg) { fill: #333; }
+	:global(a.active svg) { fill: #fff; }
 
 	svg {
 		width: 1.5rem;
 		height: 1.5rem;
-		fill: #fff;
+		fill: #ffc4ff;
 	}
 </style>
 

@@ -1,12 +1,11 @@
 <script>
   import entry from '../stores/entry'
   import { TIMES, arbitrarySort } from '../utils'
+  import CheckBoxButton from './CheckBoxButton.svelte'
   import TimeOfDayDropDown from './TimeOfDayDropDown.svelte'
   import PlusSign from './PlusSign.svelte'
 
   const toggleSymptom = entry.toggleCheckbox('symptoms')
-
-  // ! make types and handleAddTimeOfDay match Pain's, so make util and see if TimeOfDayDropDown can just take types && type
 
   let types = {
     visionLoss: {
@@ -66,11 +65,10 @@
     margin-bottom: .5rem;
   }
 
-  .symptom-buttons label {
+  :global(.symptom-buttons label) {
     width: unset;
     margin: 0;
   }
-
   input { padding-left: 0; }
 
   div > span { width: 115px; }
@@ -84,15 +82,11 @@
   <label>Symptoms</label>
   <div class="symptom-buttons">
     {#each Object.keys($entry.symptoms).slice(0, 9) as symptom}
-      <input
-        type="checkbox"
-        id={symptom}
+      <CheckBoxButton
+        type={symptom}
         checked={$entry.symptoms[symptom]}
-        on:click={() => toggleSymptom(symptom)}  
+        handleClick={() => toggleSymptom(symptom)}  
       />
-      <label for={symptom}>
-        {symptom}
-      </label>
     {/each}
   </div>
 

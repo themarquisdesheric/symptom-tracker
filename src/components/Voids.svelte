@@ -1,6 +1,6 @@
 <script>
   import entry from '../stores/entry'
-  import CheckmarkEmoji from './CheckmarkEmoji.svelte'
+  import Checkmark from './Checkmark.svelte'
 
   const handleChange = ({ target }) =>
     entry.addVoid('nocturia', Number(target.value))
@@ -10,7 +10,6 @@
 
 <style>
   section {
-    position: relative;
     margin-top: 0;
     padding-top: 1rem;
   }
@@ -20,11 +19,11 @@
 		justify-content: space-between;
     align-items: center;
     padding-bottom: .5rem;
-    /* doing this hackiness to maintain accessible button click area ( >= 40px )
-      while still keeping items pushed to the edges to maintain implicit lines */
-    position: absolute;
-    width: calc(100% + 15px);
-    left: -11px;
+  }
+
+  .void-buttons {
+    position: relative;
+    left: -9px;
   }
   
   .void-container > * { width: 90px; }
@@ -80,23 +79,22 @@
 		border: 1px solid;
 		border-radius: .25rem;
     padding: 1rem;
-    margin-top: 3rem;
 		background: #fff;
 	}
 </style>
 
 <section>
   <div class="void-container">
-    <div>
+    <div class="void-buttons">
       <span class="pee">
         {#if $entry.voids.pee.length}
-          <CheckmarkEmoji className="checkmark-button" />
+          <Checkmark fill="#ce93d8" className="checkmark-button" />
         {/if}
         <button on:click={() => entry.addVoid('pee')}>💧</button>
       </span>
       <span class="poo">
         {#if $entry.voids.poo.length}
-          <CheckmarkEmoji className="checkmark-button" />
+          <Checkmark fill="#ce93d8" className="checkmark-button" />
         {/if}
         <button on:click={() => entry.addVoid('poo')}>💩</button>
       </span>
