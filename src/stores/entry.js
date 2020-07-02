@@ -63,6 +63,11 @@ const createEntryStore = () => {
           ...pastEntry.symptoms,
           [type]: value
         }
+      })),
+    updateNotes: notes =>
+      update(pastEntry => ({
+        ...pastEntry,
+        notes,
       }))
 	}
 }

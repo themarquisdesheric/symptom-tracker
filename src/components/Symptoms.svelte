@@ -3,7 +3,7 @@
   import { TIMES, arbitrarySort } from '../utils'
   import CheckBoxButton from './CheckBoxButton.svelte'
   import TimeOfDayDropDown from './TimeOfDayDropDown.svelte'
-  import PlusSign from './PlusSign.svelte'
+  import PlusSign from '../assets/PlusSign.svelte'
 
   const toggleSymptom = entry.toggleCheckbox('symptoms')
 

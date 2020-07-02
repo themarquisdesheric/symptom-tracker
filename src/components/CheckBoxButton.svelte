@@ -1,5 +1,5 @@
 <script>
-  import Checkmark from './Checkmark.svelte'
+  import Checkmark from '../assets/Checkmark.svelte'
 
   export let type;
   export let checked = false

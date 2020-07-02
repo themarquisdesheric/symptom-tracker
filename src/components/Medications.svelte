@@ -1,6 +1,6 @@
 <script>
   import AddButton from './AddButton.svelte'
-  import PlusSign from './PlusSign.svelte'
+  import PlusSign from '../assets/PlusSign.svelte'
 
   let newMedicine = ''
   let showInput = false

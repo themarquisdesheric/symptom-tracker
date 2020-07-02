@@ -1,6 +1,6 @@
 <script>
   import entry from '../stores/entry'
-  import PlusSign from './PlusSign.svelte'
+  import PlusSign from '../assets/PlusSign.svelte'
 
   export let handleChange = null
   export let hiddenClass = false
