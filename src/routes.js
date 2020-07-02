@@ -1,9 +1,11 @@
 import EntryForm from './components/EntryForm.svelte'
 import Dashboard from './components/Dashboard.svelte'
+import Search from './components/Search.svelte'
+import Calendar from './components/Calendar.svelte'
 
 export const routes = {
   '/': EntryForm,
-  '/search': Dashboard,
-  '/calendar': Dashboard,
+  '/search': Search,
+  '/calendar': Calendar,
   '/dashboard': Dashboard,
 }

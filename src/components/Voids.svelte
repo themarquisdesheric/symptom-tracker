@@ -1,6 +1,5 @@
 <script>
   import entry from '../stores/entry'
-  import Checkmark from './Checkmark.svelte'
 
   const handleChange = ({ target }) =>
     entry.addVoid('nocturia', Number(target.value))
@@ -36,9 +35,10 @@
     margin-right: 0;
   }
   
-  :global(.checkmark-button) {
+  .void-counter {
     position: absolute;
     right: 0;
+    font-size: .75rem;
   }
 
   .pee,
@@ -88,13 +88,13 @@
     <div class="void-buttons">
       <span class="pee">
         {#if $entry.voids.pee.length}
-          <Checkmark fill="#ce93d8" className="checkmark-button" />
+          <span class="void-counter primary">{$entry.voids.pee.length}</span>
         {/if}
         <button on:click={() => entry.addVoid('pee')}>💧</button>
       </span>
       <span class="poo">
         {#if $entry.voids.poo.length}
-          <Checkmark fill="#ce93d8" className="checkmark-button" />
+          <span class="void-counter primary">{$entry.voids.poo.length}</span>
         {/if}
         <button on:click={() => entry.addVoid('poo')}>💩</button>
       </span>
