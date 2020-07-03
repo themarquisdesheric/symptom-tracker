@@ -8,7 +8,10 @@
 <style>
   .allergens { margin-bottom: .5rem; }
 
-  div { display: flex; }
+  div {
+    display: flex;
+    justify-content: space-between;  
+  }
 
   :global(.allergens label) {
     margin-right: .25rem; 

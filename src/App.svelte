@@ -5,7 +5,7 @@
 </script>
 
 <style>
-	div {
+	.outer-border {
 		/* viewport height - nav height - footer height */
 		min-height: calc(100vh - 64px - 50px);
 		padding: 0 1rem;
@@ -13,6 +13,11 @@
     border-right: 4px solid #ce93d8;
     border-image-source: linear-gradient(#ce93d8, #ffc4ff);
     border-image-slice: 0 20;
+	}
+
+	.inner {
+		max-width: 500px;
+    margin: auto;
 	}
 
 	footer {
@@ -24,7 +29,9 @@
 </style>
 
 <NavBar />
-<div>
-	<Router {routes} />
+<div class="outer-border">
+	<div class="inner">
+		<Router {routes} />
+	</div>
 </div>
 <footer />

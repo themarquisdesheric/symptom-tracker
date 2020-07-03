@@ -37,10 +37,10 @@
   textarea { 
     width: 100%;
     margin-bottom: .5rem;
+    padding: .25rem;
   }
 
   p { margin: 0 0 1rem; }
-
 
   div { display: flex; }
 
@@ -84,7 +84,7 @@
   </div>
   <div>
     <button on:click={handleSave} class="box-shadow">
-      Save
+      save
     </button>
   </div>
 </section>

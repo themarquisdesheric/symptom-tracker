@@ -80,7 +80,13 @@
 		border-radius: .25rem;
     padding: 1rem;
 		background: #fff;
-	}
+  }
+  
+  @media (min-width: 500px) {
+    input[type="number"] {
+      width: 2rem;
+    }
+  }
 </style>
 
 <section>
