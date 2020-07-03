@@ -36,7 +36,6 @@
 
   textarea { 
     width: 100%;
-    margin-bottom: .5rem;
     padding: .25rem;
   }
 
@@ -47,7 +46,7 @@
   button:not(.notes-button) { 
     width: 100%;
     border: none;
-    margin-right: 0;
+    margin: 1rem 0 0;
     background: #9c64a6;
     color: #fff;
     font-size: 1rem;
