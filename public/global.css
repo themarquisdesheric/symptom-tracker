@@ -92,11 +92,9 @@ label {
 	display: flex;
 	justify-content: center;
 	width: 28px;
-	border: 1px solid #ce93d8;
 	border-radius: .25rem;
 	padding: .25rem;
 	pointer-events: none;
-	color: #ce93d8;
 }
 
 .tag {
@@ -112,6 +110,8 @@ label {
 .primary { color: #ce93d8; }
 .light { color: #ffc4ff; }
 .dark { color: #9c64a6; }
+
+.primary-border { border: 1px solid #ce93d8; }
 
 .morning { border-color: #f06292; }
 .day { border-color: #7986cb; }

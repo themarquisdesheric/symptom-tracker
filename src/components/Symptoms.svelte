@@ -81,7 +81,7 @@
 <section class="symptoms">
   <label>Symptoms</label>
   <div class="symptom-buttons">
-    {#each Object.keys($entry.symptoms).slice(0, 9) as symptom}
+    {#each Object.keys($entry.symptoms).slice(0, 9) as symptom (symptom)}
       <CheckBoxButton
         type={symptom}
         checked={$entry.symptoms[symptom]}
@@ -102,7 +102,7 @@
     />
   </div>
 
-  {#each Object.keys(types) as type, index}
+  {#each Object.keys(types) as type, index (type)}
     <TimeOfDayDropDown
       handleChange={handleAddTimeOfDay}
       hiddenClass={$entry.symptoms[type].length === 4}

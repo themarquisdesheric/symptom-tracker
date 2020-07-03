@@ -70,7 +70,7 @@
   </div>
 
   <div>
-    {#each medications as medication}
+    {#each medications as medication (medication)}
       <button on:click={() => handleRemoveMedication(medication)} class="tag">{medication}</button>
     {/each}
   </div>

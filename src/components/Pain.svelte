@@ -83,7 +83,7 @@
 
 <section class="pain">
   <label>Pain</label>
-  {#each Object.keys($entry.pain) as type}
+  {#each Object.keys($entry.pain) as type (type)}
     <TimeOfDayDropDown
       handleChange={handleAddTimeOfDay}
       hiddenClass={$entry.pain[type].length === 4}

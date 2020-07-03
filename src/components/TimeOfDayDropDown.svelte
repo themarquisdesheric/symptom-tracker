@@ -72,7 +72,7 @@
   </select>
 
   <div class:inline={hiddenClass}>
-    {#each $entry[category][type] as time}
+    {#each $entry[category][type] as time (time)}
       <button
         on:click={() => removeTimeOfDay({ category, type, value: time })}
         class={`tag box-shadow ${time}`}

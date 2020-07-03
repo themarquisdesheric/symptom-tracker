@@ -21,7 +21,7 @@
 <section class="allergens">
   <label>Allergens</label>
   <div>
-  {#each Object.keys($entry.allergens) as allergen}
+  {#each Object.keys($entry.allergens) as allergen (allergen)}
     <CheckBoxButton
       type={allergen}
       checked={$entry.allergens[allergen]}
