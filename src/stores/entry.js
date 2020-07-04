@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store'
 import initialState from './initialState'
-import { TIMES, arbitrarySort } from '../utils'
+import { TIMES, arbitrarySort, sortVoids } from '../utils'
 
 const createEntryStore = () => {
 	const { subscribe, update } = writable(initialState);
@@ -28,9 +28,8 @@ const createEntryStore = () => {
           ...pastEntry,
           voids: {
             ...pastEntry.voids,
-            [type]: newVoids.sort((a, b) =>
-              a.slice(0, 2) - b.slice(0, 2))
-          },
+            [type]: newVoids.sort(sortVoids)
+          }
         }
       }),
     removeVoid: (type, value) =>

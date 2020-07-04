@@ -6,7 +6,7 @@
   export let entry
 
   const emoji = type === 'pee' ? '💧' : '💩'
-  let value = format(new Date(), 'k:mm')
+  let value = format(new Date(), 'kk:mm')
   let showModal = false
 
   $: voidCount = $entry.voids[type].length
