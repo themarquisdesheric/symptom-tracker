@@ -14,7 +14,31 @@ const createEntryStore = () => {
           ...pastEntry.voids,
           [type]: type === 'nocturia' 
             ? value
-            : [...pastEntry.voids[type], Date.now()]
+            : [...pastEntry.voids[type], value]
+        },
+      })),
+    updateVoid: ({ type, value, oldValue }) =>
+      update(pastEntry => {
+        const index = pastEntry.voids[type].findIndex(v => v === oldValue)
+        const newVoids = [...pastEntry.voids[type]]
+        
+        newVoids[index] = value
+
+        return {
+          ...pastEntry,
+          voids: {
+            ...pastEntry.voids,
+            [type]: newVoids.sort((a, b) =>
+              a.slice(0, 2) - b.slice(0, 2))
+          },
+        }
+      }),
+    removeVoid: (type, value) =>
+      update(pastEntry => ({
+        ...pastEntry,
+        voids: {
+          ...pastEntry.voids,
+          [type]: pastEntry.voids[type].filter(v => v !== value)
         },
       })),
     toggleCheckbox: category => type =>

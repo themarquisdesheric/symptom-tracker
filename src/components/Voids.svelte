@@ -1,10 +1,9 @@
 <script>
   import entry from '../stores/entry'
+  import VoidButton from './VoidButton.svelte'
 
   const handleChange = ({ target }) =>
     entry.addVoid('nocturia', Number(target.value))
-
-  // pee/poo need to be able to display/edit/remove multiple events
 </script>
 
 <style>
@@ -26,23 +25,6 @@
   }
   
   .void-container > * { width: 90px; }
-
-	button {
-		font-size: 1.75rem;
-		padding: 0;
-		border: none;
-    background: transparent;
-    margin-right: 0;
-  }
-  
-  .void-counter {
-    position: absolute;
-    right: 0;
-    font-size: .75rem;
-  }
-
-  .pee,
-  .poo { position: relative; }
 
   .delta span,
   .nocturia input { font-size: 1rem; }
@@ -92,18 +74,8 @@
 <section>
   <div class="void-container">
     <div class="void-buttons">
-      <span class="pee">
-        {#if $entry.voids.pee.length}
-          <span class="void-counter primary">{$entry.voids.pee.length}</span>
-        {/if}
-        <button on:click={() => entry.addVoid('pee')}>💧</button>
-      </span>
-      <span class="poo">
-        {#if $entry.voids.poo.length}
-          <span class="void-counter primary">{$entry.voids.poo.length}</span>
-        {/if}
-        <button on:click={() => entry.addVoid('poo')}>💩</button>
-      </span>
+      <VoidButton type="pee" {entry} />
+      <VoidButton type="poo" {entry} />
     </div>
     <label class="delta">Delta <span class="primary">60min</span></label>
     <label class="nocturia">
