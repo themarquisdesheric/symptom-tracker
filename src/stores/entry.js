@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store'
 import initialState from './initialState'
-import { TIMES, arbitrarySort, sortVoids } from '../utils'
+import { TIMES, arbitrarySort, sortVoids, checkForDuplicates } from '../utils'
 
 const createEntryStore = () => {
 	const { subscribe, update } = writable(initialState);
@@ -8,15 +8,23 @@ const createEntryStore = () => {
 	return {
     subscribe,
     addVoid: (type, value) =>
-      update(pastEntry => ({
-        ...pastEntry,
-        voids: {
-          ...pastEntry.voids,
-          [type]: type === 'nocturia' 
-            ? value
-            : [...pastEntry.voids[type], value]
-        },
-      })),
+      update(pastEntry => {
+        value = checkForDuplicates(pastEntry.voids[type], value)
+
+        return {
+          ...pastEntry,
+          voids: {
+            ...pastEntry.voids,
+            [type]: type === 'nocturia' 
+              ? value
+              : [
+                ...pastEntry.voids[type],
+                value
+              ].sort(sortVoids),
+            lastValue: value
+          },
+        }
+      }),
     updateVoid: ({ type, value, oldValue }) =>
       update(pastEntry => {
         const index = pastEntry.voids[type].findIndex(v => v === oldValue)
@@ -28,7 +36,8 @@ const createEntryStore = () => {
           ...pastEntry,
           voids: {
             ...pastEntry.voids,
-            [type]: newVoids.sort(sortVoids)
+            [type]: newVoids.sort(sortVoids),
+            lastValue: value
           }
         }
       }),

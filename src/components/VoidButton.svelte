@@ -27,8 +27,8 @@
     }
   }
 
-  const isNewVoid = (timestamp, value) =>
-    timestamp === value ? 'primary-border' : ''
+  const isCurrentVoid = (timestamp) =>
+    timestamp === $entry.voids.lastValue ? 'current-timestamp' : ''
 </script>
 
 <style>
@@ -40,6 +40,7 @@
     border: none;
     background: transparent;
     margin-right: 0;
+    filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.3));
   }
 
   .void-counter {
@@ -53,17 +54,19 @@
 
   .timepicker { margin: 1rem 0; }
 
-  .delete-button {
-    width: 40px;
-    padding: .5rem 0;
+  .current-timestamp input[type="time"],
+  .current-timestamp button {
+    border: 1px solid #ce93d8;
   }
 
   input[type="time"] {
+    border: 1px solid #333;
     padding: 0 .5rem;
   }
 
-  input[type="time"]:not(.primary-border) {
-    border: 1px solid #333;
+  .delete-button {
+    width: 40px;
+    padding: .5rem 0;
   }
 
   .close-button {
@@ -85,7 +88,7 @@
     <div class="modal">
       <h2>{emoji} {`P${type.slice(1)} Times`}</h2>
       {#each $entry.voids[type] as timestamp, index (timestamp + index)}
-        <div class="timepicker">
+        <div class={`timepicker ${isCurrentVoid(timestamp)}`}>
           <input
             type="time"
             value={timestamp}
@@ -96,13 +99,12 @@
                 oldValue: timestamp,
               })
             }
-            class={isNewVoid(timestamp, value)}
           />
           <button
             on:click={() => removeVoid(timestamp)}
-            class={`delete-button ${isNewVoid(timestamp, value)}`}
+            class="delete-button"
           >
-            <RemoveIcon {timestamp} {value} />
+            <RemoveIcon currentVoid={isCurrentVoid(timestamp)} />
           </button>
         </div>
       {/each}
