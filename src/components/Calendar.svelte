@@ -17,7 +17,7 @@
 </style>
 
 <div>
-  <h2>September</h2>
+  <h2>{month}</h2>
   <button class="primary primary-border">
     <span>+</span>
     Add Past Entry

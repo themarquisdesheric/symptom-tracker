@@ -15,9 +15,7 @@ const createEntryStore = () => {
           ...pastEntry,
           voids: {
             ...pastEntry.voids,
-            [type]: type === 'nocturia' 
-              ? value
-              : [
+            [type]: [
                 ...pastEntry.voids[type],
                 value
               ].sort(sortVoids),
@@ -47,6 +45,14 @@ const createEntryStore = () => {
         voids: {
           ...pastEntry.voids,
           [type]: pastEntry.voids[type].filter(v => v !== value)
+        },
+      })),
+    updateNocturia: (value) =>
+      update(pastEntry => ({
+        ...pastEntry,
+        voids: {
+          ...pastEntry.voids,
+          nocturia: value,
         },
       })),
     toggleCheckbox: category => type =>

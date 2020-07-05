@@ -2,8 +2,8 @@
   import entry from '../stores/entry'
   import VoidButton from './VoidButton.svelte'
 
-  const handleChange = ({ target }) =>
-    entry.addVoid('nocturia', Number(target.value))
+  const updateNocturia = ({ target }) =>
+    entry.updateNocturia(Number(target.value))
 </script>
 
 <style>
@@ -85,7 +85,7 @@
         min="0"
         max="9"
         value={$entry.voids.nocturia}
-        on:change={handleChange}
+        on:change={updateNocturia}
         class="primary"
       />
     </label>
