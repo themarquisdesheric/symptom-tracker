@@ -74,7 +74,7 @@
   }
 
   .delete-button {
-    width: 40px;
+    width: 2.5rem;
     padding: .5rem 0;
   }
 
@@ -88,7 +88,6 @@
   .add-button {
     padding-left: 1.75rem;
     position: relative;
-    border-color: #9c64a6;
   }
   
   .add-button::before {
@@ -101,7 +100,6 @@
 
   .close-button {
     background-color:  #9c64a6;
-    border: 1px solid  #9c64a6;
     color: #fff;
   }
 </style>
@@ -143,10 +141,10 @@
       {/each}
 
       <footer>
-        <button on:click={addVoid} class="add-button dark">
+        <button on:click={addVoid} class="add-button dark dark-border">
           add another
         </button>
-        <button on:click={toggleModal} class="close-button">close</button>
+        <button on:click={toggleModal} class="close-button dark-border">close</button>
       </footer>
     </div>
   {/if}

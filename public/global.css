@@ -20,8 +20,8 @@ textarea,
 input[type="checkbox"] + label { 
 	font-family: inherit;
 	border-radius: .25rem;
-	min-height: 40px;
-	min-width: 40px;
+	min-height: 2.5rem;
+	min-width: 2.5rem;
 }
 
 button {
@@ -76,6 +76,7 @@ label {
 .dark { color: #9c64a6; }
 
 .primary-border { border: 1px solid #ce93d8; }
+.dark-border { border: 1px solid #9c64a6; }
 
 .morning { border-color: #f06292; }
 .day { border-color: #7986cb; }

@@ -16,7 +16,7 @@ export default {
     hipsLowBack: [],
     pelvisBladder: [],
     sciaticaLegs: [],
-    bowelsRectum: [],
+    bowelRectum: [],
     vulvaPerineum: [],
   },
   symptoms: {

@@ -1,96 +1,73 @@
 <script>
   import entry from '../stores/entry'
-  import { TIMES, arbitrarySort } from '../utils'
-  import TimeOfDayDropDown from './TimeOfDayDropDown.svelte'
+  import { TIMES } from '../utils'
+  import TimeOfDay from './TimeOfDay.svelte'
 
   let types = {
-    headNeck: {
-      name: 'Head/neck',
-      value: '',
-    },
-    shouldersArms: {
-      name: 'Shoulders/arms',
-      value: '',
-    },
-    hipsLowBack: {
-      name: 'Hips/low back',
-      value: '',
-    },
-    pelvisBladder: {
-      name: 'Pelvis/bladder',
-      value: '',
-    },
-    sciaticaLegs: {
-      name: 'Sciatica/legs',
-      value: '',
-    },
-    bowelsRectum: {
-      name: 'Bowels/rectum',
-      value: '',
-    },
-    vulvaPerineum: {
-      name: 'Vulva/perineum',
-      value: '',
-    },
-    visionLoss: {
-      name: 'Vision loss',
-      value: '',
-    },
-  }
-
-  const handleAddTimeOfDay = (type) => {
-    const { value } = types[type]
-    // ignore value if it exists and reset it
-    if ($entry.pain[type].includes(value)) {
-      return types = {
-        ...types,
-        [type]: {
-          ...types[type],
-          value: '',
-        },
-      }
-    }
-
-    types = {
-      ...types,
-      [type]: {
-        ...types[type],
-        value: '',
-      },
-    }
-
-    entry.updateSelect({
-      category: 'pain',
-      type,
-      value,
-    })
+    headNeck: 'Head/neck',
+    shouldersArms: 'Shoulders/arms',
+    hipsLowBack: 'Hips/low back',
+    pelvisBladder: 'Pelvis/bladder',
+    sciaticaLegs: 'Sciatica/legs',
+    bowelRectum: 'Bowel/rectum',
+    vulvaPerineum: 'Vulva/perineum',
+    visionLoss: 'Vision loss',
   }
 </script>
 
 <style>
-  :global(.pain div) { margin: .5rem 0; }
-
-  :global(.pain div:first-of-type) { margin-top: 0; }
-
   .pain { margin-top: .5rem; }
 
-  label {
+  label { margin: .25rem 0 0; }
+
+  header div {
+    display: inline-flex;
+    justify-content: space-around;
+    width: calc(100% - 110px - .25rem);
+    text-transform: uppercase;
+    font-weight: 200;
+    font-size: .5rem;
+  }
+
+  header span {
+    letter-spacing: .05em;
     position: relative;
-    top: .25rem;
-    margin-bottom: 0;
+  }
+
+  .morning { right: 5px; }
+
+  .day { right: 4px; }
+
+  .night { right: 2px; }
+
+  .item {
+    display: flex;
+    height: 2.5rem;
+    align-items: center;
+  }
+
+  .item span {
+    width: 115px;
+    font-size: 14px;
   }
 </style>
 
 <section class="pain">
-  <label>Pain</label>
+  <header>
+    <label>Pain</label>
+    <div>
+      {#each TIMES as time (time)}
+        <span class={time}>{time}</span>
+      {/each}
+    </div>
+  </header>
+
   {#each Object.keys($entry.pain) as type (type)}
-    <TimeOfDayDropDown
-      handleChange={handleAddTimeOfDay}
-      hiddenClass={$entry.pain[type].length === 4}
-      bind:selectValue={types[type].value}
-      category="pain"
-      label={types[type].name}
-      {type}
-    />
+    <div class="item">
+      <span>
+        {types[type]}
+      </span>
+      <TimeOfDay {type} handleChange={entry.updateTimeOfDay} />
+    </div>
   {/each}
 </section>

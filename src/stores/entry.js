@@ -63,6 +63,14 @@ const createEntryStore = () => {
           [type]: !pastEntry[category][type]
         },
       })),
+    updateTimeOfDay: (type, value) =>
+      update(pastEntry => ({
+        ...pastEntry,
+        pain: {
+          ...pastEntry.pain,
+          [type]: value,
+        }
+      })),
     updateSelect: ({ category, type, value }) =>
       update(pastEntry => {
         if (value === 'all day') {

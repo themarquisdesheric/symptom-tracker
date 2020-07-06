@@ -24,24 +24,18 @@
   .field-label { width: 115px; }
 
   button { font-size: .75rem; }
-
-  .begin-period {
-    color: #a5d6a7;
-    border-color: #a5d6a7;
-  }
-
-  .end-period {
-    color: #ef9a9a;
-    border-color: #ef9a9a;
-  }
 </style>
 
 <section class="menses-cycle">
   <span class="field-label">Menses cycle</span> <input class="primary" type="number" min="1" max="31" bind:value={mensesCycle} />
   {#if showBeginPeriodButton}
-    <button on:click={handleBeginPeriod} class="begin-period tag">begin period</button>
+    <button on:click={handleBeginPeriod} class="tag dark dark-border">
+      begin period
+    </button>
   {/if}
   {#if showEndPeriodButton}
-    <button on:click={handleEndPeriod} class="end-period tag">end period</button>
+    <button on:click={handleEndPeriod} class="tag dark dark-border">
+      end period
+    </button>
   {/if}
 </section>

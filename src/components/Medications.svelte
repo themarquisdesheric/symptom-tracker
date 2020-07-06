@@ -45,7 +45,7 @@
     display: flex;
     align-items: center;
     position: relative;
-    min-height: 40px;
+    min-height: 2.5rem;
   }
 
   input {
