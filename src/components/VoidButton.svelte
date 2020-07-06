@@ -49,7 +49,6 @@
     border: none;
     background: transparent;
     margin-right: 0;
-    filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.3));
   }
 
   .void-counter {
@@ -108,7 +107,7 @@
   {#if voidCount}
     <span class="void-counter primary">{voidCount}</span>
   {/if}
-  <button on:click={addVoidOpenModal} class="emoji">
+  <button on:click={addVoidOpenModal} class="emoji emoji-shadow">
     {emoji}
   </button>
 
@@ -116,7 +115,7 @@
     <div class="modal-background" on:click={toggleModal} />
     <div class="modal">
       <h2>
-        {emoji} {`P${type.slice(1)} Chart`}
+        <span class="emoji-shadow">{emoji}</span> {`P${type.slice(1)} Chart`}
       </h2>
       {#each $entry.voids[type] as timestamp, index (timestamp + index)}
         <div class={`timepicker ${isCurrentVoid(timestamp)}`}>

@@ -5,8 +5,10 @@
   let value = ''
   let editing = null
 
+  $: showAddButton = editing === null
+
   const toggleEdit = () => {
-    if (editing === null) {
+    if (showAddButton) {
       editing = true
       return
     }
@@ -67,9 +69,9 @@
 </style>
 
 <section class="wrapper">
-  <label class:label={editing === null}>Notes</label>
+  <label class:label={showAddButton}>Notes</label>
   <div>
-    {#if editing === null}
+    {#if showAddButton}
       <button on:click={toggleEdit} class="notes-button add">+</button>
     {:else if editing}
       <!-- svelte-ignore a11y-autofocus -->
