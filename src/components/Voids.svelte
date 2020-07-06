@@ -1,9 +1,12 @@
 <script>
   import entry from '../stores/entry'
+  import { getVoidDeltas } from '../utils.js'
   import VoidButton from './VoidButton.svelte'
 
   const updateNocturia = ({ target }) =>
     entry.updateNocturia(Number(target.value))
+
+  $: delta = getVoidDeltas($entry.voids.pee).average
 </script>
 
 <style>
@@ -24,14 +27,14 @@
     left: -9px;
   }
   
-  .void-container > * { width: 90px; }
+  .void-container > *:not(.delta) { width: 90px; }
 
   .delta span,
   .nocturia input { font-size: 1rem; }
 
   .delta { display: flex; }
 
-  .delta span { padding-left: .5rem; }
+  .delta span { padding-left: .35rem; }
 
   .nocturia { text-align: right; }
 
@@ -77,7 +80,9 @@
       <VoidButton type="pee" {entry} />
       <VoidButton type="poo" {entry} />
     </div>
-    <label class="delta">Delta <span class="primary">60min</span></label>
+    <label class="delta">
+      Delta <span class="primary">{delta}min</span>
+    </label>
     <label class="nocturia">
       <span>Nocturia </span>
       <input

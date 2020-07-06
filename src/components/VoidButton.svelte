@@ -41,6 +41,7 @@
   h2 { 
     padding-top: 0;
     margin-bottom: 1.5rem;
+    text-align: center;
   }
 
   .emoji {
@@ -60,7 +61,11 @@
   .pee,
   .poo { position: relative; }
 
-  .timepicker { margin: 1rem 0; }
+  .timepicker {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+  }
 
   .current-timestamp input[type="time"],
   .current-timestamp button {
@@ -75,6 +80,7 @@
   .delete-button {
     width: 2.5rem;
     padding: .5rem 0;
+    margin-left: .25rem;
   }
 
   footer {

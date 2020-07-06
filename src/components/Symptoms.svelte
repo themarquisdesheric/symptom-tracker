@@ -1,6 +1,6 @@
 <script>
   import entry from '../stores/entry'
-  import { TIMES, arbitrarySort } from '../utils'
+  import { TIMES } from '../utils'
   import CheckBoxButton from './CheckBoxButton.svelte'
   import TimeOfDay from './TimeOfDay.svelte'
   import PlusSign from '../assets/PlusSign.svelte'

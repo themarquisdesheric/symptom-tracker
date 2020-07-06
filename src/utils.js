@@ -1,4 +1,45 @@
-import { addMinutes, parse, format } from 'date-fns'
+import { addMinutes, parse, format, differenceInMinutes } from 'date-fns'
+
+export const getVoidDelta = (void1, void2) => {
+  const date = format(new Date(), 'yyyy-MM-dd')
+  const timestamp1 = new Date(`${date}T${void1}:00Z`)
+  const timestamp2 = new Date(`${date}T${void2}:00Z`)
+
+  return differenceInMinutes(timestamp2, timestamp1)
+}
+
+export const getVoidDeltas = (voids) => {
+  const deltas = []
+  let differenceTotal = 0
+
+  if (voids.length <= 1) {
+    return {
+      deltas,
+      average: 0
+    }
+  }
+
+  for (let i = 0; i < voids.length; i++) {
+    const thisVoid = voids[i]
+    const nextVoid = voids[i + 1]
+
+    if (!nextVoid) {
+      const average = Number(
+        (differenceTotal / deltas.length).toFixed(1)
+      )
+
+      return {
+        deltas,
+        average,
+      }
+    }
+    
+    const difference = getVoidDelta(thisVoid, nextVoid)
+
+    deltas.push(difference)
+    differenceTotal += difference
+  }
+}
 
 export const TIMES = ['morning', 'day', 'evening', 'night']
 
@@ -15,14 +56,6 @@ export const formatTimeTo12Hour = (timestamp) => {
         minute: 'numeric'
       }
     );
-}
-
-// ============================================== sorting functions ==============================================
-
-export const arbitrarySort = (a, b) => {
-  const arbitraryOrder = { morning: 1, day: 2, evening: 3, night: 4 }
-
-  return arbitraryOrder[a] - arbitraryOrder[b]
 }
 
 const addMinute = (timestamp) => {
