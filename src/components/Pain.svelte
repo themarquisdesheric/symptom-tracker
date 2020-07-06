@@ -39,17 +39,6 @@
   .day { right: 4px; }
 
   .night { right: 2px; }
-
-  .item {
-    display: flex;
-    height: 2.5rem;
-    align-items: center;
-  }
-
-  .item span {
-    width: 115px;
-    font-size: 14px;
-  }
 </style>
 
 <section class="pain">
@@ -63,11 +52,6 @@
   </header>
 
   {#each Object.keys($entry.pain) as type (type)}
-    <div class="item">
-      <span>
-        {types[type]}
-      </span>
-      <TimeOfDay {type} handleChange={entry.updateTimeOfDay} />
-    </div>
+    <TimeOfDay label={types[type]} {type} handleChange={entry.updateTimeOfDay} />
   {/each}
 </section>

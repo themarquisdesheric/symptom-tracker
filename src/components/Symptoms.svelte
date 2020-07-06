@@ -2,20 +2,14 @@
   import entry from '../stores/entry'
   import { TIMES, arbitrarySort } from '../utils'
   import CheckBoxButton from './CheckBoxButton.svelte'
-  import TimeOfDayDropDown from './TimeOfDayDropDown.svelte'
+  import TimeOfDay from './TimeOfDay.svelte'
   import PlusSign from '../assets/PlusSign.svelte'
 
   const toggleSymptom = entry.toggleCheckbox('symptoms')
 
   let types = {
-    visionLoss: {
-      name: 'Vision Loss',
-      value: '',
-    },
-    collar: {
-      name: 'Collar',
-      value: '',
-    },
+    visionLoss: 'Vision Loss',
+    collar: 'Collar',
   }
 
   const handleHeadache = ({ target }) =>
@@ -23,34 +17,6 @@
   
   const handleUrgency = ({ target }) =>
     entry.updateSymptom('urgency', target.value)
-
-  const handleAddTimeOfDay = (type) => {
-    const { value } = types[type]
-    // ignore value if it exists and reset it
-    if ($entry.symptoms[type].includes(value)) {
-      return types = {
-        ...types,
-        [type]: {
-          ...types[type],
-          value: '',
-        },
-      }
-    }
-
-    types = {
-      ...types,
-      [type]: {
-        ...types[type],
-        value: '',
-      },
-    }
-
-    entry.updateSelect({
-      category: 'symptoms',
-      type,
-      value,
-    })
-  }
 </script>
 
 <style>
@@ -90,6 +56,10 @@
     {/each}
   </div>
 
+  {#each Object.keys(types) as type (type)}
+    <TimeOfDay label={types[type]} category="symptoms" {type} handleChange={entry.updateTimeOfDay} />
+  {/each}
+
   <div>
     <span class="field-label">Headache</span>
     <input
@@ -102,30 +72,18 @@
     />
   </div>
 
-  {#each Object.keys(types) as type, index (type)}
-    <TimeOfDayDropDown
-      handleChange={handleAddTimeOfDay}
-      hiddenClass={$entry.symptoms[type].length === 4}
-      bind:selectValue={types[type].value}
-      category="symptoms"
-      label={types[type].name}
-      {type}
-    />
-    {#if index === 0}
-      <div class="urgency">
-        <span class="field-label">Urgency</span>
-        <PlusSign hiddenClass={$entry.symptoms.urgency} />
-        <!-- svelte-ignore a11y-no-onchange -->
-        <select
-          class="primary"
-          on:change={handleUrgency}
-        >
-          <option></option>
-          <option>calm</option>
-          <option>upset</option>
-          <option>very upset</option>
-        </select>
-      </div>
-    {/if}
-  {/each}
+  <div class="urgency">
+    <span class="field-label">Urgency</span>
+    <PlusSign hiddenClass={$entry.symptoms.urgency} />
+    <!-- svelte-ignore a11y-no-onchange -->
+    <select
+      class="primary"
+      on:change={handleUrgency}
+    >
+      <option></option>
+      <option>calm</option>
+      <option>upset</option>
+      <option>very upset</option>
+    </select>
+  </div>
 </section>

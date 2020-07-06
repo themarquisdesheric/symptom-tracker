@@ -4,12 +4,25 @@
   import { TIMES } from '../utils.js'
 
   export let handleChange
+  export let category = 'pain'
+  export let label
   export let type
 
   let group = []
 </script>
 
 <style>
+  .item {
+    display: flex;
+    height: 2.5rem;
+    align-items: center;
+  }
+
+  .item span {
+    width: 115px;
+    font-size: 14px;
+  }
+
   .time-of-day {
     display: inline-flex;
     justify-content: space-around;
@@ -29,16 +42,25 @@
   input[type="checkbox"] { display: none; }
 </style>
 
-<div class="time-of-day">
-  {#each TIMES as time (time)}
-    <label>
-      <TimeOfDayIcon {time} checked={group.includes(time)} />
-      <input
-        type="checkbox"
-        value={time}
-        bind:group
-        on:change={() => handleChange(type, group)}
-      />
-    </label>
-  {/each}
+<div class="item">
+  <span>
+    {label}
+  </span>
+  <div class="time-of-day">
+    {#each TIMES as time (time)}
+      <label>
+        <TimeOfDayIcon {time} checked={group.includes(time)} />
+        <input
+          type="checkbox"
+          value={time}
+          bind:group
+          on:change={() => handleChange({
+            category,
+            type,
+            value: group,
+          })}
+        />
+      </label>
+    {/each}
+  </div>
 </div>

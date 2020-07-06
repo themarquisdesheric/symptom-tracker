@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store'
 import initialState from './initialState'
-import { TIMES, arbitrarySort, sortVoids, checkForDuplicates } from '../utils'
+import { sortVoids, checkForDuplicates } from '../utils'
 
 const createEntryStore = () => {
 	const { subscribe, update } = writable(initialState);
@@ -63,43 +63,12 @@ const createEntryStore = () => {
           [type]: !pastEntry[category][type]
         },
       })),
-    updateTimeOfDay: (type, value) =>
-      update(pastEntry => ({
-        ...pastEntry,
-        pain: {
-          ...pastEntry.pain,
-          [type]: value,
-        }
-      })),
-    updateSelect: ({ category, type, value }) =>
-      update(pastEntry => {
-        if (value === 'all day') {
-          return {
-            ...pastEntry,
-          [category]: {
-              ...pastEntry[category],
-              [type]: [...TIMES]
-            },
-          }
-        }
-        
-        return {
-          ...pastEntry,
-          [category]: {
-            ...pastEntry[category],
-            [type]: [
-              ...pastEntry[category][type],
-              value
-            ].sort(arbitrarySort),
-          }
-        }
-      }),
-    removeTimeOfDayTag: ({ category, type, value }) =>
+    updateTimeOfDay: ({ category, type, value }) =>
       update(pastEntry => ({
         ...pastEntry,
         [category]: {
           ...pastEntry[category],
-          [type]: pastEntry[category][type].filter(v => v !== value)
+          [type]: value,
         }
       })),
     updateSymptom: (type, value) =>
