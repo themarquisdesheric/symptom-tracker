@@ -31,12 +31,11 @@
     margin: 0;
   }
 
-  :global(.time-of-day svg) { width: 1rem; }
-
   label {
-    display: inline-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 0;
-    width: unset;
   }
 
   input[type="checkbox"] { display: none; }

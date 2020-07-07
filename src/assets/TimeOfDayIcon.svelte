@@ -3,17 +3,26 @@
 	export let time
 
 	$: fill = checked ? '#ce93d8' : '#DDD'
-	// since the morning icon has less pixels use 5%
-	// darker shade and scale up 20% for visibility
+	// since the morning icon has less pixels use 5% darker shade
 	$: morningFill = checked ? '#c580d1' : '#DDD'
 </script>
 
 <style>
-	.scaleUp { transform: scale(1.2); }
+	svg {
+		height: 28px;
+    width: 28px;
+    border-radius: .25rem;
+    padding: .25rem;
+	}
+	
+	.checked {
+		height: 30px;
+		width: 30px;
+	}
 </style>
 
 {#if time === 'morning'}
-	<svg class:scaleUp={checked} version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	<svg class={checked ? 'checked box-shadow primary-border' : ''} version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 		viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
 	<path fill={morningFill} d="M10,6.797c-1.775,0-3.2,1.426-3.2,3.201c0,1.773,1.425,3.199,3.2,3.199c1.774,0,3.199-1.426,3.199-3.199
 		C13.199,8.223,11.774,6.797,10,6.797z M10,12.047c-1.133,0-2.051-0.916-2.051-2.049S8.867,7.947,10,7.947
@@ -28,7 +37,7 @@
 		C15.446,9.2,15,9.559,15,10c0,0.442,0.446,0.8,0.999,0.8C16.552,10.8,17,10.442,17,10z"/>
 	</svg>
 {:else if time === 'day'}
-	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	<svg class={checked ? 'checked box-shadow primary-border' : ''} version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
 	<path {fill} d="M19,9.199c-0.182,0-0.799,0-0.98,0c-0.553,0-1,0.359-1,0.801c0,0.441,0.447,0.799,1,0.799
 		c0.182,0,0.799,0,0.98,0c0.552,0,1-0.357,1-0.799C20,9.559,19.551,9.199,19,9.199z M10,4.5c-3.051,0-5.5,2.449-5.5,5.5
@@ -47,7 +56,7 @@
 		c-0.107-0.107-0.592-0.592-0.699-0.699c-0.391-0.391-0.961-0.455-1.274-0.143S15.143,16.275,15.534,16.666z"/>
 	</svg>
 {:else if time === 'evening'}
-	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	<svg class={checked ? 'checked box-shadow primary-border' : ''} version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
 	<path {fill} d="M19,9.199c-0.182,0-0.799,0-0.98,0c-0.553,0-1,0.359-1,0.801c0,0.441,0.447,0.799,1,0.799
 		c0.182,0,0.799,0,0.98,0c0.552,0,1-0.357,1-0.799C20,9.559,19.551,9.199,19,9.199z M10,4.5c-3.051,0-5.5,2.449-5.5,5.5
@@ -66,7 +75,7 @@
 		c-0.107-0.107-0.592-0.592-0.699-0.699c-0.391-0.391-0.961-0.455-1.274-0.143S15.143,16.275,15.534,16.666z"/>
 	</svg>
 {:else if time === 'night'}
-	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	<svg class={checked ? 'checked box-shadow primary-border' : ''} version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
 	<path {fill} d="M13.719,1.8c0.686,0.385,1.332,0.867,1.916,1.449c3.42,3.422,3.42,8.966,0,12.386s-8.965,3.42-12.386,0
 		c-0.583-0.584-1.065-1.231-1.449-1.916c3.335,1.867,7.633,1.387,10.469-1.449C15.106,9.433,15.587,5.136,13.719,1.8z"/>
