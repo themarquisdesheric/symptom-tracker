@@ -1,7 +1,8 @@
 <script>
   import { format } from 'date-fns'
-  import { formatTimeTo12Hour } from '../utils.js'
+  import { formatTimeTo12Hour, getVoidDeltas } from '../utils.js'
   import RemoveIcon from '../assets/RemoveIcon.svelte'
+  import HourglassIcon from '../assets/HourglassIcon.svelte'
 
   export let type = ''
   export let entry
@@ -10,6 +11,7 @@
   let showModal = false
 
   $: voidCount = $entry.voids[type].length
+  $: peeDeltas = getVoidDeltas($entry.voids.pee).deltas
 
   const addVoid = () => {
     const timestamp = format(new Date(), 'kk:mm')
@@ -83,6 +85,11 @@
     margin-left: .25rem;
   }
 
+  small {
+    display: flex;
+    justify-content: center;
+  }
+
   footer {
     text-align: center;
     margin: 2rem auto 0;
@@ -143,6 +150,12 @@
             <RemoveIcon currentVoid={isCurrentVoid(timestamp)} />
           </button>
         </div>
+
+        {#if type === 'pee' && index !== voidCount - 1}
+          <small class="dark">
+            <HourglassIcon /> {peeDeltas[index]} min
+          </small>
+        {/if}
       {/each}
 
       <footer>

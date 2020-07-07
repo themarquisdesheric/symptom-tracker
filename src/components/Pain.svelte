@@ -18,7 +18,14 @@
 <style>
   .pain { margin-top: .5rem; }
 
-  label { margin: .25rem 0 0; }
+  label { margin: 0; }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: .25rem;
+  }
 
   header div {
     display: inline-flex;
@@ -36,9 +43,9 @@
 
   .morning { right: 5px; }
 
-  .day { right: 4px; }
+  .day { right: 3px; }
 
-  .night { right: 2px; }
+  .night { right: 1px; }
 </style>
 
 <section class="pain">
