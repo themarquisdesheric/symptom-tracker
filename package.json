@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "date-fns": "^2.14.0",
+    "simply-svelte-autocomplete": "^1.1.0",
     "svelte-spa-router": "^2.2.0"
   },
   "jest": {
