@@ -6,6 +6,19 @@
   export let handleClick
 </script>
 
+
+<input
+  type="checkbox"
+  id={type}
+  {checked}
+  on:click={handleClick}
+/>
+<label for={type} class="box-shadow">
+  <Checkmark />
+  <span>{type}</span>
+</label>
+
+
 <style>
   input[type="checkbox"],
   :global([type="checkbox"] + label svg) { display: none; }
@@ -29,14 +42,3 @@
 
   :global([type="checkbox"]:checked + label svg) { display: inline; }
 </style>
-
-<input
-  type="checkbox"
-  id={type}
-  {checked}
-  on:click={handleClick}
-/>
-<label for={type} class="box-shadow">
-  <Checkmark />
-  <span>{type}</span>
-</label>

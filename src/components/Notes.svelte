@@ -22,6 +22,30 @@
   }
 </script>
 
+
+<section class="wrapper">
+  <label class:label={showAddButton}>Notes</label>
+  <div>
+    {#if showAddButton}
+      <button on:click={toggleEdit} class="notes-button add">+</button>
+    {:else if editing}
+      <!-- svelte-ignore a11y-autofocus -->
+      <textarea autofocus bind:value rows="7"></textarea>
+    {:else}
+      <p>
+        <EditIcon handleClick={toggleEdit} />
+        {value}
+      </p>
+    {/if}
+  </div>
+  <div>
+    <button on:click={handleSave} class="box-shadow">
+      save
+    </button>
+  </div>
+</section>
+
+
 <style>
   section.wrapper {
     position: relative;
@@ -67,25 +91,3 @@
 
   :global(.notes-button.add) { top: -12px; }
 </style>
-
-<section class="wrapper">
-  <label class:label={showAddButton}>Notes</label>
-  <div>
-    {#if showAddButton}
-      <button on:click={toggleEdit} class="notes-button add">+</button>
-    {:else if editing}
-      <!-- svelte-ignore a11y-autofocus -->
-      <textarea autofocus bind:value rows="7"></textarea>
-    {:else}
-      <p>
-        <EditIcon handleClick={toggleEdit} />
-        {value}
-      </p>
-    {/if}
-  </div>
-  <div>
-    <button on:click={handleSave} class="box-shadow">
-      save
-    </button>
-  </div>
-</section>

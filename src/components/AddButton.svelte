@@ -3,6 +3,12 @@
   export let classes = ''
 </script>
 
+
+<button on:click={handleClick} class="add-button {classes}">
+  <span>+</span>
+</button>
+
+
 <style>
   .add-button {
     position: relative;
@@ -30,7 +36,3 @@
     color: #fff;
   }
 </style>
-
-<button on:click={handleClick} class={`add-button ${classes}`}>
-  <span>+</span>
-</button>

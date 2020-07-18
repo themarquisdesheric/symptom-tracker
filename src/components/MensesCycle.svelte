@@ -18,13 +18,6 @@
   }
 </script>
 
-<style>
-  :global(.entry-form > .menses-cycle) { margin: 0; }
-
-  .field-label { width: 115px; }
-
-  button { font-size: .75rem; }
-</style>
 
 <section class="menses-cycle">
   <span class="field-label">Menses cycle</span> <input class="primary" type="number" min="1" max="31" bind:value={mensesCycle} />
@@ -39,3 +32,12 @@
     </button>
   {/if}
 </section>
+
+
+<style>
+  :global(.entry-form > .menses-cycle) { margin: 0; }
+
+  .field-label { width: 115px; }
+
+  button { font-size: .75rem; }
+</style>

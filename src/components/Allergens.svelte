@@ -5,18 +5,6 @@
   const toggleAllergen = entry.toggleCheckbox('allergens')
 </script>
 
-<style>
-  .allergens { margin-bottom: .5rem; }
-
-  div {
-    display: flex;
-    justify-content: space-between;  
-  }
-
-  :global(.allergens label) {
-    margin-right: .25rem; 
-  }
-</style>
 
 <section class="allergens">
   <label>Allergens</label>
@@ -30,3 +18,17 @@
   {/each}
   </div>
 </section>
+
+
+<style>
+  .allergens { margin-bottom: .5rem; }
+
+  div {
+    display: flex;
+    justify-content: space-between;  
+  }
+
+  :global(.allergens label) {
+    margin-right: .25rem; 
+  }
+</style>

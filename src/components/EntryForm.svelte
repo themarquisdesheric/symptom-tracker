@@ -8,11 +8,6 @@
   import Notes from './Notes.svelte'
 </script>
 
-<style>
-  :global(.entry-form > section) {
-    margin: 1rem 0;
-  }
-</style>
 
 <div class="entry-form">
   <Voids />
@@ -23,3 +18,10 @@
   <Medications />
 	<Notes />
 </div>
+
+
+<style>
+  :global(.entry-form > section) {
+    margin: 1rem 0;
+  }
+</style>

@@ -39,6 +39,60 @@
     timestamp === $entry.voids.lastValue ? 'current-timestamp' : ''
 </script>
 
+
+<span class={type}>
+  {#if voidCount}
+    <span class="void-counter primary">{voidCount}</span>
+  {/if}
+  <button on:click={addVoidOpenModal} class="emoji emoji-shadow">
+    {emoji}
+  </button>
+
+  {#if showModal}
+    <div class="modal-background" on:click={toggleModal} />
+    <div class="modal">
+      <h2>
+        <span class="emoji-shadow">{emoji}</span> P{type.slice(1)} Chart
+      </h2>
+      {#each $entry.voids[type] as timestamp, index (timestamp + index)}
+        <div class={`timepicker ${isCurrentVoid(timestamp)}`}>
+          <input
+            type="time"
+            value={timestamp}
+            on:blur={({ target }) =>
+              entry.updateVoid({
+                type,
+                value: target.value,
+                oldValue: timestamp,
+              })
+            }
+          />
+          <button
+            on:click={() => removeVoid(timestamp)}
+            class="delete-button"
+          >
+            <RemoveIcon currentVoid={isCurrentVoid(timestamp)} />
+          </button>
+        </div>
+
+        {#if type === 'pee' && index !== voidCount - 1}
+          <small class="dark">
+            <HourglassIcon /> {peeDeltas[index]} min
+          </small>
+        {/if}
+      {/each}
+
+      <footer>
+        <button on:click={addVoid} class="add-button dark dark-border">
+          add another
+        </button>
+        <button on:click={toggleModal} class="close-button dark-border">close</button>
+      </footer>
+    </div>
+  {/if}
+</span>
+
+
 <style>
   h2 { 
     padding-top: 0;
@@ -115,55 +169,3 @@
     color: #fff;
   }
 </style>
-
-<span class={type}>
-  {#if voidCount}
-    <span class="void-counter primary">{voidCount}</span>
-  {/if}
-  <button on:click={addVoidOpenModal} class="emoji emoji-shadow">
-    {emoji}
-  </button>
-
-  {#if showModal}
-    <div class="modal-background" on:click={toggleModal} />
-    <div class="modal">
-      <h2>
-        <span class="emoji-shadow">{emoji}</span> {`P${type.slice(1)} Chart`}
-      </h2>
-      {#each $entry.voids[type] as timestamp, index (timestamp + index)}
-        <div class={`timepicker ${isCurrentVoid(timestamp)}`}>
-          <input
-            type="time"
-            value={timestamp}
-            on:blur={({ target }) =>
-              entry.updateVoid({
-                type,
-                value: target.value,
-                oldValue: timestamp,
-              })
-            }
-          />
-          <button
-            on:click={() => removeVoid(timestamp)}
-            class="delete-button"
-          >
-            <RemoveIcon currentVoid={isCurrentVoid(timestamp)} />
-          </button>
-        </div>
-
-        {#if type === 'pee' && index !== voidCount - 1}
-          <small class="dark">
-            <HourglassIcon /> {peeDeltas[index]} min
-          </small>
-        {/if}
-      {/each}
-
-      <footer>
-        <button on:click={addVoid} class="add-button dark dark-border">
-          add another
-        </button>
-        <button on:click={toggleModal} class="close-button dark-border">close</button>
-      </footer>
-    </div>
-  {/if}
-</span>

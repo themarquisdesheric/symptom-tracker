@@ -15,6 +15,23 @@
   }
 </script>
 
+
+<section class="pain">
+  <header>
+    <label>Pain</label>
+    <div>
+      {#each TIMES as time (time)}
+        <span class={time}>{time}</span>
+      {/each}
+    </div>
+  </header>
+
+  {#each Object.keys($entry.pain) as type (type)}
+    <TimeOfDay label={types[type]} {type} handleChange={entry.updateTimeOfDay} />
+  {/each}
+</section>
+
+
 <style>
   .pain { margin-top: .5rem; }
 
@@ -47,18 +64,3 @@
 
   .night { right: 1px; }
 </style>
-
-<section class="pain">
-  <header>
-    <label>Pain</label>
-    <div>
-      {#each TIMES as time (time)}
-        <span class={time}>{time}</span>
-      {/each}
-    </div>
-  </header>
-
-  {#each Object.keys($entry.pain) as type (type)}
-    <TimeOfDay label={types[type]} {type} handleChange={entry.updateTimeOfDay} />
-  {/each}
-</section>

@@ -11,6 +11,31 @@
   let group = []
 </script>
 
+
+<div class="item">
+  <span>
+    {label}
+  </span>
+  <div class="time-of-day">
+    {#each TIMES as time (time)}
+      <label>
+        <TimeOfDayIcon {time} checked={group.includes(time)} />
+        <input
+          type="checkbox"
+          value={time}
+          bind:group
+          on:change={() => handleChange({
+            category,
+            type,
+            value: group,
+          })}
+        />
+      </label>
+    {/each}
+  </div>
+</div>
+
+
 <style>
   .item {
     display: flex;
@@ -40,26 +65,3 @@
 
   input[type="checkbox"] { display: none; }
 </style>
-
-<div class="item">
-  <span>
-    {label}
-  </span>
-  <div class="time-of-day">
-    {#each TIMES as time (time)}
-      <label>
-        <TimeOfDayIcon {time} checked={group.includes(time)} />
-        <input
-          type="checkbox"
-          value={time}
-          bind:group
-          on:change={() => handleChange({
-            category,
-            type,
-            value: group,
-          })}
-        />
-      </label>
-    {/each}
-  </div>
-</div>

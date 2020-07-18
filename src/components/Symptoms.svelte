@@ -20,33 +20,6 @@
     entry.updateSymptom('urgency', target.value)
 </script>
 
-<style>
-  :global(.entry-form .symptoms) { margin-bottom: 0; }
-
-  .symptom-buttons {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: .5rem;
-    grid-row-gap: .5rem;
-    margin-bottom: .5rem;
-  }
-
-  :global(.symptom-buttons label) {
-    width: unset;
-    margin: 0;
-  }
-
-  input { padding-left: 0; }
-
-  div > span { width: 115px; }
-
-  :global(.symptoms-autocomplete.svelte-autocomplete .results-list) { top: 39px; }
-
-  .urgency { position: relative; }
-
-  select { font-size: 1rem; }
-</style>
 
 <section class="symptoms">
   <label>Symptoms</label>
@@ -105,3 +78,32 @@
     </select>
   </div>
 </section>
+
+
+<style>
+  :global(.entry-form .symptoms) { margin-bottom: 0; }
+
+  .symptom-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: .5rem;
+    grid-row-gap: .5rem;
+    margin-bottom: .5rem;
+  }
+
+  :global(.symptom-buttons label) {
+    width: unset;
+    margin: 0;
+  }
+
+  input { padding-left: 0; }
+
+  div > span { width: 115px; }
+
+  :global(.symptoms-autocomplete.svelte-autocomplete .results-list) { top: 39px; }
+
+  .urgency { position: relative; }
+
+  select { font-size: 1rem; }
+</style>

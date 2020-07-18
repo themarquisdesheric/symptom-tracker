@@ -38,6 +38,28 @@
   $: input && input.focus()
 </script>
 
+
+<section class="medications">
+  <div class="input-container">
+    <span class="field-label">Medications</span>
+    <PlusSign hiddenClass={showInput} />
+    {#if showInput}
+      <input type="text" bind:value={newMedicine} bind:this={input} />
+    {/if}
+    <AddButton
+      handleClick={handleAddButtonClick}
+      classes="primary {showInput ? 'showInput' : 'transparent'}"
+    />
+  </div>
+
+  <div>
+    {#each medications as medication (medication)}
+      <button on:click={() => handleRemoveMedication(medication)} class="tag">{medication}</button>
+    {/each}
+  </div>
+</section>
+
+
 <style>
   .medications { margin: 0; }
 
@@ -55,23 +77,3 @@
     color: #333;
   }
 </style>
-
-<section class="medications">
-  <div class="input-container">
-    <span class="field-label">Medications</span>
-    <PlusSign hiddenClass={showInput} />
-    {#if showInput}
-      <input type="text" bind:value={newMedicine} bind:this={input} />
-    {/if}
-    <AddButton
-      handleClick={handleAddButtonClick}
-      classes={`primary ${showInput ? 'showInput' : 'transparent'}`}
-    />
-  </div>
-
-  <div>
-    {#each medications as medication (medication)}
-      <button on:click={() => handleRemoveMedication(medication)} class="tag">{medication}</button>
-    {/each}
-  </div>
-</section>

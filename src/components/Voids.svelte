@@ -9,6 +9,32 @@
   $: delta = getVoidDeltas($entry.voids.pee).average
 </script>
 
+
+<section>
+  <div class="void-container">
+    <div class="void-buttons">
+      <VoidButton type="pee" {entry} />
+      <VoidButton type="poo" {entry} />
+    </div>
+    <label class="delta">
+      Delta <span class="primary">{delta}min</span>
+    </label>
+    <label class="nocturia">
+      <span>Nocturia </span>
+      <input
+        type="number"
+        min="0"
+        max="9"
+        value={$entry.voids.nocturia}
+        on:change={updateNocturia}
+        class="primary"
+      />
+    </label>
+  </div>
+  <div class="pee-chart">pee/poo chart from 5am - 10pm</div>
+</section>
+
+
 <style>
   section {
     margin-top: 0;
@@ -73,27 +99,3 @@
     }
   }
 </style>
-
-<section>
-  <div class="void-container">
-    <div class="void-buttons">
-      <VoidButton type="pee" {entry} />
-      <VoidButton type="poo" {entry} />
-    </div>
-    <label class="delta">
-      Delta <span class="primary">{delta}min</span>
-    </label>
-    <label class="nocturia">
-      <span>Nocturia </span>
-      <input
-        type="number"
-        min="0"
-        max="9"
-        value={$entry.voids.nocturia}
-        on:change={updateNocturia}
-        class="primary"
-      />
-    </label>
-  </div>
-  <div class="pee-chart">pee/poo chart from 5am - 10pm</div>
-</section>

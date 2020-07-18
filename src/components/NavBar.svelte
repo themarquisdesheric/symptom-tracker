@@ -4,34 +4,6 @@
 	import PencilIcon from '../assets/PencilIcon.svelte'
 </script>
 
-<style>
-  nav {
-		box-shadow: 0 1px 4px rgba(0, 0, 0, .18);
-		background: #ce93d8;
-		padding: 1rem 1.25rem;
-	}
-
-	div {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		max-width: 500px;
-		margin: auto;
-	}
-
-	a {
-  	text-decoration: none;
-    color: #333;
-	}
-
-	:global(a.active svg) { fill: #fff; }
-
-	:global(nav svg) {
-		width: 1.5rem;
-		height: 1.5rem;
-		fill: #ffc4ff;
-	}
-</style>
 
 <nav>
 	<div>
@@ -74,3 +46,33 @@
 		</a>
 	</div>
 </nav>
+
+
+<style>
+  nav {
+		box-shadow: 0 1px 4px rgba(0, 0, 0, .18);
+		background: #ce93d8;
+		padding: 1rem 1.25rem;
+	}
+
+	div {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		max-width: 500px;
+		margin: auto;
+	}
+
+	a {
+  	text-decoration: none;
+    color: #333;
+	}
+
+	:global(a.active svg) { fill: #fff; }
+
+	:global(nav svg) {
+		width: 1.5rem;
+		height: 1.5rem;
+		fill: #ffc4ff;
+	}
+</style>

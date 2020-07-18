@@ -4,6 +4,16 @@
 	import { routes } from './routes'
 </script>
 
+
+<NavBar />
+<div class="outer-border">
+	<div class="inner">
+		<Router {routes} />
+	</div>
+</div>
+<footer />
+
+
 <style>
 	.outer-border {
 		/* viewport height - nav height - footer height */
@@ -27,11 +37,3 @@
 		height: 50px;
 	}
 </style>
-
-<NavBar />
-<div class="outer-border">
-	<div class="inner">
-		<Router {routes} />
-	</div>
-</div>
-<footer />
