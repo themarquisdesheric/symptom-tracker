@@ -4,6 +4,7 @@
   import CheckBoxButton from './CheckBoxButton.svelte'
   import TimeOfDay from './TimeOfDay.svelte'
   import PlusSign from '../assets/PlusSign.svelte'
+  import Autocomplete from 'simply-svelte-autocomplete';
 
   const toggleSymptom = entry.toggleCheckbox('symptoms')
 
@@ -35,9 +36,12 @@
     width: unset;
     margin: 0;
   }
+
   input { padding-left: 0; }
 
   div > span { width: 115px; }
+
+  :global(.symptoms-autocomplete.svelte-autocomplete .results-list) { top: 39px; }
 
   .urgency { position: relative; }
 
@@ -59,6 +63,20 @@
   {#each Object.keys(types) as type (type)}
     <TimeOfDay label={types[type]} category="symptoms" {type} handleChange={entry.updateTimeOfDay} />
   {/each}
+
+  <div>
+    <span class="field-label">Subluxation</span>
+    <Autocomplete
+      options={$entry.symptoms.subluxations}
+      onSubmit={entry.updateSubluxations}
+      className="symptoms-autocomplete"
+    />
+    <div>
+      {#each $entry.symptoms.subluxations as subluxation (subluxation)}
+        <button class="tag">{subluxation}</button>
+      {/each}
+    </div>
+  </div>
 
   <div>
     <span class="field-label">Headache</span>

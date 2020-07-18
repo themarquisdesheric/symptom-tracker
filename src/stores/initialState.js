@@ -33,6 +33,7 @@ export default {
     urgency: '',
     collar: [],
     visionLoss: [],
+    subluxations: [],
   },
   mensesCycle: {
     mensesCycle: 1,

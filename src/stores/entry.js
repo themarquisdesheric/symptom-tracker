@@ -79,6 +79,19 @@ const createEntryStore = () => {
           [type]: value
         }
       })),
+    updateSubluxations: (subluxation) => {
+      update(pastEntry =>
+        (pastEntry.symptoms.subluxations.indexOf(subluxation) === -1)
+          ? {
+            ...pastEntry,
+            symptoms: {
+              ...pastEntry.symptoms,
+              subluxations: [...pastEntry.symptoms.subluxations, subluxation]
+            }
+          }
+          : pastEntry
+      )
+    },
     updateNotes: notes =>
       update(pastEntry => ({
         ...pastEntry,
