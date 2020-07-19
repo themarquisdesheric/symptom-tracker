@@ -79,6 +79,7 @@ const createEntryStore = () => {
           [type]: value
         }
       })),
+    // add past medications/subluxations results for autocomplete from db
     addAutocomplete: category => value =>
       update(pastEntry => {
         if (
@@ -106,6 +107,21 @@ const createEntryStore = () => {
 
         return pastEntry
       }),
+    removeAutocomplete: (category, value) =>
+      update(pastEntry =>
+        (category === 'medications')
+          ? {
+            ...pastEntry,
+            [category]: pastEntry[category].filter(v => v !== value)
+          }
+          : {
+            ...pastEntry,
+            [category]: {
+              ...pastEntry[category],
+              subluxations: pastEntry[category].subluxations.filter(v => v !== value)
+            }
+          }
+      ),
     updateNotes: notes =>
       update(pastEntry => ({
         ...pastEntry,

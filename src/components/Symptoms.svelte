@@ -9,9 +9,15 @@
   const toggleSymptom = entry.toggleCheckbox('symptoms')
   const updateSubluxations = entry.addAutocomplete('symptoms')
 
-  let types = {
+  const types = {
     visionLoss: 'Vision Loss',
     collar: 'Collar',
+  }
+
+  const handleRemoveSubluxation = (subluxation) => {
+    if (confirm(`Are you sure you want to remove "${subluxation}"?`)) {
+      entry.removeAutocomplete('symptoms', subluxation)
+    }
   }
 
   const handleHeadache = ({ target }) =>
@@ -48,7 +54,7 @@
     />
     <div>
       {#each $entry.symptoms.subluxations as subluxation (subluxation)}
-        <button class="tag">{subluxation}</button>
+        <button on:click={() => handleRemoveSubluxation(subluxation)} class="tag">{subluxation}</button>
       {/each}
     </div>
   </div>

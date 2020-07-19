@@ -5,8 +5,8 @@
   const updateMedications = entry.addAutocomplete('medications')
 
   const handleRemoveMedication = (medication) => {
-    if (confirm(`Are you sure you want to remove ${medication}?`)) {
-      medications = medications.filter(med => med !== medication)
+    if (confirm(`Are you sure you want to remove "${medication}"?`)) {
+      entry.removeAutocomplete('medications', medication)
     }
   }
 </script>
