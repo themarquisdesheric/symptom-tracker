@@ -1,5 +1,6 @@
 <script>
   import entry from '../stores/entry'
+  import entries from '../stores/entries'
   import EditIcon from '../assets/EditIcon.svelte'
 
   let value = ''
@@ -16,8 +17,8 @@
   }
 
   const handleSave = () => {
-    // form validation
     entry.updateNotes(value)
+    entries.saveEntry($entry)
     editing = false
   }
 </script>

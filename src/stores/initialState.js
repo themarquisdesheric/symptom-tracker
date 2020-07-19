@@ -1,3 +1,5 @@
+import { getTodayDate } from '../utils'
+
 export default {
   voids: {
     pee: [],
@@ -41,4 +43,5 @@ export default {
   },
   medications: [],
   notes: '',
+  date: getTodayDate()
 }
