@@ -79,19 +79,33 @@ const createEntryStore = () => {
           [type]: value
         }
       })),
-    updateSubluxations: (subluxation) => {
-      update(pastEntry =>
-        (pastEntry.symptoms.subluxations.indexOf(subluxation) === -1)
-          ? {
+    addAutocomplete: category => value =>
+      update(pastEntry => {
+        if (
+          category === 'medications' && 
+          pastEntry[category].indexOf(value) === -1
+        ) {
+          return {
             ...pastEntry,
-            symptoms: {
-              ...pastEntry.symptoms,
-              subluxations: [...pastEntry.symptoms.subluxations, subluxation]
+            [category]: [...pastEntry[category], value]
+          }
+        }
+        
+        if (
+          category === 'symptoms' &&
+          pastEntry[category].subluxations.indexOf(value) === -1
+        ) {
+          return {
+            ...pastEntry,
+            [category]: {
+              ...pastEntry[category],
+              subluxations: [...pastEntry[category].subluxations, value]
             }
           }
-          : pastEntry
-      )
-    },
+        }
+
+        return pastEntry
+      }),
     updateNotes: notes =>
       update(pastEntry => ({
         ...pastEntry,

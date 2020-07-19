@@ -30,9 +30,4 @@
   .transparent { background-color: transparent; }
 
   .transparent span { color: transparent; }
-
-  :global(.medications .showInput) { 
-    background: #9c64a6;
-    color: #fff;
-  }
 </style>

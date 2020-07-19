@@ -7,6 +7,7 @@
   import Autocomplete from 'simply-svelte-autocomplete';
 
   const toggleSymptom = entry.toggleCheckbox('symptoms')
+  const updateSubluxations = entry.addAutocomplete('symptoms')
 
   let types = {
     visionLoss: 'Vision Loss',
@@ -38,11 +39,12 @@
   {/each}
 
   <div>
-    <span class="field-label">Subluxation</span>
+    <span class="field-label">Subluxations</span>
     <Autocomplete
       options={$entry.symptoms.subluxations}
-      onSubmit={entry.updateSubluxations}
-      className="symptoms-autocomplete"
+      onSubmit={updateSubluxations}
+      themeColor="#9c64a6"
+      className="autocomplete"
     />
     <div>
       {#each $entry.symptoms.subluxations as subluxation (subluxation)}
@@ -100,8 +102,6 @@
   input { padding-left: 0; }
 
   div > span { width: 115px; }
-
-  :global(.symptoms-autocomplete.svelte-autocomplete .results-list) { top: 39px; }
 
   .urgency { position: relative; }
 

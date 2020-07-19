@@ -57,6 +57,8 @@ label {
 	font-size: 14px;
 }
 
+.entry-form .autocomplete.svelte-autocomplete .results-list { top: 39px; }
+
 .plus-sign {
 	position: absolute;
 	top: 6px;
