@@ -1,4 +1,8 @@
 <script>
+  import { onMount } from 'svelte';
+  import { replace } from 'svelte-spa-router'
+  import { format } from 'date-fns'
+
   import Voids from './Voids.svelte'
   import Allergens from './Allergens.svelte'
   import Pain from './Pain.svelte'
@@ -6,10 +10,23 @@
   import MensesCycle from './MensesCycle.svelte'
   import Medications from './Medications.svelte'
   import Notes from './Notes.svelte'
+
+  export let params = {}
+
+  onMount(() => {
+    const today = format(new Date(), 'MM/d/y')
+
+    if (!params.date) {
+      const todayDate = today.split('/').join('-')
+    
+      replace(`/entry/${todayDate}`)
+    }
+  })
 </script>
 
 
 <div class="entry-form">
+  <!-- if not today, display past entry banner -->
   <Voids />
 	<Allergens />
 	<Pain />

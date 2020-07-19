@@ -5,6 +5,7 @@ import Calendar from './components/Calendar.svelte'
 
 export const routes = {
   '/': EntryForm,
+  '/entry/:date': EntryForm,
   '/search': Search,
   '/calendar': Calendar,
   '/dashboard': Dashboard,
