@@ -1,4 +1,4 @@
-import { getTodayDate } from '../utils'
+import { getTodaysDate } from '../utils'
 
 export default {
   voids: {
@@ -43,5 +43,5 @@ export default {
   },
   medications: [],
   notes: '',
-  date: getTodayDate()
+  date: getTodaysDate()
 }

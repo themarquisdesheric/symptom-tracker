@@ -1,6 +1,6 @@
 import { addMinutes, parse, format, differenceInMinutes } from 'date-fns'
 
-export const getTodayDate = () =>
+export const getTodaysDate = () =>
   format(new Date(), 'MM/d/y').split('/').join('-')
 
 export const getVoidDelta = (void1, void2) => {

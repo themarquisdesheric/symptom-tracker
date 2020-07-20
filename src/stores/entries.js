@@ -1,7 +1,8 @@
 import { writable } from 'svelte/store'
+import mockEntriesState from './mockEntriesState'
 
 const createEntriesStore = () => {
-	const { subscribe, update } = writable({});
+	const { subscribe, update } = writable(mockEntriesState);
 
 	return {
     subscribe,
