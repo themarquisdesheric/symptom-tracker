@@ -79,10 +79,11 @@
       class="primary"
       on:change={handleUrgency}
     >
-      <option></option>
-      <option>calm</option>
-      <option>upset</option>
-      <option>very upset</option>
+      {#each ['', 'calm', 'upset', 'very upset'] as option (option)}
+        <option selected={option === $entry.symptoms.urgency}>
+          {option}
+        </option>
+      {/each}
     </select>
   </div>
 </section>

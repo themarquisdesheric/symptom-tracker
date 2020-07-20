@@ -88,7 +88,7 @@ export default {
       poo: [
         '18:34'
       ],
-      nocturia: 0,
+      nocturia: 4,
       lastValue: '18:37'
     },
     allergens: {
