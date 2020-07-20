@@ -108,8 +108,6 @@
 
   input { padding-left: 0; }
 
-  div > span { width: 115px; }
-
   .urgency { position: relative; }
 
   select { font-size: 1rem; }

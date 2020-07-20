@@ -37,7 +37,5 @@
 <style>
   :global(.entry-form > .menses-cycle) { margin: 0; }
 
-  .field-label { width: 115px; }
-
   button { font-size: .75rem; }
 </style>
