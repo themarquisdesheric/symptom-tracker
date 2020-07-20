@@ -3,12 +3,9 @@
   import TimeOfDayIcon from '../assets/TimeOfDayIcon.svelte'
   import { TIMES } from '../utils.js'
 
-  export let handleChange
   export let category = 'pain'
   export let label
   export let type
-
-  let group = []
 </script>
 
 
@@ -19,16 +16,11 @@
   <div class="time-of-day">
     {#each TIMES as time (time)}
       <label>
-        <TimeOfDayIcon {time} checked={group.includes(time)} />
+        <TimeOfDayIcon {time} checked={$entry[category][type].includes(time)} />
         <input
           type="checkbox"
           value={time}
-          bind:group
-          on:change={() => handleChange({
-            category,
-            type,
-            value: group,
-          })}
+          bind:group={$entry[category][type]}
         />
       </label>
     {/each}

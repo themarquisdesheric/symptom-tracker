@@ -41,7 +41,7 @@
   </div>
 
   {#each Object.keys(types) as type (type)}
-    <TimeOfDay label={types[type]} category="symptoms" {type} handleChange={entry.updateTimeOfDay} />
+    <TimeOfDay label={types[type]} category="symptoms" {type} />
   {/each}
 
   <div>

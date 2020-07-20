@@ -64,14 +64,6 @@ const createEntryStore = () => {
           [type]: !pastEntry[category][type]
         },
       })),
-    updateTimeOfDay: ({ category, type, value }) =>
-      update(pastEntry => ({
-        ...pastEntry,
-        [category]: {
-          ...pastEntry[category],
-          [type]: value,
-        }
-      })),
     updateSymptom: (type, value) =>
       update(pastEntry => ({
         ...pastEntry,

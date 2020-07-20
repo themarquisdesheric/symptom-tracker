@@ -27,7 +27,7 @@
   </header>
 
   {#each Object.keys($entry.pain) as type (type)}
-    <TimeOfDay label={types[type]} {type} handleChange={entry.updateTimeOfDay} />
+    <TimeOfDay label={types[type]} {type} />
   {/each}
 </section>
 
