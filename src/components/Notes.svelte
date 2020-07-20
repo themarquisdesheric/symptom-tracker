@@ -6,7 +6,7 @@
   let value = ''
   let editing = null
 
-  $: showAddButton = editing === null
+  $: showAddButton = !$entry.notes && editing === null
 
   const toggleEdit = () => {
     if (showAddButton) {
@@ -35,7 +35,7 @@
     {:else}
       <p>
         <EditIcon handleClick={toggleEdit} />
-        {value}
+        {$entry.notes}
       </p>
     {/if}
   </div>
@@ -65,6 +65,9 @@
     width: 100%;
     padding: .25rem;
   }
+
+  textarea,
+  p { font-size: 14px; }
 
   p { margin: 0 0 1rem; }
 
