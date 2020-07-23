@@ -54,7 +54,7 @@
     />
     <div>
       {#each $entry.symptoms.subluxations as subluxation (subluxation)}
-        <button on:click={() => handleRemoveSubluxation(subluxation)} class="tag">{subluxation}</button>
+        <button on:click={() => handleRemoveSubluxation(subluxation)} class="tag box-shadow">{subluxation}</button>
       {/each}
     </div>
   </div>

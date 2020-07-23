@@ -22,12 +22,12 @@
 <section class="menses-cycle">
   <span class="field-label">Menses cycle</span> <input class="primary" type="number" min="1" max="31" bind:value={mensesCycle} />
   {#if showBeginPeriodButton}
-    <button on:click={handleBeginPeriod} class="tag dark dark-border">
+    <button on:click={handleBeginPeriod} class="tag dark dark-border box-shadow">
       begin period
     </button>
   {/if}
   {#if showEndPeriodButton}
-    <button on:click={handleEndPeriod} class="tag dark dark-border">
+    <button on:click={handleEndPeriod} class="tag dark dark-border box-shadow">
       end period
     </button>
   {/if}

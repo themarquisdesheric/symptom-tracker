@@ -1,11 +1,13 @@
 <script>
 	import Router from 'svelte-spa-router'
 	import NavBar from './components/NavBar.svelte'
+	import PastEntryBanner from './components/PastEntryBanner.svelte'
 	import { routes } from './routes'
 </script>
 
 
 <NavBar />
+<PastEntryBanner />
 <div class="outer-border">
 	<div class="inner">
 		<Router {routes} />

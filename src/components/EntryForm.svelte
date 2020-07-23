@@ -36,7 +36,6 @@
 
 
 <div class="entry-form">
-  <!-- if not today, display past entry banner -->
   <Voids />
 	<Allergens />
 	<Pain />
@@ -48,7 +47,5 @@
 
 
 <style>
-  :global(.entry-form > section) {
-    margin: 1rem 0;
-  }
+  :global(.entry-form > section) { margin: 1rem 0; }
 </style>

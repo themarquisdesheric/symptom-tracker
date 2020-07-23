@@ -25,7 +25,7 @@
 
   <div>
     {#each $entry.medications as medication (medication)}
-      <button on:click={() => handleRemoveMedication(medication)} class="tag">{medication}</button>
+      <button on:click={() => handleRemoveMedication(medication)} class="tag box-shadow">{medication}</button>
     {/each}
   </div>
 </section>
