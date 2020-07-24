@@ -1,9 +1,10 @@
 <script>
-  import { onMount } from 'svelte';
-  import { replace } from 'svelte-spa-router'
+  import { replace, location } from 'svelte-spa-router'
+  import path from 'path'
 
   import entry from '../stores/entry'
   import entries from '../stores/entries'
+  import initialEntryState from '../stores/initialEntryState'
   import Voids from './Voids.svelte'
   import Allergens from './Allergens.svelte'
   import Pain from './Pain.svelte'
@@ -14,21 +15,21 @@
   import { getTodaysDate } from '../utils'
 
   export let params = {}
-
-  onMount(() => {
+  
+  
+  if (!params.date) {
     const todaysDate = getTodaysDate()
-    const currentEntry = $entries[todaysDate]
+    
+    replace(`/entry/${todaysDate}`)
+  }
 
-    if (!params.date) {
-      return replace(`/entry/${todaysDate}`)
-    }
+  $: entryDate = path.basename($location)
+  
+  $: if (entryDate !== $entry.date) {
+    const currentEntry = $entries[entryDate]
 
-    if (currentEntry) {
-      console.log('%cThere is a current entry!', 'color: #f0f')
-
-      entry.set(currentEntry)
-    }
-  })
+    entry.set(currentEntry || initialEntryState)
+  }
 
   $: console.table('entry:', $entry)
   $: console.table('entries:', $entries)

@@ -9,12 +9,14 @@
   let prettyEntryDate
   let notToday
 
-  if ($location.includes('entry')) {
+  $: if ($location.includes('entry')) {
     const todaysDate = getTodaysDate()
     const entryDate = path.basename($location)
     
     prettyEntryDate = format(new Date(entryDate), 'M/d/y')
     notToday = todaysDate !== entryDate
+  } else {
+    notToday = false
   }
 </script>
 
