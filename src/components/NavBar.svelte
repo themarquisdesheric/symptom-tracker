@@ -2,6 +2,7 @@
   import { link } from 'svelte-spa-router'
 	import active from 'svelte-spa-router/active'
 	import PencilIcon from '../assets/PencilIcon.svelte'
+	import PastEntryBanner from './PastEntryBanner.svelte'
 </script>
 
 
@@ -46,6 +47,7 @@
 		</a>
 	</div>
 </nav>
+<PastEntryBanner />
 
 
 <style>
