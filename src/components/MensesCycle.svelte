@@ -20,7 +20,7 @@
 
 
 <section class="menses-cycle">
-  <span class="field-label">Menses cycle</span> <input class="primary" type="number" min="1" max="31" bind:value={mensesCycle} />
+  <span class="field-label">Menses Cycle</span> <input class="primary" type="number" min="1" max="31" bind:value={mensesCycle} />
   {#if showBeginPeriodButton}
     <button on:click={handleBeginPeriod} class="tag dark dark-border box-shadow">
       begin period

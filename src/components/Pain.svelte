@@ -4,14 +4,14 @@
   import TimeOfDay from './TimeOfDay.svelte'
 
   let types = {
-    headNeck: 'Head/neck',
-    shouldersArms: 'Shoulders/arms',
-    hipsLowBack: 'Hips/low back',
-    pelvisBladder: 'Pelvis/bladder',
-    sciaticaLegs: 'Sciatica/legs',
-    bowelRectum: 'Bowel/rectum',
-    vulvaPerineum: 'Vulva/perineum',
-    visionLoss: 'Vision loss',
+    headNeck: 'Head/Neck',
+    shouldersArms: 'Shoulders/Arms',
+    hipsLowBack: 'Hips/Low Back',
+    pelvisBladder: 'Pelvis/Bladder',
+    sciaticaLegs: 'Sciatica/Legs',
+    bowelRectum: 'Bowel/Rectum',
+    vulvaPerineum: 'Vulva/Perineum',
+    visionLoss: 'Vision Loss',
   }
 </script>
 

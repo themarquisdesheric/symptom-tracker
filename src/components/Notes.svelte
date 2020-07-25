@@ -39,7 +39,7 @@
   </div>
   <div>
     <button on:click={handleSave} class="box-shadow">
-      save
+      Save
     </button>
   </div>
 </section>
