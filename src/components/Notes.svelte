@@ -3,7 +3,6 @@
   import entries from '../stores/entries'
   import EditIcon from '../assets/EditIcon.svelte'
 
-  let value = ''
   let editing = null
 
   $: showAddButton = !$entry.notes && editing === null
@@ -17,7 +16,6 @@
   }
 
   const handleSave = () => {
-    entry.updateNotes(value)
     entries.saveEntry($entry)
     editing = false
   }
@@ -30,8 +28,8 @@
     {#if showAddButton}
       <button on:click={toggleEdit} class="notes-button add">+</button>
     {:else if editing}
-      <!-- svelte-ignore a11y-autofocus -->
-      <textarea autofocus bind:value rows="7"></textarea>
+    <!-- svelte-ignore a11y-autofocus -->
+    <textarea autofocus bind:value={$entry.notes} rows="7"></textarea>
     {:else}
       <p>
         <EditIcon handleClick={toggleEdit} />

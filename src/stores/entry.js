@@ -114,12 +114,7 @@ const createEntryStore = () => {
               subluxations: pastEntry[category].subluxations.filter(v => v !== value)
             }
           }
-      ),
-    updateNotes: notes =>
-      update(pastEntry => ({
-        ...pastEntry,
-        notes,
-      }))
+      )
 	}
 }
 
