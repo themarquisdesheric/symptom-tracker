@@ -37,6 +37,12 @@
 
   const isCurrentVoid = (timestamp) =>
     timestamp === $entry.voids.lastValue ? 'current-timestamp' : ''
+  
+  const handleKeydown = ({ key }) => {
+    if (key === 'Escape') {
+      showModal = false
+    }
+  }
 </script>
 
 
@@ -50,7 +56,7 @@
 
   {#if showModal}
     <div class="modal-background" on:click={toggleModal} />
-    <div class="modal">
+    <div on:keydown={handleKeydown } class="modal">
       <h2>
         <span class="emoji-shadow">{emoji}</span> P{type.slice(1)} Chart
       </h2>

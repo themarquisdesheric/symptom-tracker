@@ -60,5 +60,8 @@
 <style>
   :global(.entry-form > section) { margin: 1rem 0; }
 
-  .edit-lock { pointer-events: none; }
+  .edit-lock {
+    pointer-events: none;
+    user-select: none;
+  }
 </style>
