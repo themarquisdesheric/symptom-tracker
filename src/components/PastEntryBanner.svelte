@@ -2,26 +2,20 @@
   import { location } from 'svelte-spa-router'
 	import { format } from 'date-fns'
   import path from 'path'
-  
+  import isPastEntry from '../stores/isPastEntry'
   import BackInTimeIcon from '../assets/BackInTimeIcon.svelte'
-  import { getTodaysDate } from '../utils'
-  
-  let prettyEntryDate
-  let pastEntry
 
+  let prettyEntryDate
+  
   $: if ($location.includes('entry')) {
-    const todaysDate = getTodaysDate()
     const entryDate = path.basename($location)
     
     prettyEntryDate = format(new Date(entryDate), 'M/d/y')
-    pastEntry = todaysDate !== entryDate
-  } else {
-    pastEntry = false
   }
 </script>
 
 
-{#if pastEntry}
+{#if $isPastEntry}
   <p>
     <BackInTimeIcon />
     {prettyEntryDate}
