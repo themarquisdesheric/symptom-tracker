@@ -16,7 +16,6 @@
 
   export let params = {}
   
-  
   if (!params.date) {
     const todaysDate = getTodaysDate()
     
@@ -25,9 +24,9 @@
 
   $: entryDate = path.basename($location)
   
-  $: if (entryDate !== $entry.date) {
+  $: if (entryDate && entryDate !== $entry.date) {
     const currentEntry = $entries[entryDate]
-
+  
     entry.set(currentEntry || initialEntryState)
   }
 
