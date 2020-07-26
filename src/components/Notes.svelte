@@ -1,7 +1,11 @@
 <script>
   import entry from '../stores/entry'
   import entries from '../stores/entries'
+  import isPastEntry from '../stores/isPastEntry'
   import EditIcon from '../assets/EditIcon.svelte'
+
+  export let setEditingEntry
+  export let editingEntry
 
   let editing = null
 
@@ -38,9 +42,15 @@
     {/if}
   </div>
   <div>
-    <button on:click={handleSave} class="box-shadow">
-      Save
-    </button>
+    {#if editingEntry || !$isPastEntry}
+      <button on:click={handleSave} class="save-button box-shadow">
+        Save
+      </button>
+    {:else}
+      <button on:click={setEditingEntry} class="edit-button box-shadow">
+        Edit Entry
+      </button>
+    {/if}
   </div>
 </section>
 
@@ -71,15 +81,6 @@
 
   div { display: flex; }
 
-  button:not(.notes-button) { 
-    width: 100%;
-    border: none;
-    margin: 1rem 0 0;
-    background: #9c64a6;
-    color: #fff;
-    font-size: 1rem;
-  }
-
   :global(.notes-button) {
     position: absolute;
     top: -11px;
@@ -92,4 +93,20 @@
   }
 
   :global(.notes-button.add) { top: -12px; }
+
+  .save-button,
+  .edit-button {
+    width: 100%;
+    border: none;
+    margin: 1rem 0 0;
+    color: #fff;
+    font-size: 1rem;
+  }
+  
+  .save-button { background: #9c64a6; }
+  
+  .edit-button {
+    background: #90caf9;
+    pointer-events: auto;
+  }
 </style>

@@ -4,6 +4,7 @@
 
   import entry from '../stores/entry'
   import entries from '../stores/entries'
+  import isPastEntry from '../stores/isPastEntry'
   import initialEntryState from '../stores/initialEntryState'
   import Voids from './Voids.svelte'
   import Allergens from './Allergens.svelte'
@@ -15,7 +16,12 @@
   import { getTodaysDate } from '../utils'
 
   export let params = {}
-  
+
+  let editingEntry = false
+
+  const setEditingEntry = () =>
+    editingEntry = true 
+
   if (!params.date) {
     const todaysDate = getTodaysDate()
     
@@ -26,26 +32,33 @@
   
   $: if (entryDate && entryDate !== $entry.date) {
     const currentEntry = $entries[entryDate]
-  
-    entry.set(currentEntry || initialEntryState)
-  }
 
-  $: console.table('entry:', $entry)
-  $: console.table('entries:', $entries)
+    if (currentEntry) {
+      entry.set(currentEntry)
+    } else {
+      entry.set(initialEntryState(entryDate))
+      editingEntry = true
+    }
+  }
 </script>
 
 
-<div class="entry-form">
+<div
+  class:edit-lock={$isPastEntry && !editingEntry}
+  class="entry-form"
+>
   <Voids />
 	<Allergens />
 	<Pain />
   <Symptoms />
   <MensesCycle />
   <Medications />
-  <Notes />
+  <Notes {editingEntry} {setEditingEntry} />
 </div>
 
 
 <style>
   :global(.entry-form > section) { margin: 1rem 0; }
+
+  .edit-lock { pointer-events: none; }
 </style>
