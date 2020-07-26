@@ -1,5 +1,8 @@
 import { addMinutes, parse, format, differenceInMinutes } from 'date-fns'
 
+export const formatMonth = (month = new Date()) =>
+  format(month, 'MMMM') 
+
 export const getFormattedDate = (date = new Date()) =>
   format(date, 'MM/d/y').split('/').join('-')
 
