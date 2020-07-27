@@ -21,6 +21,7 @@
 
   const handleSave = () => {
     entries.saveEntry($entry)
+    setEditingEntry(false)
     editing = false
   }
 </script>
@@ -47,7 +48,7 @@
         Save
       </button>
     {:else}
-      <button on:click={setEditingEntry} class="edit-button box-shadow">
+      <button on:click={() => setEditingEntry(true)} class="edit-button box-shadow">
         Edit Entry
       </button>
     {/if}

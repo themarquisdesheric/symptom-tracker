@@ -18,9 +18,9 @@
   export let params = {}
 
   let editingEntry = false
-
-  const setEditingEntry = () =>
-    editingEntry = true 
+  
+  const setEditingEntry = (bool) =>
+    editingEntry = bool 
 
   if (!params.date) {
     const todaysDate = getTodaysDate()
