@@ -1,17 +1,15 @@
 <script>
   import { push } from 'svelte-spa-router'
   import { format } from 'date-fns'
+  import entries from '../stores/entries'
   import FilterIcon from '../assets/FilterIcon.svelte'
   import BackInTimeIcon from '../assets/BackInTimeIcon.svelte'
   import { formatMonth, getFormattedDate } from '../utils'
 
   const today = format(new Date(), 'yyyy-MM-dd')
   const thisMonth = today.slice(0, 7)
-  let month = formatMonth()
-
-  const filterEntries = ({ target }) => {
-    month = formatMonth(new Date(target.value.replace('-', '/')))
-  }
+  let prettyMonth
+  let monthDigits
 
   const goToPastEntry = ({ target }) => {
     // JS Date constructor quirkiness: hyphenated numbers result in off-by-one errors
@@ -20,6 +18,26 @@
 
     push(`/entry/${getFormattedDate(date)}`)
   }
+
+  const setMonth = (date) => {
+    prettyMonth = formatMonth(date)
+    monthDigits = format(date, 'MM')
+  }
+
+  const handleMonthChange = ({ target }) => {
+    const formattedDate = new Date(target.value.replace('-', '/'))
+       
+    setMonth(formattedDate)
+  }
+
+  const filterEntries = (month) =>
+    Object.keys($entries).filter(key =>
+      key.indexOf(month) === 0
+    )
+
+  setMonth(new Date())
+
+  $: filteredEntries = filterEntries(monthDigits)
 </script>
 
 
@@ -27,12 +45,12 @@
   <label class="month-container">
     <input
       type="month"
-      on:change={filterEntries}
+      on:change={handleMonthChange}
       min="2016-01"
       max={thisMonth}
     >
     <h2>
-      {month} <FilterIcon />
+      {prettyMonth} <FilterIcon />
     </h2>
   </label>
 
@@ -48,6 +66,12 @@
       <span>Past Entry</span>
     </button>
   </label>
+</div>
+
+<div>
+  {#each filteredEntries as entry (entry)}
+    {format(new Date(entry), 'd')}
+  {/each}
 </div>
 
 

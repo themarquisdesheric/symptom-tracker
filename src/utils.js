@@ -4,7 +4,7 @@ export const formatMonth = (month = new Date()) =>
   format(month, 'MMMM') 
 
 export const getFormattedDate = (date = new Date()) =>
-  format(date, 'MM/d/y').split('/').join('-')
+  format(date, 'MM/dd/y').split('/').join('-')
 
 export const getTodaysDate = () =>
   getFormattedDate()

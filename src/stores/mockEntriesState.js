@@ -1,4 +1,84 @@
 export default {
+  '06-15-2020': {
+    voids: {
+      pee: [
+        '12:34',
+        '12:37'
+      ],
+      poo: [
+        '12:34',
+        '12:37'
+      ],
+      nocturia: 0,
+      lastValue: '12:37'
+    },
+    allergens: {
+      dairy: true,
+      gluten: true,
+      sugar: true,
+      soy: true
+    },
+    pain: {
+      headNeck: [
+        'morning',
+        'evening',
+        'night'
+      ],
+      shouldersArms: [
+        'morning',
+        'evening',
+        'night'
+      ],
+      hipsLowBack: [],
+      pelvisBladder: [
+        'morning',
+        'day',
+      ],
+      sciaticaLegs: [
+        'morning'
+      ],
+      bowelRectum: [
+        'morning',
+        'evening',
+      ],
+      vulvaPerineum: [
+        'morning',
+        'evening',
+        'night'
+      ]
+    },
+    symptoms: {
+      flare: true,
+      itch: true,
+      cramps: false,
+      discharge: false,
+      gait: true,
+      fatigue: false,
+      vertigo: true,
+      sex: true,
+      nausea: false,
+      headache: 3,
+      urgency: 'upset',
+      collar: [
+        'morning',
+        'evening',
+      ],
+      visionLoss: [
+        'day'
+      ],
+      subluxations: [
+        'Head/Neck'
+      ]
+    },
+    mensesCycle: {
+      'mensesCycle': 8,
+      'endPeriod': false
+    },
+    medications: [],
+    notes: 'Here is some documentation',
+    date: '07-18-2020'
+  },
+  // ============= next entry =============
   '07-18-2020': {
     voids: {
       pee: [
@@ -76,7 +156,7 @@ export default {
     notes: 'Here is a chronicle of the times',
     date: '07-18-2020'
   },
-  // ============= second entry =============
+  // ============= next entry =============
   '07-19-2020': {
     voids: {
       pee: [
@@ -154,7 +234,7 @@ export default {
     notes: 'These are my notes',
     date: '07-19-2020'
   },
-  // ============= third entry =============
+  // ============= next entry =============
   '07-20-2020': {
     voids: {
       pee: [
