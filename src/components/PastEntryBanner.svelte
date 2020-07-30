@@ -3,6 +3,7 @@
 	import { format } from 'date-fns'
   import path from 'path'
   import isPastEntry from '../stores/isPastEntry'
+  import PastEntryTrigger from './PastEntryTrigger.svelte'
   import BackInTimeIcon from '../assets/BackInTimeIcon.svelte'
 
   let prettyEntryDate
@@ -16,26 +17,36 @@
 
 
 {#if $isPastEntry}
-  <p>
-    <BackInTimeIcon />
-    {prettyEntryDate}
-  </p>
+  <div>
+    <PastEntryTrigger id="past-entry-banner">
+      <span>
+        <BackInTimeIcon />
+        {prettyEntryDate}
+      </span>
+    </PastEntryTrigger>
+  </div>
 {/if}
 
 
 <style>
-  p {
+  div {
     display: flex;
     justify-content: center;
+    background: #90caf9;
+    border: 4px solid #ce93d8;
+    border-top: none;
+    border-bottom: none;
+  }
+  
+  :global(#past-entry-banner input) { min-height: 32px; }
+
+  span {
+    display: flex;
     align-items: center;
     margin: 0 auto;
     padding: .5rem 0;
 		border-radius: 0;
     font-weight: 400;
-    background: #90caf9;
     color: #fff;
-    border: 4px solid #ce93d8;
-    border-top: none;
-    border-bottom: none;
   }
 </style>

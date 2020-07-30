@@ -1,23 +1,16 @@
 <script>
-  import { push } from 'svelte-spa-router'
   import { format } from 'date-fns'
   import entries from '../stores/entries'
+  import DatePickerTrigger from './DatePickerTrigger.svelte'
+  import PastEntryTrigger from './PastEntryTrigger.svelte'
   import FilterIcon from '../assets/FilterIcon.svelte'
   import BackInTimeIcon from '../assets/BackInTimeIcon.svelte'
-  import { formatMonth, getFormattedDate } from '../utils'
+  import { formatMonth } from '../utils'
 
   const today = format(new Date(), 'yyyy-MM-dd')
   const thisMonth = today.slice(0, 7)
   let prettyMonth
   let monthDigits
-
-  const goToPastEntry = ({ target }) => {
-    // JS Date constructor quirkiness: hyphenated numbers result in off-by-one errors
-    // this means 07-18 returns 7-17 so need to pass in slash separated values instead 
-    const date = new Date(target.value.split('-').join('/'))
-
-    push(`/entry/${getFormattedDate(date)}`)
-  }
 
   const setMonth = (date) => {
     prettyMonth = formatMonth(date)
@@ -42,30 +35,24 @@
 
 
 <div>
-  <label class="month-container">
-    <input
-      type="month"
-      on:change={handleMonthChange}
-      min="2016-01"
-      max={thisMonth}
-    >
+  <DatePickerTrigger
+    type="month"
+    handleChange={handleMonthChange}
+    min="2016-01"
+    max={thisMonth}
+    className="month-container"
+  >
     <h2>
       {prettyMonth} <FilterIcon />
     </h2>
-  </label>
+  </DatePickerTrigger>
 
-  <label>
-    <input
-      type="date"
-      on:change={goToPastEntry}
-      min="2016-01-01"
-      max={today}
-    >
+  <PastEntryTrigger>
     <button class="primary primary-border">
       <BackInTimeIcon fill="#ce93d8" />
       <span>Past Entry</span>
     </button>
-  </label>
+  </PastEntryTrigger>
 </div>
 
 <div>
@@ -93,40 +80,4 @@
   }
 
   :global(.month-container:hover svg) { opacity: 1; }
-
-  /* 
-    the following CSS makes it so the native month/date input controls are covered
-    but the click is maintained since you can't just call .click()
-    https://stackoverflow.com/questions/15530850/method-to-show-native-datepicker-in-chrome
-   */
-  label {
-    display: inline-block;
-    position: relative;
-    line-height: 0;
-    width: unset;
-    margin: 0;
-  }
-
-  .month-container {
-    height: 2.5rem;
-    margin-top: 1rem;
-    cursor: pointer;
-  }
-  
-  input {
-    position: absolute;
-    opacity: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-  }
-  
-  input::-webkit-calendar-picker-indicator {
-    position: absolute;
-    top: -150%;
-    left: -150%;
-    width: 300%;
-    height: 300%;
-    cursor: pointer;
-  }
 </style>
