@@ -27,7 +27,7 @@
     </button>
   {/if}
   {#if showEndPeriodButton}
-    <button on:click={handleEndPeriod} class="tag dark dark-border box-shadow">
+    <button on:click={handleEndPeriod} class="end-period-button tag dark dark-border box-shadow">
       end period
     </button>
   {/if}
@@ -38,4 +38,9 @@
   :global(.entry-form > .menses-cycle) { margin: 0; }
 
   button { font-size: .75rem; }
+
+  .end-period-button {
+    color: #ef9a9a;
+    border-color: #ef9a9a;
+  }
 </style>

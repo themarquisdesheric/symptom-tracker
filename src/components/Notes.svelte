@@ -18,7 +18,7 @@
     }
     editing = !editing
   }
-
+ 
   const handleSave = () => {
     entries.saveEntry($entry)
     setEditingEntry(false)
@@ -29,12 +29,21 @@
 
 <section class="wrapper">
   <label class:label={showAddButton}>Notes</label>
+  {#if editing}
+    <span
+      class:warn={$entry.notes.length >= 400}
+      class="character-counter"
+    >
+      {500 - $entry.notes.length}
+    </span>
+  {/if}
+
   <div>
     {#if showAddButton}
       <button on:click={toggleEdit} class="notes-button add">+</button>
     {:else if editing}
-    <!-- svelte-ignore a11y-autofocus -->
-    <textarea autofocus bind:value={$entry.notes} rows="7"></textarea>
+      <!-- svelte-ignore a11y-autofocus -->
+      <textarea autofocus bind:value={$entry.notes} rows="7" maxlength="500"></textarea>
     {:else}
       <p>
         <EditIcon handleClick={toggleEdit} />
@@ -42,6 +51,7 @@
       </p>
     {/if}
   </div>
+
   <div>
     {#if editingEntry || !$isPastEntry}
       <button on:click={handleSave} class="save-button box-shadow">
@@ -69,6 +79,15 @@
   }
 
   .label { margin-bottom: 1rem; }
+
+  .character-counter {
+    position: absolute;
+    right: 0;
+    font-size: .75rem;
+    line-height: 1.25rem;
+  }
+
+  .warn { color: #ef9a9a; }
 
   textarea { 
     width: 100%;
