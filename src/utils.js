@@ -1,4 +1,5 @@
 import { addMinutes, parse, format, differenceInMinutes } from 'date-fns'
+import { PAIN_TYPES } from './constants'
 
 export const formatMonth = (month = new Date()) =>
   format(month, 'MMMM') 
@@ -50,8 +51,6 @@ export const getVoidDeltas = (voids) => {
   }
 }
 
-export const TIMES = ['morning', 'day', 'evening', 'night']
-
 export const formatTimeTo12Hour = (timestamp) => {
   const date = format(new Date(), 'yyyy-MM-dd')
   
@@ -90,3 +89,12 @@ export const sortVoids = (a, b) => {
     ? aMinutes - bMinutes
     : aHours - bHours
 }
+
+export const getPainSymptoms = (pain) =>
+  Object.keys(pain).reduce(
+    (acc, key) =>
+      pain[key].length
+        ? [...acc, PAIN_TYPES[key]]
+        : acc
+    , []
+  )

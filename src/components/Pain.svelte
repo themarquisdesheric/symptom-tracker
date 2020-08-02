@@ -1,18 +1,7 @@
 <script>
   import entry from '../stores/entry'
-  import { TIMES } from '../utils'
+  import { TIMES, PAIN_TYPES } from '../constants'
   import TimeOfDay from './TimeOfDay.svelte'
-
-  let types = {
-    headNeck: 'Head/Neck',
-    shouldersArms: 'Shoulders/Arms',
-    hipsLowBack: 'Hips/Low Back',
-    pelvisBladder: 'Pelvis/Bladder',
-    sciaticaLegs: 'Sciatica/Legs',
-    bowelRectum: 'Bowel/Rectum',
-    vulvaPerineum: 'Vulva/Perineum',
-    visionLoss: 'Vision Loss',
-  }
 </script>
 
 
@@ -27,7 +16,7 @@
   </header>
 
   {#each Object.keys($entry.pain) as type (type)}
-    <TimeOfDay label={types[type]} {type} />
+    <TimeOfDay label={PAIN_TYPES[type]} {type} />
   {/each}
 </section>
 

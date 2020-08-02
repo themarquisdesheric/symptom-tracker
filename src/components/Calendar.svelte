@@ -25,11 +25,13 @@
   }
 
   const filterEntries = (month) =>
-    Object.keys($entries).reduce((acc, key) =>
-      key.indexOf(month) === 0
-        ? [...acc, $entries[key]]
-        : acc
-    , [])
+    Object.keys($entries).reduce(
+      (acc, key) =>
+        key.indexOf(month) === 0
+          ? [...acc, $entries[key]]
+          : acc
+      , []
+    )
 
   setMonth(new Date())
 

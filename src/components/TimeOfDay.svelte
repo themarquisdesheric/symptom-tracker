@@ -1,7 +1,7 @@
 <script>
   import entry from '../stores/entry'
   import TimeOfDayIcon from '../assets/TimeOfDayIcon.svelte'
-  import { TIMES } from '../utils.js'
+  import { TIMES } from '../constants.js'
 
   export let category = 'pain'
   export let label
