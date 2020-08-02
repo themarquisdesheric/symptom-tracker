@@ -1,17 +1,20 @@
 <script>
   import { format } from 'date-fns'
-  import { getVoidDeltas } from '../utils.js'
+  import TimeOfDayIcon from '../assets/TimeOfDayIcon.svelte'
+  import { getVoidDeltas, getPainSymptoms } from '../utils.js'
 
   export let entry
 
   const {
     date,
     voids: { pee, nocturia },
+    pain,
     symptoms: { flare, headache, visionLoss },
     mensesCycle: { day },
     medications
   } = entry
   const { average } = getVoidDeltas(pee)
+  const painSymptoms = getPainSymptoms(pain)
   const migraine = headache >= 3
 </script>
 
@@ -24,7 +27,8 @@
     <p class="delta">{average}</p>
     <figcaption>Average Pee Delta</figcaption>
   </figure>
-  
+  <hr />
+
   <div class="diptych">
     <figure>
       <p>{nocturia}</p>
@@ -54,10 +58,30 @@
       </figure>
     {/if}
   </div>
+  <hr />
+  <span>Menses Cycle <span class="menses-cycle">{day}</span></span>
+  <hr />
 
-  <p><span class="menses-cycle">Menses Cycle</span> {day}</p>
-  <p>Pain</p>
-  <p>Vision Loss</p>
+  <figure class="pain">
+    <figcaption>Pain</figcaption>
+    {#each painSymptoms as symptom, index (symptom)}
+      <span>
+        {symptom}
+        {(index % 2 === 0) && painSymptoms[index + 1]
+          ? ' · '
+          : ''
+        }
+      </span>
+    {/each}
+  </figure>
+  <hr />
+
+  <figure class="vision-loss">
+    <figcaption>Vision Loss</figcaption>
+    {#each visionLoss as time (time)}
+      <TimeOfDayIcon {time} checked={true} />
+    {/each}
+  </figure>
 </div>
 
 
@@ -65,14 +89,22 @@
   .entry-card {
     min-width: 110px;
     margin-top: 1rem;
-    border: 1px solid;
-    border-radius: .25rem;  
+    border: 1px solid #EEE;
+    border-radius: .25rem;
     padding: .5rem;
     font-size: .5rem;
     text-align: center;
   }
 
   p { font-weight: bold; }
+
+  figure { margin-bottom: .5rem; }
+
+  hr {
+    height: 1px;
+    background-color: #EEE;
+    border: none;
+  }
 
   .date-container {
     display: flex;
@@ -81,10 +113,8 @@
   }
 
   .date {
-    background: #333;
-    color: #fff;
-    border: 1px solid #333;
-    border-radius: 50%;
+    border: 1px solid #EEE;
+    border-radius: .25rem;
     width: 1rem;
     height: 1rem;
     padding: .25rem;
@@ -92,15 +122,19 @@
   }
 
   .delta {
-    font-size: 2rem;
-    margin: .5rem;
+    font-size: 1.25rem;
+    margin: 0 .5rem 0;
   }
 
   .diptych {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 100px;
+    margin: auto;
   }
+
+  .diptych:first-of-type figure { margin-bottom: 0; }
 
   .diptych figure {
     display: flex;
@@ -110,11 +144,32 @@
   }
   
   .diptych p {
-    font-size: 1rem;
-    margin: .5rem 0;
+    font-size: .75rem;
+    margin: .25rem 0;
   }
 
   .migraine { color: #ef9a9a; }
 
-  .menses-cycle { font-weight: normal; }
+  .menses-cycle { font-weight: bold; }
+
+  .pain {
+    max-width: 146px;
+    font-weight: 600;
+  }
+
+  .pain figcaption {
+    font-weight: 300;
+    margin-bottom: .125rem;
+  }
+
+  :global(.vision-loss svg.checked.box-shadow) {
+    width: .75rem;
+    height: .75rem;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: .5rem .5rem 0 0;
+  }
+
+  :global(.vision-loss svg.checked.box-shadow:last-of-type) { margin-right: 0; }
 </style>

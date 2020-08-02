@@ -60,7 +60,7 @@
   </PastEntryTrigger>
 </div>
 
-<div>
+<div class="entry-cards">
   {#each filteredEntries as entry (entry)}
     <EntryCard {entry} />
   {/each}
@@ -85,4 +85,9 @@
   }
 
   :global(.month-container:hover svg) { opacity: 1; }
+
+  .entry-cards {
+    flex-wrap: wrap;
+    align-items: unset;
+  }
 </style>

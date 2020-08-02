@@ -353,11 +353,9 @@ export default {
         'day',
         'evening'
       ],
-      sciaticaLegs: [],
-      bowelRectum: [],
-      vulvaPerineum: [
-        'night'
-      ]
+      sciaticaLegs: ['day'],
+      bowelRectum: ['day'],
+      vulvaPerineum: ['night']
     },
     symptoms: {
       flare: true,
@@ -375,7 +373,10 @@ export default {
         'evening'
       ],
       visionLoss: [
+        'morning',
         'day',
+        'evening',
+        'night',
       ],
       subluxations: []
     },
