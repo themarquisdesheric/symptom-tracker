@@ -1,13 +1,13 @@
 <script>
   // menses cycle needs to auto increment every day
-  let mensesCycle = 1
+  let day = 1
   let endPeriod = false
   
-  $: showEndPeriodButton = mensesCycle > 3 && endPeriod === false
-  $: showBeginPeriodButton = mensesCycle > 3 && !showEndPeriodButton
+  $: showEndPeriodButton = day > 3 && endPeriod === false
+  $: showBeginPeriodButton = day > 3 && !showEndPeriodButton
 
   const handleBeginPeriod = () => {
-    mensesCycle = 1
+    day = 1
     endPeriod = false
   }
 
@@ -20,7 +20,7 @@
 
 
 <section class="menses-cycle">
-  <span class="field-label">Menses Cycle</span> <input class="primary" type="number" min="1" max="31" bind:value={mensesCycle} />
+  <span class="field-label">Menses Cycle</span> <input class="primary" type="number" min="1" max="31" bind:value={day} />
   {#if showBeginPeriodButton}
     <button on:click={handleBeginPeriod} class="tag dark dark-border box-shadow">
       begin period

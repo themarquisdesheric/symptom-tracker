@@ -57,6 +57,8 @@ label {
 	font-size: 14px;
 }
 
+figure { margin: 0; }
+
 .entry-form .autocomplete.svelte-autocomplete .results-list { top: 39px; }
 .entry-form .autocomplete.svelte-autocomplete input { min-width: 221px; }
 
@@ -73,6 +75,12 @@ label {
 .day { border-color: #7986cb; }
 .evening { border-color: #4fc3f7; }
 .night { border-color: #4db6ac; }
+
+.flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
 .modal-background {
 	position: fixed;

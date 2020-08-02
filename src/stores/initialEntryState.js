@@ -38,7 +38,7 @@ export default (date = getTodaysDate()) => ({
     subluxations: [],
   },
   mensesCycle: {
-    mensesCycle: 1,
+    day: 1,
     endPeriod: false,
   },
   medications: [],

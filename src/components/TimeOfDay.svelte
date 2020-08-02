@@ -15,7 +15,7 @@
   </span>
   <div class="time-of-day">
     {#each TIMES as time (time)}
-      <label>
+      <label class="flex-center">
         <TimeOfDayIcon {time} checked={$entry[category][type].includes(time)} />
         <input
           type="checkbox"
@@ -48,12 +48,7 @@
     margin: 0;
   }
 
-  label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 0;
-  }
+  label { margin-bottom: 0; }
 
   input[type="checkbox"] { display: none; }
 </style>

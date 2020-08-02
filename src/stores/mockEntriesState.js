@@ -71,8 +71,8 @@ export default {
       ]
     },
     mensesCycle: {
-      'mensesCycle': 8,
-      'endPeriod': false
+      day: 8,
+      endPeriod: false
     },
     medications: [],
     notes: 'Here is some documentation',
@@ -149,8 +149,8 @@ export default {
       ]
     },
     mensesCycle: {
-      'mensesCycle': 4,
-      'endPeriod': false
+      day: 4,
+      endPeriod: false
     },
     medications: [],
     notes: 'Here is a chronicle of the times',
@@ -225,8 +225,8 @@ export default {
       ]
     },
     mensesCycle: {
-      'mensesCycle': 1,
-      'endPeriod': false
+      day: 1,
+      endPeriod: false
     },
     medications: [
       '20mg Xanax'
@@ -303,13 +303,88 @@ export default {
       ]
     },
     mensesCycle: {
-      'mensesCycle': 4,
-      'endPeriod': false
+      day: 4,
+      endPeriod: false
     },
     medications: [
       '20mg Xanax'
     ],
     notes: 'The Chronicles of Nausea',
     date: '07-20-2020'
+  },
+  // ============= next entry =============
+  '08-01-2020': {
+    voids: {
+      pee: [
+        '04:26',
+        '06:11',
+        '07:16',
+        '09:19'
+      ],
+      poo: [
+        '04:26',
+        '06:11',
+        '07:34'
+      ],
+      nocturia: 2,
+      lastValue: '09:19'
+    },
+    allergens: {
+      dairy: true,
+      gluten: true,
+      sugar: false,
+      soy: true
+    },
+    pain: {
+      headNeck: [
+        'morning',
+        'evening',
+        'night',
+      ],
+      shouldersArms: [
+        'evening',
+        'night'
+      ],
+      hipsLowBack: [
+        'day',
+        'evening'
+      ],
+      pelvisBladder: [
+        'day',
+        'evening'
+      ],
+      sciaticaLegs: [],
+      bowelRectum: [],
+      vulvaPerineum: [
+        'night'
+      ]
+    },
+    symptoms: {
+      flare: true,
+      itch: true,
+      cramps: true,
+      discharge: true,
+      gait: true,
+      fatigue: false,
+      vertigo: false,
+      sex: false,
+      nausea: true,
+      headache: 3,
+      urgency: 'upset',
+      collar: [
+        'evening'
+      ],
+      visionLoss: [
+        'day',
+      ],
+      subluxations: []
+    },
+    mensesCycle: {
+      day: 9,
+      endPeriod: false
+    },
+    medications: ['20mg Xanax'],
+    notes: 'Here are some deep thoughts in the form of notes',
+    date: '08-01-2020'
   },
 }

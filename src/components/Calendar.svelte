@@ -3,6 +3,7 @@
   import entries from '../stores/entries'
   import DatePickerTrigger from './DatePickerTrigger.svelte'
   import PastEntryTrigger from './PastEntryTrigger.svelte'
+  import EntryCard from './EntryCard.svelte'
   import FilterIcon from '../assets/FilterIcon.svelte'
   import BackInTimeIcon from '../assets/BackInTimeIcon.svelte'
   import { formatMonth } from '../utils'
@@ -24,9 +25,11 @@
   }
 
   const filterEntries = (month) =>
-    Object.keys($entries).filter(key =>
+    Object.keys($entries).reduce((acc, key) =>
       key.indexOf(month) === 0
-    )
+        ? [...acc, $entries[key]]
+        : acc
+    , [])
 
   setMonth(new Date())
 
@@ -57,7 +60,7 @@
 
 <div>
   {#each filteredEntries as entry (entry)}
-    {format(new Date(entry), 'd')}
+    <EntryCard {entry} />
   {/each}
 </div>
 
