@@ -3,7 +3,9 @@ export default {
     voids: {
       pee: [
         '12:34',
-        '12:37'
+        '13:54',
+        '14:59',
+        '16:57'
       ],
       poo: [
         '12:34',
@@ -76,15 +78,16 @@ export default {
     },
     medications: [],
     notes: 'Here is some documentation',
-    date: '07-18-2020'
+    date: '06-15-2020'
   },
   // ============= next entry =============
   '07-18-2020': {
     voids: {
       pee: [
-        '12:34',
-        '12:36',
-        '12:37'
+        '08:34',
+        '11:36',
+        '13:37',
+        '16:22'
       ],
       poo: [
         '12:34'
@@ -160,13 +163,13 @@ export default {
   '07-19-2020': {
     voids: {
       pee: [
-        '18:34',
-        '18:35',
-        '18:36',
+        '13:34',
+        '14:25',
+        '15:36',
         '18:37'
       ],
       poo: [
-        '18:34'
+        '18:37'
       ],
       nocturia: 4,
       lastValue: '18:37'
@@ -202,7 +205,7 @@ export default {
       ]
     },
     symptoms: {
-      flare: false,
+      flare: true,
       itch: false,
       cramps: false,
       discharge: false,
@@ -238,8 +241,10 @@ export default {
   '07-20-2020': {
     voids: {
       pee: [
-        '06:16',
-        '06:17'
+        '02:16',
+        '05:17',
+        '06:53',
+        '08:45',
       ],
       poo: [
         '07:34'

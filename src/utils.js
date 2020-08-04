@@ -98,3 +98,14 @@ export const getPainSymptoms = (pain) =>
         : acc
     , []
   )
+
+export const isMonthDateMatch = (key, date) => {
+  const month = date.slice(0, 2)
+  const year = date.slice(3)
+
+  if ((key.indexOf(month) === 0) && (key.indexOf(year) === 6)) {
+    return true
+  }
+
+  return false
+}

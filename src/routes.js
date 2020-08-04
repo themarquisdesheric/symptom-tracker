@@ -7,6 +7,6 @@ export const routes = {
   '/': EntryForm,
   '/entry/:date': EntryForm,
   '/search': Search,
-  '/calendar': Calendar,
+  '/calendar/:date?': Calendar,
   '/dashboard': Dashboard,
 }

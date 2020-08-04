@@ -23,8 +23,8 @@
   <p class="date-container">
     <span class="date flex-center">{format(new Date(date), 'd')}</span>
   </p>
-  <figure>
-    <p class="delta">{average}</p>
+  <figure class="delta">
+    <p>{average}</p>
     <figcaption>Average Pee Delta</figcaption>
   </figure>
   <hr />
@@ -88,8 +88,8 @@
 <style>
   .entry-card {
     min-width: 110px;
-    margin-top: 1rem;
-    border: 1px solid #EEE;
+    margin-top: .5rem;
+    border: 1px solid #333;
     border-radius: .25rem;
     padding: .5rem;
     font-size: .5rem;
@@ -113,15 +113,13 @@
   }
 
   .date {
-    border: 1px solid #EEE;
-    border-radius: .25rem;
-    width: 1rem;
-    height: 1rem;
-    padding: .25rem;
     font-size: .5rem;
+    font-weight: 500;
   }
 
-  .delta {
+  .delta { margin-bottom: .25rem;}
+
+  .delta p {
     font-size: 1.25rem;
     margin: 0 .5rem 0;
   }
@@ -154,7 +152,7 @@
 
   .pain {
     max-width: 146px;
-    font-weight: 600;
+    font-weight: 500;
   }
 
   .pain figcaption {
