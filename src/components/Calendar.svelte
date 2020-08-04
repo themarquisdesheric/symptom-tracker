@@ -110,7 +110,11 @@
     margin-top: .5rem;
   }
 
-  :global(.entry-cards .entry-card) { margin-right: .5rem; }
+  :global(.entry-cards .entry-card) { margin-right: .4rem; }
 
   :global(.entry-cards .entry-card:last-of-type) { margin-right: 0; }
+
+  @media (min-width: 380px) {
+    :global(.entry-cards .entry-card) { margin-right: .5rem; }
+  }
 </style>
