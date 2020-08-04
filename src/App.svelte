@@ -1,13 +1,14 @@
 <script>
-	import Router from 'svelte-spa-router'
+	import Router, { location } from 'svelte-spa-router'
 	import NavBar from './components/NavBar.svelte'
 	import { routes } from './routes'
-</script>
 
+	$: calendar = $location.includes('calendar')
+</script>
 
 <NavBar />
 <div class="outer-border">
-	<div class="inner">
+	<div class:calendar class="inner">
 		<Router {routes} />
 	</div>
 </div>
@@ -29,6 +30,8 @@
 		max-width: 500px;
     margin: auto;
 	}
+
+	.inner.calendar { max-width: 860px; }
 
 	footer {
 		text-align: center;

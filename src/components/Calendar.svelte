@@ -51,7 +51,7 @@
 </script>
 
 
-<div>
+<header>
   <DatePickerTrigger
     type="month"
     handleChange={handleMonthChange}
@@ -70,7 +70,7 @@
       <span>Past Entry</span>
     </button>
   </PastEntryTrigger>
-</div>
+</header>
 
 <div class="entry-cards">
   {#each filteredEntries as entry (entry)}
@@ -80,11 +80,16 @@
 
 
 <style>
-  div,
+  header,
   button {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  header {
+    max-width: 500px;
+    margin: auto;
   }
 
   h2 { cursor: pointer; }
@@ -99,8 +104,13 @@
   :global(.month-container:hover svg) { opacity: 1; }
 
   .entry-cards {
+    display: flex;
     flex-wrap: wrap;
-    align-items: unset;
+    justify-content: center;
     margin-top: .5rem;
   }
+
+  :global(.entry-cards .entry-card) { margin-right: .5rem; }
+
+  :global(.entry-cards .entry-card:last-of-type) { margin-right: 0; }
 </style>
