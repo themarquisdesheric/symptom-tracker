@@ -318,6 +318,84 @@ export default {
     date: '07-20-2020'
   },
   // ============= next entry =============
+  '07-24-2020': {
+    voids: {
+      pee: [
+        '02:16',
+        '04:04',
+        '06:53',
+        '08:45',
+      ],
+      poo: [
+        '07:34',
+        '08:34'
+      ],
+      nocturia: 3,
+      lastValue: '18:37'
+    },
+    allergens: {
+      dairy: false,
+      gluten: false,
+      sugar: false,
+      soy: true
+    },
+    pain: {
+      headNeck: [
+        'morning',
+        'night',
+      ],
+      shouldersArms: [
+        'evening',
+        'night'
+      ],
+      hipsLowBack: [],
+      pelvisBladder: [
+        'day',
+        'evening'
+      ],
+      sciaticaLegs: [
+        'morning'
+      ],
+      bowelRectum: [],
+      vulvaPerineum: [
+        'night'
+      ]
+    },
+    symptoms: {
+      flare: false,
+      itch: true,
+      cramps: true,
+      discharge: false,
+      gait: false,
+      fatigue: false,
+      vertigo: false,
+      sex: true,
+      nausea: true,
+      headache: 4,
+      urgency: 'calm',
+      collar: [
+        'evening'
+      ],
+      visionLoss: [
+        'morning',
+        'day',
+        'night'
+      ],
+      subluxations: [
+        'Head/Neck'
+      ]
+    },
+    mensesCycle: {
+      day: 8,
+      endPeriod: false
+    },
+    medications: [
+      '20mg Xanax'
+    ],
+    notes: 'The Chronicles of Nausea',
+    date: '07-24-2020'
+  },
+  // ============= next entry =============
   '08-01-2020': {
     voids: {
       pee: [

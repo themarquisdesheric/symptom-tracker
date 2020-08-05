@@ -13,6 +13,8 @@
   export let params = {}
 
   const thisMonth = format(new Date(), 'yyyy-MM')
+  const thisYear = thisMonth.slice(0, 4)
+  let notCurrentYear
   let prettyMonth
   let monthDigits
 
@@ -20,6 +22,9 @@
     format(date, 'MM-yyyy')
 
   const setMonth = (date = new Date()) => {
+    const year = format(date, 'yyyy')
+
+    notCurrentYear = (year !== thisYear) ? year : ''
     prettyMonth = formatMonth(date)
     monthDigits = getMonth(date)
   }
@@ -60,7 +65,7 @@
     className="month-container"
   >
     <h2>
-      {prettyMonth} <FilterIcon />
+      {prettyMonth} <span>{notCurrentYear}</span> <FilterIcon />
     </h2>
   </DatePickerTrigger>
 
@@ -93,6 +98,8 @@
   }
 
   h2 { cursor: pointer; }
+
+  h2 span { font-weight: 300; }
 
   button { margin-top: 1rem; }
 

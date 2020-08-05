@@ -35,6 +35,7 @@
 
     if (currentEntry) {
       entry.set(currentEntry)
+      editingEntry = false
     } else {
       entry.set(initialEntryState(entryDate))
       editingEntry = true
