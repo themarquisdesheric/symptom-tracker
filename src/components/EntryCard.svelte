@@ -1,7 +1,7 @@
 <script>
   import { format } from 'date-fns'
   import TimeOfDayIcon from '../assets/TimeOfDayIcon.svelte'
-  import { getVoidDeltas, getPainSymptoms } from '../utils.js'
+  import { getVoidDeltas, getPainSymptoms, goToPastEntry } from '../utils.js'
 
   export let entry
 
@@ -19,7 +19,7 @@
 </script>
 
 
-<div class="entry-card">
+<div on:click={() => goToPastEntry(date)} class="entry-card">
   <p class="date-container">
     <span class="date flex-center">{format(new Date(date), 'd')}</span>
   </p>

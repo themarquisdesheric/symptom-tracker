@@ -1,4 +1,5 @@
 import { addMinutes, parse, format, differenceInMinutes } from 'date-fns'
+import { push } from 'svelte-spa-router'
 import { PAIN_TYPES } from './constants'
 
 export const formatMonth = (month = new Date()) =>
@@ -108,4 +109,12 @@ export const isMonthDateMatch = (key, date) => {
   }
 
   return false
+}
+
+export const goToPastEntry = (date) => {
+  // JS Date constructor quirkiness: hyphenated numbers result in off-by-one errors
+  // this means 07-18 returns 7-17 so need to pass in slash separated values instead 
+  const newDate = new Date(date.split('-').join('/'))
+
+  push(`/entry/${getFormattedDate(newDate)}`)
 }
