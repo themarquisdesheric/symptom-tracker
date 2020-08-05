@@ -67,10 +67,11 @@
     {#each painSymptoms as symptom, index (symptom)}
       <span>
         {symptom}
-        {(index % 2 === 0) && painSymptoms[index + 1]
-          ? ' · '
-          : ''
-        }
+        {#if (index % 2 === 0) && painSymptoms[index + 1]}
+          ·
+        {:else}
+          <br />
+        {/if}
       </span>
     {/each}
   </figure>
@@ -87,8 +88,7 @@
 
 <style>
   .entry-card {
-    min-width: 110px;
-    margin-top: .5rem;
+    min-width: 161px;
     border: 1px solid #333;
     border-radius: .25rem;
     padding: .5rem;
@@ -150,10 +150,7 @@
 
   .menses-cycle { font-weight: bold; }
 
-  .pain {
-    max-width: 146px;
-    font-weight: 500;
-  }
+  .pain { font-weight: 500; }
 
   .pain figcaption {
     font-weight: 300;

@@ -111,17 +111,35 @@
   :global(.month-container:hover svg) { opacity: 1; }
 
   .entry-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: .5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: .5rem;
+    row-gap: .5rem;
+    margin: .5rem 0 2rem;
   }
 
-  :global(.entry-cards .entry-card) { margin-right: .4rem; }
+  @media (min-width: 540px) {
+    .entry-cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
 
-  :global(.entry-cards .entry-card:last-of-type) { margin-right: 0; }
+  @media (min-width: 600px) {
+    .entry-cards {
+      column-gap: 1rem;
+      row-gap: 1rem;
+    }
+  }
 
-  @media (min-width: 380px) {
-    :global(.entry-cards .entry-card) { margin-right: .5rem; }
+  @media (min-width: 735px) {
+    .entry-cards {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .entry-cards {
+      grid-template-columns: repeat(5, 1fr);
+    }
   }
 </style>
