@@ -3,12 +3,13 @@
 	import NavBar from './components/NavBar.svelte'
 	import { routes } from './routes'
 
-	$: calendar = $location.includes('calendar')
+	$: showSearchResults = /(search|calendar)/.test($location)
 </script>
+
 
 <NavBar />
 <div class="outer-border">
-	<div class:calendar class="inner">
+	<div class:search-results={showSearchResults} class="inner">
 		<Router {routes} />
 	</div>
 </div>
@@ -31,7 +32,15 @@
     margin: auto;
 	}
 
-	.inner.calendar { max-width: 860px; }
+	.inner.search-results { max-width: 860px; }
+
+	:global(.search-results header) {
+		display: flex;
+    justify-content: space-between;
+    align-items: center;
+		max-width: 500px;
+		margin: auto;
+	}
 
 	footer {
 		text-align: center;
