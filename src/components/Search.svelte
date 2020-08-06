@@ -3,15 +3,29 @@
   import EntryCard from './EntryCard.svelte'
   import entries from '../stores/entries'
 
-  let filteredEntries = Object.keys($entries).map(key => $entries[key])
+  const options = ['headache', 'migraine', 'flare']
+  let searchTerm = ''
+
+  const filterEntries = (searchTerm) =>
+    (searchTerm === 'flare')
+      ? Object.keys($entries).reduce((acc, key) =>
+          $entries[key].symptoms.flare
+            ? [...acc, $entries[key]]
+            : acc
+          , []
+        )
+      : Object.keys($entries).map(key => $entries[key])
+
+  $: filteredEntries = filterEntries(searchTerm)
 </script>
 
 
 <header>
   <h2>Search</h2>
   <Autocomplete
+    {options}
+    onSubmit={value => searchTerm = value}
     themeColor="#9c64a6"
-    className="autocomplete"
   />
 </header>
 
