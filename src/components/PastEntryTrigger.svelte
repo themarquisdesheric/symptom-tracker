@@ -1,7 +1,7 @@
 <script>
   import { format } from 'date-fns'
   import DatePickerTrigger from './DatePickerTrigger.svelte'
-  import { goToPastEntry } from '../utils'
+  import { goToPastEntry } from '../utils/utils'
 
   export let className = ''
   export let id = ''

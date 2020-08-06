@@ -1,5 +1,5 @@
 <script>
-  import entry from '../stores/entry'
+  import entry from '../../stores/entry'
   import CheckBoxButton from './CheckBoxButton.svelte'
 
   const toggleAllergen = entry.toggleCheckbox('allergens')

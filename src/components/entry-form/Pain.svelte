@@ -1,6 +1,6 @@
 <script>
-  import entry from '../stores/entry'
-  import { TIMES, PAIN_TYPES } from '../constants'
+  import entry from '../../stores/entry'
+  import { TIMES, PAIN_TYPES } from '../../utils/constants'
   import TimeOfDay from './TimeOfDay.svelte'
 </script>
 

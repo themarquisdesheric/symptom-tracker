@@ -1,6 +1,6 @@
 <script>
-  import entry from '../stores/entry'
   import Autocomplete from 'simply-svelte-autocomplete';
+  import entry from '../../stores/entry'
 
   const updateMedications = entry.addAutocomplete('medications')
 

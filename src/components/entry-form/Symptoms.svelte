@@ -1,10 +1,10 @@
 <script>
-  import entry from '../stores/entry'
-  import { TIMES } from '../constants'
+  import Autocomplete from 'simply-svelte-autocomplete';
+  import entry from '../../stores/entry'
+  import { TIMES } from '../../utils/constants'
   import CheckBoxButton from './CheckBoxButton.svelte'
   import TimeOfDay from './TimeOfDay.svelte'
-  import PlusSign from '../assets/PlusSign.svelte'
-  import Autocomplete from 'simply-svelte-autocomplete';
+  import PlusSign from '../../assets/PlusSign.svelte'
 
   const toggleSymptom = entry.toggleCheckbox('symptoms')
   const updateSubluxations = entry.addAutocomplete('symptoms')

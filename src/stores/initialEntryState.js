@@ -1,4 +1,4 @@
-import { getTodaysDate } from '../utils'
+import { getTodaysDate } from '../utils/utils'
 
 export default (date = getTodaysDate()) => ({
   voids: {

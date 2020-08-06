@@ -2,9 +2,9 @@
   import { location } from 'svelte-spa-router'
 	import { format } from 'date-fns'
   import path from 'path'
-  import isPastEntry from '../stores/isPastEntry'
-  import PastEntryTrigger from './PastEntryTrigger.svelte'
-  import BackInTimeIcon from '../assets/BackInTimeIcon.svelte'
+  import isPastEntry from '../../stores/isPastEntry'
+  import PastEntryTrigger from './../PastEntryTrigger.svelte'
+  import BackInTimeIcon from '../../assets/BackInTimeIcon.svelte'
 
   let prettyEntryDate
   

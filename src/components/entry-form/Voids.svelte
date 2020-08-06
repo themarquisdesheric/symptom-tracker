@@ -1,7 +1,7 @@
 <script>
-  import entry from '../stores/entry'
-  import { getVoidDeltas } from '../utils.js'
+  import entry from '../../stores/entry'
   import VoidButton from './VoidButton.svelte'
+  import { getVoidDeltas } from '../../utils/utils'
 
   const updateNocturia = ({ target }) =>
     entry.updateNocturia(Number(target.value))

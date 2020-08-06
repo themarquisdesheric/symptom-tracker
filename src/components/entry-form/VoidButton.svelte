@@ -1,8 +1,8 @@
 <script>
   import { format } from 'date-fns'
-  import { formatTimeTo12Hour, getVoidDeltas } from '../utils.js'
-  import RemoveIcon from '../assets/RemoveIcon.svelte'
-  import HourglassIcon from '../assets/HourglassIcon.svelte'
+  import { formatTimeTo12Hour, getVoidDeltas } from '../../utils/utils.js'
+  import RemoveIcon from '../../assets/RemoveIcon.svelte'
+  import HourglassIcon from '../../assets/HourglassIcon.svelte'
 
   export let type = ''
   export let entry

@@ -2,10 +2,10 @@
   import { replace, location } from 'svelte-spa-router'
   import path from 'path'
 
-  import entry from '../stores/entry'
-  import entries from '../stores/entries'
-  import isPastEntry from '../stores/isPastEntry'
-  import initialEntryState from '../stores/initialEntryState'
+  import entry from '../../stores/entry'
+  import entries from '../../stores/entries'
+  import isPastEntry from '../../stores/isPastEntry'
+  import initialEntryState from '../../stores/initialEntryState'
   import Voids from './Voids.svelte'
   import Allergens from './Allergens.svelte'
   import Pain from './Pain.svelte'
@@ -13,7 +13,7 @@
   import MensesCycle from './MensesCycle.svelte'
   import Medications from './Medications.svelte'
   import Notes from './Notes.svelte'
-  import { getTodaysDate } from '../utils'
+  import { getTodaysDate } from '../../utils/utils'
 
   export let params = {}
 

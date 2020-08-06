@@ -1,7 +1,7 @@
 <script>
   import { push } from 'svelte-spa-router'
   import { format } from 'date-fns'
-  import { getFormattedDate } from '../utils'
+  import { getFormattedDate } from '../utils/utils'
 
   export let className = ''
   export let id = ''

@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store'
 import initialEntryState from './initialEntryState'
-import { sortVoids, checkForDuplicates } from '../utils'
+import { sortVoids, checkForDuplicates } from '../utils/utils'
 
 const createEntryStore = () => {
 	const { subscribe, update, set } = writable(initialEntryState());

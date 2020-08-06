@@ -25,6 +25,7 @@
   <Autocomplete
     {options}
     onSubmit={value => searchTerm = value}
+    className="autocomplete"
     themeColor="#9c64a6"
   />
 </header>
@@ -42,5 +43,11 @@
   h2 {
     font-size: 21px;
     padding-top: 0;
+  }
+
+  :global(.svelte-autocomplete.autocomplete input) {
+    width: calc(50vw - 1.5rem);
+    max-width: 185px;
+    min-width: unset;
   }
 </style>

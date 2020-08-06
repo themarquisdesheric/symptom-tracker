@@ -8,7 +8,7 @@
   import EntryCard from './EntryCard.svelte'
   import FilterIcon from '../assets/FilterIcon.svelte'
   import BackInTimeIcon from '../assets/BackInTimeIcon.svelte'
-  import { formatMonth, isMonthDateMatch } from '../utils'
+  import { formatMonth, isMonthDateMatch } from '../utils/utils'
 
   export let params = {}
 

@@ -2,8 +2,8 @@
   import { link } from 'svelte-spa-router'
 	import active from 'svelte-spa-router/active'
 	import PencilIcon from '../assets/PencilIcon.svelte'
-	import PastEntryBanner from './PastEntryBanner.svelte'
-	import { getTodaysDate } from '../utils'
+	import PastEntryBanner from './entry-form/PastEntryBanner.svelte'
+	import { getTodaysDate } from '../utils/utils'
 
 	const todaysDate = getTodaysDate()
 </script>
