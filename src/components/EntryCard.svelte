@@ -175,7 +175,7 @@
     grid-template-columns: repeat(2, 1fr);
     column-gap: .5rem;
     row-gap: .5rem;
-    margin: 1.5rem 0 2rem;
+    margin-bottom: 2rem;
   }
 
   @media (min-width: 540px) {

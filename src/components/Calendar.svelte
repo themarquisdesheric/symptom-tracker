@@ -77,7 +77,7 @@
   </PastEntryTrigger>
 </header>
 
-<div class="entry-cards">
+<div class="entry-cards calendar">
   {#each filteredEntries as entry (entry)}
     <EntryCard {entry} />
   {/each}
@@ -103,4 +103,6 @@
   }
 
   :global(.month-container:hover svg) { opacity: 1; }
+
+  .entry-cards.calendar { margin-top: 1.5rem; }
 </style>
