@@ -1,6 +1,6 @@
 <script>
   import Autocomplete from 'simply-svelte-autocomplete';
-  import { format } from 'date-fns'
+  import { format, compareDesc } from 'date-fns'
 
   import SearchDatepicker from './SearchDatepicker.svelte'
   import EntryCard from './EntryCard.svelte'
@@ -12,15 +12,30 @@
     format(dehyphenate(date), 'M/d/yy')
   const options = ['headache', 'migraine', 'flare']
   let searchTerm = ''
-  let fromDate = formatDate('2016-01-01')
-  let toDate = formatDate(getToday())
+  let startDate = formatDate('2016-01-01')
+  let endDate = formatDate(getToday())
 
-  // * need to ensure from isn't > to, etc
-  const setFromDate = (date) =>
-    fromDate = formatDate(date)
+  const setStartDate = (date) => {
+    const dateIsValid = compareDesc(new Date(dehyphenate(date)), new Date(endDate)) >= 0
+    const formattedDate = formatDate(date)
 
-  const setToDate = (date) =>
-    toDate = formatDate(date)
+    if (dateIsValid) {
+      startDate = formattedDate
+      return
+    }
+    alert('Start date must be before end date')
+  }
+
+  const setEndDate = (date) => {
+    const dateIsValid = compareDesc(new Date(startDate), new Date(dehyphenate(date))) >= 0
+    const formattedDate = formatDate(date)
+
+    if (dateIsValid) {
+      endDate = formattedDate
+      return
+    }
+    alert('Start date must be before end date')
+  }
 
   const pluralizeResults = (entries) =>
     entries.length === 1 ? 'result' : 'results'
@@ -51,12 +66,12 @@
     </label>
   </div>
   <div class="datepickers">
-    <SearchDatepicker handleChange={setFromDate}>
-      {fromDate}
+    <SearchDatepicker handleChange={setStartDate}>
+      {startDate}
     </SearchDatepicker>
     <span class="divider">-</span>
-    <SearchDatepicker handleChange={setToDate}>
-      {toDate}
+    <SearchDatepicker handleChange={setEndDate}>
+      {endDate}
     </SearchDatepicker>
   </div>
 </div>
