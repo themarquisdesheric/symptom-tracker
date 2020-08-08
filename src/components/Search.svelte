@@ -1,38 +1,31 @@
 <script>
   import Autocomplete from 'simply-svelte-autocomplete';
+  import { format } from 'date-fns'
+
+  import SearchDatepicker from './SearchDatepicker.svelte'
   import EntryCard from './EntryCard.svelte'
   import entries from '../stores/entries'
+  import { dehyphenate, getFormattedDate, getToday } from '../utils/utils'
+  import { filterEntries } from '../utils/search'
 
+  const formatDate = (date) =>
+    format(dehyphenate(date), 'M/d/yy')
   const options = ['headache', 'migraine', 'flare']
   let searchTerm = ''
+  let fromDate = formatDate('2016-01-01')
+  let toDate = formatDate(getToday())
 
-  // basic search, will not be doing this client side soon
-  const filterEntries = (searchTerm) => {
-    switch(searchTerm) {
-      case 'flare':
-        return Object.keys($entries).reduce((acc, key) =>
-          $entries[key].symptoms.flare
-            ? [...acc, $entries[key]]
-            : acc    
-        , [])
-      case 'headache':
-        return Object.keys($entries).reduce((acc, key) => {
-          const { headache } = $entries[key].symptoms
-          
-          return headache && headache < 3 
-            ? [...acc, $entries[key]]
-            : acc
-        }, [])
-        
-      default:
-        return Object.keys($entries).map(key => $entries[key])
-    }
-  }
+  // * need to ensure from isn't > to, etc
+  const setFromDate = (date) =>
+    fromDate = formatDate(date)
+
+  const setToDate = (date) =>
+    toDate = formatDate(date)
 
   const pluralizeResults = (entries) =>
     entries.length === 1 ? 'result' : 'results'
 
-  $: filteredEntries = filterEntries(searchTerm)
+  $: filteredEntries = filterEntries($entries, searchTerm)
 </script>
 
 
@@ -47,15 +40,25 @@
 </header>
 
 <div class="search-modifiers">
-  <label for="medicine">
-    <input type="checkbox" />
-    <span>Medicine</span>
-  </label>
-  <label for="notes">
-    <input type="checkbox" />
-    <span>Notes</span>
-  </label>
-  <span>Date Range</span>
+  <div class="checkboxes">
+    <label for="medicine">
+      <input type="checkbox" id="medicine" />
+      <span>Medicine</span>
+    </label>
+    <label for="notes">
+      <input type="checkbox" id="notes" />
+      <span>Notes</span>
+    </label>
+  </div>
+  <div class="datepickers">
+    <SearchDatepicker handleChange={setFromDate}>
+      {fromDate}
+    </SearchDatepicker>
+    <span class="divider">-</span>
+    <SearchDatepicker handleChange={setToDate}>
+      {toDate}
+    </SearchDatepicker>
+  </div>
 </div>
 
 <div class="search-info">
@@ -89,16 +92,23 @@
   .search-modifiers {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     max-width: 500px;
     margin: auto;
   }
 
-  label {
+  .search-modifiers label {
     display: flex;
     align-items: center;
-    margin: .5rem 1rem .5rem 0;
+    padding: .5rem 1rem .5rem 0;
+    margin: 0;
     width: unset;
+    font-weight: 300;
   }
+
+  :global(.search-modifiers label) { font-size: .75rem; }
+
+  .checkboxes { display: flex; }
 
   input[type="checkbox"] {
     min-height: unset;
@@ -106,6 +116,15 @@
     -webkit-appearance: checkbox;
     margin-left: 0;
   }
+
+  .datepickers,
+  :global(.datepickers .search-datepicker) {
+    display: flex;
+    align-items: center;
+    font-weight: 300;
+  }
+
+  .divider { margin: 0 .5rem 2px; }
 
   .search-info { margin-top: .75rem; }
 
