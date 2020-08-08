@@ -8,7 +8,7 @@
   import EntryCard from './EntryCard.svelte'
   import FilterIcon from '../assets/FilterIcon.svelte'
   import BackInTimeIcon from '../assets/BackInTimeIcon.svelte'
-  import { formatMonth, isMonthDateMatch } from '../utils/utils'
+  import { formatMonth, dehyphenate, isMonthDateMatch } from '../utils/utils'
 
   export let params = {}
 
@@ -30,8 +30,7 @@
   }
 
   const handleMonthChange = ({ target }) => {
-    const formattedDate = new Date(target.value.replace('-', '/'))
-    push(`/calendar/${getMonth(formattedDate)}`)
+    push(`/calendar/${getMonth(dehyphenate(target.value))}`)
   }
 
   const filterEntries = (date) =>

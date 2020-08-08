@@ -2,6 +2,7 @@
   import { link } from 'svelte-spa-router'
 	import active from 'svelte-spa-router/active'
 	import PencilIcon from '../assets/PencilIcon.svelte'
+	import CalendarIcon from '../assets/CalendarIcon.svelte'
 	import PastEntryBanner from './entry-form/PastEntryBanner.svelte'
 	import { getTodaysDate } from '../utils/utils'
 
@@ -25,7 +26,7 @@
 			</svg>
 		</a>
 		<a href="/search" use:link use:active>
-			<svg version="1.1" id="Magnifying_glass" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
 				y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
 			<path d="M17.545,15.467l-3.779-3.779c0.57-0.935,0.898-2.035,0.898-3.21c0-3.417-2.961-6.377-6.378-6.377
 				C4.869,2.1,2.1,4.87,2.1,8.287c0,3.416,2.961,6.377,6.377,6.377c1.137,0,2.2-0.309,3.115-0.844l3.799,3.801
@@ -34,15 +35,11 @@
 				C6.111,12.76,4.004,10.652,4.004,8.287z"/>
 			</svg>
 		</a>
-		<a href="/calendar" use:link use:active>
-			<svg version="1.1" id="Calendar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-				viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
-			<path d="M17,3h-1v2h-3V3H7v2H4V3H3C1.899,3,1,3.9,1,5v12c0,1.1,0.899,2,2,2h14c1.1,0,2-0.9,2-2V5C19,3.9,18.1,3,17,3
-				z M17,17H3V9h14V17z M6.5,1h-2v3.5h2V1z M15.5,1h-2v3.5h2V1z"/>
-			</svg>
+		<a href="/calendar" use:link use:active={'/calendar/*'}>
+			<CalendarIcon />
 		</a>
 		<a href="/dashboard" use:link use:active>
-			<svg version="1.1" id="Bar_graph" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 				viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
 			<path d="M17,1h-2c-0.552,0-1,0.447-1,1v16.992h4V2C18,1.447,17.553,1,17,1z M11,7H9C8.448,7,8,7.447,8,8v10.992h4V8
 				C12,7.447,11.553,7,11,7z M5,13H3c-0.552,0-1,0.447-1,1v4.992h4V14C6,13.447,5.553,13,5,13z"/>

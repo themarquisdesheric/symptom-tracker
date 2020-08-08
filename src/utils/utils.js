@@ -8,13 +8,22 @@ export const formatMonth = (month = new Date()) =>
 export const getFormattedDate = (date = new Date()) =>
   format(date, 'MM/dd/y').split('/').join('-')
 
+// format: 08-07-2020
 export const getTodaysDate = () =>
   getFormattedDate()
 
+// format: 2020-08-07
+export const getToday = () =>
+  format(new Date(), 'yyyy-MM-dd')
+
+export const dehyphenate = (date) =>
+  new Date(date.replace('-', '/'))
+
+const today = getToday()
+
 export const getVoidDelta = (void1, void2) => {
-  const date = format(new Date(), 'yyyy-MM-dd')
-  const timestamp1 = new Date(`${date}T${void1}:00Z`)
-  const timestamp2 = new Date(`${date}T${void2}:00Z`)
+  const timestamp1 = new Date(`${today}T${void1}:00Z`)
+  const timestamp2 = new Date(`${today}T${void2}:00Z`)
 
   return differenceInMinutes(timestamp2, timestamp1)
 }
@@ -52,10 +61,8 @@ export const getVoidDeltas = (voids) => {
   }
 }
 
-export const formatTimeTo12Hour = (timestamp) => {
-  const date = format(new Date(), 'yyyy-MM-dd')
-  
-  return new Date(`${date}T${timestamp}:00Z`)
+export const formatTimeTo12Hour = (timestamp) =>
+  new Date(`${today}T${timestamp}:00Z`)
     .toLocaleTimeString(
       {},
       {
@@ -64,8 +71,7 @@ export const formatTimeTo12Hour = (timestamp) => {
         hour: 'numeric',
         minute: 'numeric'
       }
-    );
-}
+    )
 
 const addMinute = (timestamp) => {
   const dateWithMinuteAdded = addMinutes(parse(timestamp, 'kk:mm', new Date()), 1)
