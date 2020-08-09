@@ -5,14 +5,11 @@
   import entries from '../../stores/entries'
   import SearchDatepickers from './SearchDatepickers.svelte'
   import EntryCard from '../EntryCard.svelte'
-  import { dehyphenate, getFormattedDate, getToday } from '../../utils/utils'
+  import { dehyphenate, formatDate, getToday } from '../../utils/utils'
   import { filterEntries } from '../../utils/search'
   import { PAIN_TYPES } from '../../utils/constants'
-
+  
   const painTypes = Object.values(PAIN_TYPES).map(type => type.toLowerCase())
-
-  const formatDate = (date) =>
-    format(dehyphenate(date), 'M/d/yy')
   const options = ['headache', 'migraine', 'flare', ...painTypes]
   let searchTerm = ''
   let startDate = formatDate('2016-01-01')
@@ -84,7 +81,7 @@
 </div>
 <div class="entry-cards">
   {#each filteredEntries as entry (entry)}
-    <EntryCard {entry} />
+    <EntryCard {entry} showFullDate />
   {/each}
 </div>
 

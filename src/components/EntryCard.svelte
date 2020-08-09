@@ -1,9 +1,10 @@
 <script>
   import { format } from 'date-fns'
   import TimeOfDayIcon from './icons/TimeOfDayIcon.svelte'
-  import { getVoidDeltas, getPainSymptoms, goToPastEntry } from '../utils/utils'
+  import { getVoidDeltas, getPainSymptoms, goToPastEntry, formatDate } from '../utils/utils'
 
   export let entry
+  export let showFullDate = false
 
   const {
     date,
@@ -16,12 +17,13 @@
   const { average } = getVoidDeltas(pee)
   const painSymptoms = getPainSymptoms(pain)
   const migraine = headache >= 3
+  const formattedDate = showFullDate ? formatDate(date) : format(new Date(date), 'd')
 </script>
 
 
 <div on:click={() => goToPastEntry(date)} class="entry-card">
   <p class="date-container">
-    <span class="date flex-center">{format(new Date(date), 'd')}</span>
+    <span class="date flex-center">{formattedDate}</span>
   </p>
   <figure class="delta">
     <p>{average}</p>

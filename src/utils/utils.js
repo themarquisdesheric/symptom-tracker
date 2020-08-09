@@ -2,11 +2,15 @@ import { addMinutes, parse, format, differenceInMinutes } from 'date-fns'
 import { push } from 'svelte-spa-router'
 import { PAIN_TYPES } from './constants'
 
+export const dehyphenate = (date) =>
+  new Date(date.replace('-', '/'))
+
 export const formatMonth = (month = new Date()) =>
   format(month, 'MMMM') 
 
-export const getFormattedDate = (date = new Date()) =>
-  format(date, 'MM/dd/y').split('/').join('-')
+// format: 8/7/20
+export const formatDate = (date) =>
+  format(dehyphenate(date), 'M/d/yy')
 
 // format: 08-07-2020
 export const getTodaysDate = () =>
@@ -15,9 +19,6 @@ export const getTodaysDate = () =>
 // format: 2020-08-07
 export const getToday = () =>
   format(new Date(), 'yyyy-MM-dd')
-
-export const dehyphenate = (date) =>
-  new Date(date.replace('-', '/'))
 
 const today = getToday()
 
@@ -116,6 +117,9 @@ export const isMonthDateMatch = (key, date) => {
 
   return false
 }
+
+const getFormattedDate = (date = new Date()) =>
+  format(date, 'MM/dd/y').split('/').join('-')
 
 export const goToPastEntry = (date) => {
   // JS Date constructor quirkiness: hyphenated numbers result in off-by-one errors
