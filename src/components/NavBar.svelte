@@ -1,8 +1,8 @@
 <script>
   import { link } from 'svelte-spa-router'
 	import active from 'svelte-spa-router/active'
-	import PencilIcon from '../assets/PencilIcon.svelte'
-	import CalendarIcon from '../assets/CalendarIcon.svelte'
+	import PencilIcon from './icons/PencilIcon.svelte'
+	import CalendarIcon from './icons/CalendarIcon.svelte'
 	import PastEntryBanner from './entry-form/PastEntryBanner.svelte'
 	import { getTodaysDate } from '../utils/utils'
 

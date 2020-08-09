@@ -6,8 +6,8 @@
   import DatePickerTrigger from './DatePickerTrigger.svelte'
   import PastEntryTrigger from './PastEntryTrigger.svelte'
   import EntryCard from './EntryCard.svelte'
-  import FilterIcon from '../assets/FilterIcon.svelte'
-  import BackInTimeIcon from '../assets/BackInTimeIcon.svelte'
+  import FilterIcon from './icons/FilterIcon.svelte'
+  import BackInTimeIcon from './icons/BackInTimeIcon.svelte'
   import { formatMonth, dehyphenate, isMonthDateMatch } from '../utils/utils'
 
   export let params = {}

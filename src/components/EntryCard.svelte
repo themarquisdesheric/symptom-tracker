@@ -1,6 +1,6 @@
 <script>
   import { format } from 'date-fns'
-  import TimeOfDayIcon from '../assets/TimeOfDayIcon.svelte'
+  import TimeOfDayIcon from './icons/TimeOfDayIcon.svelte'
   import { getVoidDeltas, getPainSymptoms, goToPastEntry } from '../utils/utils'
 
   export let entry

@@ -4,7 +4,7 @@
   import { TIMES } from '../../utils/constants'
   import CheckBoxButton from './CheckBoxButton.svelte'
   import TimeOfDay from './TimeOfDay.svelte'
-  import PlusSign from '../../assets/PlusSign.svelte'
+  import PlusSign from '../icons/PlusSign.svelte'
 
   const toggleSymptom = entry.toggleCheckbox('symptoms')
   const updateSubluxations = entry.addAutocomplete('symptoms')

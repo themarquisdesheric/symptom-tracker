@@ -4,7 +4,7 @@
   import path from 'path'
   import isPastEntry from '../../stores/isPastEntry'
   import PastEntryTrigger from './../PastEntryTrigger.svelte'
-  import BackInTimeIcon from '../../assets/BackInTimeIcon.svelte'
+  import BackInTimeIcon from '../icons/BackInTimeIcon.svelte'
 
   let prettyEntryDate
   

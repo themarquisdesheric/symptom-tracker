@@ -2,7 +2,7 @@
   import entry from '../../stores/entry'
   import entries from '../../stores/entries'
   import isPastEntry from '../../stores/isPastEntry'
-  import EditIcon from '../../assets/EditIcon.svelte'
+  import EditIcon from '../icons/EditIcon.svelte'
 
   export let setEditingEntry
   export let editingEntry
