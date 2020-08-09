@@ -1,7 +1,7 @@
 <script>
   import { format } from 'date-fns'
-  import DatePickerTrigger from './DatePickerTrigger.svelte'
-  import { getToday } from '../utils/utils'
+  import DatePickerTrigger from '../DatePickerTrigger.svelte'
+  import { getToday } from '../../utils/utils'
 
   export let handleChange
 

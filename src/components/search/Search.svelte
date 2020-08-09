@@ -2,11 +2,11 @@
   import Autocomplete from 'simply-svelte-autocomplete';
   import { format, compareDesc } from 'date-fns'
 
-  import entries from '../stores/entries'
+  import entries from '../../stores/entries'
   import SearchDatepickers from './SearchDatepickers.svelte'
-  import EntryCard from './EntryCard.svelte'
-  import { dehyphenate, getFormattedDate, getToday } from '../utils/utils'
-  import { filterEntries } from '../utils/search'
+  import EntryCard from '../EntryCard.svelte'
+  import { dehyphenate, getFormattedDate, getToday } from '../../utils/utils'
+  import { filterEntries } from '../../utils/search'
 
   // entry card date needs to reflect month/year
 
@@ -85,12 +85,9 @@
 
 
 <style>
-  header { padding: 1rem 0; }
+  header { padding: 1.5rem 0 1rem; }
 
-  h1 {
-    font-size: 21px;
-    padding-top: 0;
-  }
+  h1 { padding-top: 0; }
 
   .search-modifiers {
     display: flex;
