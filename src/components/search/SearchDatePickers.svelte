@@ -1,5 +1,6 @@
 <script>
   import SearchDatepicker from './SearchDatepicker.svelte'
+  import FilterIcon from '../icons/FilterIcon.svelte'
 
   export let setStartDate
   export let setEndDate
@@ -9,6 +10,7 @@
 
 <div class="datepickers">
   <SearchDatepicker handleChange={setStartDate}>
+    <FilterIcon />
     {startDate}
   </SearchDatepicker>
   <span class="divider">-</span>
@@ -25,6 +27,8 @@
     align-items: center;
     font-weight: 300;
   }
+
+  :global(.datepickers svg) { margin-bottom: 1px; }
 
   .divider { margin: 0 .5rem 2px; }
 </style>

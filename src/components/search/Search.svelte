@@ -7,12 +7,13 @@
   import EntryCard from '../EntryCard.svelte'
   import { dehyphenate, getFormattedDate, getToday } from '../../utils/utils'
   import { filterEntries } from '../../utils/search'
+  import { PAIN_TYPES } from '../../utils/constants'
 
-  // entry card date needs to reflect month/year
+  const painTypes = Object.values(PAIN_TYPES).map(type => type.toLowerCase())
 
   const formatDate = (date) =>
     format(dehyphenate(date), 'M/d/yy')
-  const options = ['headache', 'migraine', 'flare']
+  const options = ['headache', 'migraine', 'flare', ...painTypes]
   let searchTerm = ''
   let startDate = formatDate('2016-01-01')
   let endDate = formatDate(getToday())
@@ -73,7 +74,11 @@
 <div class="search-info">
   {#if searchTerm}
     <small>
-      {filteredEntries.length} {pluralizeResults(filteredEntries)} for <span>{searchTerm}</span>
+      <span class="result-quantity">
+        {filteredEntries.length}
+      </span> 
+      {pluralizeResults(filteredEntries)} for
+      <span>{searchTerm}</span>
     </small>
   {/if}
 </div>
@@ -92,6 +97,10 @@
   .search-modifiers {
     display: flex;
     justify-content: space-between;
+  }
+
+  .search-modifiers,
+  .search-info {
     max-width: 500px;
     margin: auto;
   }
@@ -103,8 +112,6 @@
     width: 100%;
   }
   
-  :global(.svelte-autocomplete.search-autocomplete .results-list) { top: 39px; }
-
   .search-modifiers label,
   :global(.datepickers label) {
     display: flex;
@@ -129,8 +136,10 @@
 
   .search-info { margin-top: 1.25rem; }
 
+  .search-info,
+  .result-quantity { font-size: .75rem; }
+
   small {
-    font-size: .75rem;
     display: block;
     margin-bottom: .5rem;
   }

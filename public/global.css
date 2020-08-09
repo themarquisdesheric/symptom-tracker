@@ -60,7 +60,11 @@ label {
 
 figure { margin: 0; }
 
-.entry-form .autocomplete.svelte-autocomplete .results-list { top: 39px; }
+.svelte-autocomplete svg { pointer-events: none; }
+
+.entry-form .autocomplete.svelte-autocomplete .results-list,
+.search-modifiers .search-autocomplete.svelte-autocomplete .results-list { top: 39px; }
+
 .entry-form .autocomplete.svelte-autocomplete input { min-width: 221px; }
 
 /* ============================================== utility classes ============================================== */
