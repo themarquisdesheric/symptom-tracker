@@ -63,9 +63,9 @@
     max={thisMonth}
     className="month-container"
   >
-    <h2>
+    <h1>
       {prettyMonth} <span>{notCurrentYear}</span> <FilterIcon />
-    </h2>
+    </h1>
   </DatePickerTrigger>
 
   <PastEntryTrigger>
@@ -90,9 +90,9 @@
     align-items: center;
   }
 
-  h2 { cursor: pointer; }
+  h1 { cursor: pointer; }
 
-  h2 span { font-weight: 300; }
+  h1 span { font-weight: 300; }
 
   button { margin-top: 1rem; }
 

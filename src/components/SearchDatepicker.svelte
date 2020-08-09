@@ -1,7 +1,6 @@
 <script>
   import { format } from 'date-fns'
   import DatePickerTrigger from './DatePickerTrigger.svelte'
-  import CalendarIcon from '../assets/CalendarIcon.svelte'
   import { getToday } from '../utils/utils'
 
   export let handleChange
@@ -17,7 +16,6 @@
   max={today}
   className="search-datepicker"
 >
-  <CalendarIcon />
   <slot />
 </DatePickerTrigger>
 

@@ -57,9 +57,9 @@
   {#if showModal}
     <div class="modal-background" on:click={toggleModal} />
     <div on:keydown={handleKeydown } class="modal">
-      <h2>
+      <h1>
         <span class="emoji-shadow">{emoji}</span> P{type.slice(1)} Chart
-      </h2>
+      </h1>
       {#each $entry.voids[type] as timestamp, index (timestamp + index)}
         <div class={`timepicker ${isCurrentVoid(timestamp)}`}>
           <input
@@ -100,7 +100,7 @@
 
 
 <style>
-  h2 { 
+  h1 { 
     padding-top: 0;
     margin-bottom: 1.5rem;
     text-align: center;

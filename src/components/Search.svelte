@@ -2,11 +2,13 @@
   import Autocomplete from 'simply-svelte-autocomplete';
   import { format, compareDesc } from 'date-fns'
 
-  import SearchDatepicker from './SearchDatepicker.svelte'
-  import EntryCard from './EntryCard.svelte'
   import entries from '../stores/entries'
+  import SearchDatepickers from './SearchDatepickers.svelte'
+  import EntryCard from './EntryCard.svelte'
   import { dehyphenate, getFormattedDate, getToday } from '../utils/utils'
   import { filterEntries } from '../utils/search'
+
+  // entry card date needs to reflect month/year
 
   const formatDate = (date) =>
     format(dehyphenate(date), 'M/d/yy')
@@ -45,34 +47,26 @@
 
 
 <header>
-  <h2>Search</h2>
-  <Autocomplete
-    {options}
-    onSubmit={value => searchTerm = value}
-    className="autocomplete"
-    themeColor="#9c64a6"
-  />
+  <h1>Search</h1>
+  <SearchDatepickers {startDate} {endDate} {setStartDate} {setEndDate} />
 </header>
 
 <div class="search-modifiers">
+  <Autocomplete
+    {options}
+    onSubmit={value => searchTerm = value}
+    className="search-autocomplete"
+    themeColor="#9c64a6"
+  />
   <div class="checkboxes">
-    <label for="medicine">
-      <input type="checkbox" id="medicine" />
-      <span>Medicine</span>
-    </label>
     <label for="notes">
       <input type="checkbox" id="notes" />
       <span>Notes</span>
     </label>
-  </div>
-  <div class="datepickers">
-    <SearchDatepicker handleChange={setStartDate}>
-      {startDate}
-    </SearchDatepicker>
-    <span class="divider">-</span>
-    <SearchDatepicker handleChange={setEndDate}>
-      {endDate}
-    </SearchDatepicker>
+    <label for="medicine">
+      <input type="checkbox" id="medicine" />
+      <span>Medicine</span>
+    </label>
   </div>
 </div>
 
@@ -91,39 +85,43 @@
 
 
 <style>
-  header { padding-top: 1rem; }
+  header { padding: 1rem 0; }
 
-  h2 {
+  h1 {
     font-size: 21px;
     padding-top: 0;
   }
 
-  :global(.svelte-autocomplete.autocomplete input) {
-    width: calc(50vw - 1.5rem);
-    max-width: 185px;
-    min-width: unset;
-  }
-
   .search-modifiers {
     display: flex;
-    align-items: center;
     justify-content: space-between;
     max-width: 500px;
     margin: auto;
   }
 
-  .search-modifiers label {
+  :global(.search-autocomplete) { width: 50%; }
+
+  :global(.svelte-autocomplete.search-autocomplete input) {
+    min-width: unset;
+    width: 100%;
+  }
+  
+  :global(.svelte-autocomplete.search-autocomplete .results-list) { top: 39px; }
+
+  .search-modifiers label,
+  :global(.datepickers label) {
     display: flex;
     align-items: center;
-    padding: .5rem 1rem .5rem 0;
     margin: 0;
     width: unset;
     font-weight: 300;
+    font-size: .75rem;
+    color: rgba(51, 51, 51, 0.7);
   }
 
-  :global(.search-modifiers label) { font-size: .75rem; }
-
   .checkboxes { display: flex; }
+  
+  label[for="notes"] { padding-right: .5rem; }
 
   input[type="checkbox"] {
     min-height: unset;
@@ -132,16 +130,7 @@
     margin-left: 0;
   }
 
-  .datepickers,
-  :global(.datepickers .search-datepicker) {
-    display: flex;
-    align-items: center;
-    font-weight: 300;
-  }
-
-  .divider { margin: 0 .5rem 2px; }
-
-  .search-info { margin-top: .75rem; }
+  .search-info { margin-top: 1.25rem; }
 
   small {
     font-size: .75rem;
