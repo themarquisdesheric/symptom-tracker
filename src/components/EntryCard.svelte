@@ -186,13 +186,6 @@
     }
   }
 
-  @media (min-width: 600px) {
-    :global(.entry-cards) {
-      column-gap: 1rem;
-      row-gap: 1rem;
-    }
-  }
-
   @media (min-width: 735px) {
     :global(.entry-cards) {
       grid-template-columns: repeat(4, 1fr);

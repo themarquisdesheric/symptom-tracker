@@ -49,23 +49,14 @@
   <SearchDatepickers {startDate} {endDate} {setStartDate} {setEndDate} />
 </header>
 
-<div class="search-modifiers">
+<div class="autocomplete-container">
   <Autocomplete
     {options}
+    searchModifiers={['notes', 'urgency', 'medicine', 'subluxations']}
     onSubmit={value => searchTerm = value}
     className="search-autocomplete"
     themeColor="#9c64a6"
   />
-  <div class="checkboxes">
-    <label for="notes">
-      <input type="checkbox" id="notes" />
-      <span>Notes</span>
-    </label>
-    <label for="medicine">
-      <input type="checkbox" id="medicine" />
-      <span>Medicine</span>
-    </label>
-  </div>
 </div>
 
 <div class="search-info">
@@ -91,25 +82,25 @@
 
   h1 { padding-top: 0; }
 
-  .search-modifiers {
-    display: flex;
-    justify-content: space-between;
-  }
+  .autocomplete-container { display: flex; }
 
-  .search-modifiers,
+  :global(.search-autocomplete) { width: 100%; }
+
+  :global(.search-autocomplete),
   .search-info {
     max-width: 500px;
     margin: auto;
   }
 
-  :global(.search-autocomplete) { width: 50%; }
+  :global(.svelte-autocomplete.search-autocomplete input) { width: 100%; }
 
-  :global(.svelte-autocomplete.search-autocomplete input) {
-    min-width: unset;
-    width: 100%;
+  :global(.svelte-autocomplete.search-autocomplete .results-list) {
+    top: 39px;
+    max-height: 490px;
+    overflow-y: auto;
+    border-radius: 0 0 .25rem .25rem;
   }
   
-  .search-modifiers label,
   :global(.datepickers label) {
     display: flex;
     align-items: center;
@@ -118,17 +109,6 @@
     font-weight: 300;
     font-size: .75rem;
     color: rgba(51, 51, 51, 0.7);
-  }
-
-  .checkboxes { display: flex; }
-  
-  label[for="notes"] { padding-right: .5rem; }
-
-  input[type="checkbox"] {
-    min-height: unset;
-    min-width: 1rem;
-    -webkit-appearance: checkbox;
-    margin-left: 0;
   }
 
   .search-info { margin-top: 1.25rem; }
@@ -145,5 +125,11 @@
     font-size: 1rem;
     color: #ce93d8;
     font-weight: 400;
+  }
+
+  @media (min-width: 500px) {
+    :global(.svelte-autocomplete.search-autocomplete .results-list) {
+      max-height: unset;
+    }
   }
 </style>
