@@ -15,14 +15,15 @@
   </span>
   <div class="time-of-day">
     {#each TIMES as time (time)}
-      <label class="flex-center">
+      <label for={`${type}-${time}`} class="flex-center">
         <TimeOfDayIcon {time} checked={$entry[category][type].includes(time)} />
-        <input
-          type="checkbox"
-          value={time}
-          bind:group={$entry[category][type]}
-        />
       </label>
+      <input
+        type="checkbox"
+        id={`${type}-${time}`}
+        value={time}
+        bind:group={$entry[category][type]}
+      />
     {/each}
   </div>
 </div>
@@ -40,6 +41,8 @@
     font-size: 14px;
   }
 
+  label { margin-bottom: 0; }
+
   .time-of-day {
     display: inline-flex;
     justify-content: space-around;
@@ -47,8 +50,4 @@
     height: inherit;
     margin: 0;
   }
-
-  label { margin-bottom: 0; }
-
-  input[type="checkbox"] { display: none; }
 </style>

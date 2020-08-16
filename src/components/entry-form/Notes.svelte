@@ -28,15 +28,18 @@
 
 
 <section class="wrapper">
-  <label class:label={showAddButton}>Notes</label>
-  {#if editing}
-    <span
-      class:warn={$entry.notes.length >= 400}
-      class="character-counter"
-    >
-      {500 - $entry.notes.length}
-    </span>
-  {/if}
+  <label class:label={showAddButton}>
+    Notes
+    
+    {#if editing}
+      <span
+        class:warn={$entry.notes.length >= 400}
+        class="character-counter"
+      >
+        {500 - $entry.notes.length}
+      </span>
+    {/if}
+  </label>
 
   <div>
     {#if showAddButton}
@@ -84,6 +87,7 @@
     position: absolute;
     right: 0;
     font-size: .75rem;
+    font-weight: 300;
     line-height: 1.25rem;
   }
 

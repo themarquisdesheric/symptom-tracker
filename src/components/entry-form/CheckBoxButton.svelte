@@ -20,9 +20,6 @@
 
 
 <style>
-  input[type="checkbox"],
-  :global([type="checkbox"] + label svg) { display: none; }
-
   input[type="checkbox"] + label {
     background: #ffc4ff;
     font-weight: 300;

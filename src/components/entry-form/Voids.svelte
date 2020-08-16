@@ -55,12 +55,19 @@
   
   .void-container > *:not(.delta) { width: 90px; }
 
-  .delta span,
-  .nocturia input { font-size: 1rem; }
-
   .delta { display: flex; }
 
   .delta span { padding-left: .35rem; }
+
+  .delta span,
+  .nocturia input { font-size: 1rem; }
+  
+  .nocturia input {
+    width: 1rem;
+    min-width: 1rem;
+    margin-bottom: 0;
+    padding: 0;
+  }
 
   .nocturia { text-align: right; }
 
@@ -72,12 +79,6 @@
 
   .delta,
   .nocturia span { font-weight: 300; }
-
-  .nocturia input {
-    width: 1rem;
-    min-width: 1rem;
-    margin-bottom: 0;
-  }
   
   label { 
     width: unset;
@@ -91,6 +92,14 @@
 		border-radius: .25rem;
     padding: 1rem;
 		background: #fff;
+  }
+
+  @media (width: 375px) {
+    /* fix iOS safari bug */
+    .nocturia {
+      position: relative;
+      left: .25rem;
+    }
   }
   
   @media (min-width: 500px) {

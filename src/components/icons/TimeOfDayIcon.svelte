@@ -12,7 +12,9 @@
 		height: 28px;
     width: 28px;
     border-radius: .25rem;
-    padding: .25rem;
+		padding: .25rem;
+		/* this fixes safari bug where box shadow sticks around after unchecking svg */
+		box-shadow: none;
 	}
 	
 	.checked {
