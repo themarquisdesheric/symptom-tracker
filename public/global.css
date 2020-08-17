@@ -25,6 +25,9 @@ input[type="checkbox"] + label {
 	min-width: 2.5rem;
 }
 
+button,
+label[for] { cursor: pointer; }
+
 button {
 	border-width: 1px;
 	background: #fff;
@@ -38,6 +41,8 @@ select {
 	background-color: transparent;
 	-webkit-appearance: none;
 }
+
+input[type="checkbox"] { display: none; }
 
 input[type="number"] { font-size: inherit; }
 
@@ -53,14 +58,14 @@ label {
 	font-size: 14px;
 }
 
+.time-of-day input[type="checkbox"] + label svg { display: inline; }
+
 .field-label { 
 	display: inline-block;
 	font-size: 14px;
 }
 
 figure { margin: 0; }
-
-.svelte-autocomplete svg { pointer-events: none; }
 
 .entry-form .autocomplete.svelte-autocomplete .results-list,
 .search-modifiers .search-autocomplete.svelte-autocomplete .results-list { top: 39px; }
@@ -84,6 +89,16 @@ figure { margin: 0; }
 .flex-center {
 	display: flex;
 	justify-content: center;
+	align-items: center;
+}
+
+.flex-h-center {
+	display: flex;
+	justify-content: center;
+}
+
+.flex-v-center {
+	display: flex;
 	align-items: center;
 }
 

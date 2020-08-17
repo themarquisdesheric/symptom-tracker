@@ -110,5 +110,8 @@
 
   .urgency { position: relative; }
 
-  select { font-size: 1rem; }
+  select {
+    font-size: 1rem;
+    cursor: pointer;
+  }
 </style>

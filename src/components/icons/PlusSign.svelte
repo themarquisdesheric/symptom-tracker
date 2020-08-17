@@ -3,7 +3,7 @@
 </script>
 
 
-<span class="plus-sign primary primary-border box-shadow" class:hidden={hiddenClass}>
+<span class="plus-sign flex-h-center primary primary-border box-shadow" class:hidden={hiddenClass}>
   +
 </span>
 
@@ -13,8 +13,6 @@
     position: absolute;
     top: 6px;
     left: 114px;
-    display: flex;
-    justify-content: center;
     width: 28px;
     border-radius: .25rem;
     padding: .25rem;

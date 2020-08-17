@@ -17,9 +17,9 @@
 
 
 {#if $isPastEntry}
-  <div>
+  <div class="flex-h-center">
     <PastEntryTrigger id="past-entry-banner">
-      <span>
+      <span class="flex-v-center">
         <BackInTimeIcon />
         {prettyEntryDate}
       </span>
@@ -30,8 +30,6 @@
 
 <style>
   div {
-    display: flex;
-    justify-content: center;
     background: #90caf9;
     border: 4px solid #ce93d8;
     border-top: none;
@@ -41,8 +39,6 @@
   :global(#past-entry-banner input) { min-height: 32px; }
 
   span {
-    display: flex;
-    align-items: center;
     margin: 0 auto;
     padding: .5rem 0;
 		border-radius: 0;

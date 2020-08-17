@@ -9,7 +9,7 @@
 </script>
 
 
-<div class="item">
+<div class="item flex-v-center">
   <span>
     {label}
   </span>
@@ -30,11 +30,7 @@
 
 
 <style>
-  .item {
-    display: flex;
-    height: 2.5rem;
-    align-items: center;
-  }
+  .item { height: 2.5rem; }
 
   .item span {
     width: 115px;

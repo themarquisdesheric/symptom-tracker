@@ -61,7 +61,7 @@
         <span class="emoji-shadow">{emoji}</span> P{type.slice(1)} Chart
       </h2>
       {#each $entry.voids[type] as timestamp, index (timestamp + index)}
-        <div class={`timepicker ${isCurrentVoid(timestamp)}`}>
+        <div class={`timepicker flex-h-center ${isCurrentVoid(timestamp)}`}>
           <input
             type="time"
             value={timestamp}
@@ -82,15 +82,16 @@
         </div>
 
         {#if type === 'pee' && index !== voidCount - 1}
-          <small class="dark">
+          <small class="flex-h-center dark">
             <HourglassIcon /> {peeDeltas[index]} min
           </small>
         {/if}
       {/each}
 
-      <footer>
+      <footer class="flex-h-center">
         <button on:click={addVoid} class="add-button dark dark-border">
-          add another
+          <span>+</span>
+          <span>add another</span>
         </button>
         <button on:click={toggleModal} class="close-button dark-border">close</button>
       </footer>
@@ -123,11 +124,7 @@
   .pee,
   .poo { position: relative; }
 
-  .timepicker {
-    margin: 1rem 0;
-    display: flex;
-    justify-content: center;
-  }
+  .timepicker { margin: 1rem 0; }
 
   .current-timestamp input[type="time"],
   .current-timestamp button {
@@ -145,33 +142,28 @@
     margin-left: .25rem;
   }
 
-  small {
-    display: flex;
-    justify-content: center;
-  }
+  small { height: 1rem; }
 
-  footer {
-    text-align: center;
-    margin: 2rem auto 0;
-  }
+  footer { margin: 2rem auto 0; }
 
   footer button { min-height: unset; }
 
   .add-button {
-    padding-left: 1.75rem;
-    position: relative;
+    display: flex;
+    line-height: 1rem;
+    margin-right: .25rem;
   }
-  
-  .add-button::before {
+
+  .add-button span:first-of-type {
+    margin: 0;
     font-size: 1rem;
-    content: '+';
-    position: absolute;
-    left: 1rem;
-    bottom: 8px;
+    position: relative;
+    bottom: 1px;
+    margin-right: .125rem;
   }
 
   .close-button {
-    background-color:  #9c64a6;
+    background-color: #9c64a6;
     color: #fff;
   }
 </style>
