@@ -6,6 +6,8 @@ A symptom tracking + health dashboard app for [The Chronic](https://www.thechron
 
 This app uses `svelte` and `svelte-spa-router` on the front end, and will use a `flask` server and `mariaDB` on the back end
 
+It also uses several autocomplete components from [simply-svelte-autocomplete](https://github.com/themarquisdesheric/simply-svelte-autocomplete), which was made for this project
+
 ## Installation
 
 Clone this repository to your machine and install the dependencies by running `npm i`

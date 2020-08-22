@@ -37,5 +37,7 @@
     color: #fff;
   }
 
+  :global([type="checkbox"] + label svg) { display: none; }
+  
   :global([type="checkbox"]:checked + label svg) { display: inline; }
 </style>
