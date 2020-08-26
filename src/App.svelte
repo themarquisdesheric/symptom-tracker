@@ -1,16 +1,62 @@
 <script>
-	import Router, { location } from 'svelte-spa-router'
+	import router from 'page'
 	import NavBar from './components/NavBar.svelte'
-	import { routes } from './routes'
+	import EntryForm from './components/entry-form/EntryForm.svelte'
+	import Dashboard from './components/Dashboard.svelte'
+	import Search from './components/search/Search.svelte'
+	import Calendar from './components/Calendar.svelte'
 
-	$: showSearchResults = /(search|calendar)/.test($location)
+	let currentPage = EntryForm
+	let showSearchResults = false
+	let params
+
+  router('/', () => (currentPage = EntryForm))
+  router(
+		'/entry/:date',
+		(ctx, next) => {
+			params = ctx.params
+			next()
+		},
+		() => {
+			currentPage = EntryForm
+			showSearchResults = false
+		}
+	)
+  router(
+		'/search',
+		(ctx, next) => {
+			params = ctx.params
+			next()
+		},
+		() => {
+			currentPage = Search
+			showSearchResults = true
+		}
+	)
+	router(
+		'/calendar/:date', // date should be optional
+		(ctx, next) => {
+			params = ctx.params
+			next()
+		},
+		() => {
+			currentPage = Calendar
+			showSearchResults = true
+		}
+	)
+	router('/dashboard', () => {
+		currentPage = Dashboard
+		showSearchResults = false
+	})
+	
+  router.start()
 </script>
 
 
 <NavBar />
 <div class="outer-border">
 	<div class:search-results={showSearchResults} class="inner">
-		<Router {routes} />
+		<svelte:component this={currentPage} {params} />
 	</div>
 </div>
 <footer />

@@ -1,7 +1,4 @@
 <script>
-  import { push } from 'svelte-spa-router'
-  import { format } from 'date-fns'
-
   export let className = ''
   export let id = ''
   export let handleChange

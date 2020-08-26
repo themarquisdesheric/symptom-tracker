@@ -4,7 +4,7 @@ A symptom tracking + health dashboard app for [The Chronic](https://www.thechron
 
 ## Tech Stack
 
-This app uses `svelte` and `svelte-spa-router` on the front end, and will use a `flask` server and `mariaDB` on the back end
+This app uses `svelte` and `page.js` on the front end, and will use a `flask` server and `mariaDB` on the back end
 
 It also uses several autocomplete components from [simply-svelte-autocomplete](https://github.com/themarquisdesheric/simply-svelte-autocomplete), which was made for this project
 

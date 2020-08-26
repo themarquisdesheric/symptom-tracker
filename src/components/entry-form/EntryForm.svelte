@@ -1,6 +1,5 @@
 <script>
-  import { replace, location } from 'svelte-spa-router'
-  import path from 'path'
+  import page from 'page'
 
   import entry from '../../stores/entry'
   import entries from '../../stores/entries'
@@ -25,10 +24,10 @@
   if (!params.date) {
     const todaysDate = getTodaysDate()
     
-    replace(`/entry/${todaysDate}`)
+    page.redirect(`/entry/${todaysDate}`)
   }
 
-  $: entryDate = path.basename($location)
+  $: entryDate = params.date
   
   $: if (entryDate && entryDate !== $entry.date) {
     const currentEntry = $entries[entryDate]
