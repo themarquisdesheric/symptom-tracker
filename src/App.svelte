@@ -9,8 +9,19 @@
 	let currentPage = EntryForm
 	let showSearchResults = false
 	let params
+	let pathname
 
-  router('/', () => (currentPage = EntryForm))
+	const checkForPagesWithSearchResults = (ctx, next) => {
+		showSearchResults = /(search|calendar)/.test(ctx.pathname)
+		pathname = ctx.pathname
+		next()
+	}
+
+	router(checkForPagesWithSearchResults)
+
+  router('/', () => {
+		currentPage = EntryForm
+	})
   router(
 		'/entry/:date',
 		(ctx, next) => {
@@ -19,7 +30,6 @@
 		},
 		() => {
 			currentPage = EntryForm
-			showSearchResults = false
 		}
 	)
   router(
@@ -30,7 +40,6 @@
 		},
 		() => {
 			currentPage = Search
-			showSearchResults = true
 		}
 	)
 	router(
@@ -41,19 +50,17 @@
 		},
 		() => {
 			currentPage = Calendar
-			showSearchResults = true
 		}
 	)
 	router('/dashboard', () => {
 		currentPage = Dashboard
-		showSearchResults = false
 	})
 	
   router.start()
 </script>
 
 
-<NavBar />
+<NavBar {pathname} />
 <div class="outer-border">
 	<div class:search-results={showSearchResults} class="inner">
 		<svelte:component this={currentPage} {params} />

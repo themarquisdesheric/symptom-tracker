@@ -1,6 +1,5 @@
 <script>
   import page from 'page'
-
   import entry from '../../stores/entry'
   import entries from '../../stores/entries'
   import isPastEntry from '../../stores/isPastEntry'
