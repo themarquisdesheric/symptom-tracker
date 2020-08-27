@@ -8,8 +8,12 @@
 
 	let currentPage = EntryForm
 	let showSearchResults = false
-	let params
 	let pathname
+	let params
+
+	const setPage = (Component) => () => {
+		currentPage = Component
+	}
 
 	const checkForPagesWithSearchResults = (ctx, next) => {
 		showSearchResults = /(search|calendar)/.test(ctx.pathname)
@@ -19,28 +23,22 @@
 
 	router(checkForPagesWithSearchResults)
 
-  router('/', () => {
-		currentPage = EntryForm
-	})
+  router('/', setPage(EntryForm))
   router(
 		'/entry/:date',
 		(ctx, next) => {
 			params = ctx.params
 			next()
 		},
-		() => {
-			currentPage = EntryForm
-		}
+		setPage(EntryForm)
 	)
   router(
 		'/search',
 		(ctx, next) => {
 			params = ctx.params
 			next()
-		},
-		() => {
-			currentPage = Search
-		}
+		},	
+		setPage(Search)
 	)
 	router(
 		'/calendar/:date', // date should be optional
@@ -48,13 +46,9 @@
 			params = ctx.params
 			next()
 		},
-		() => {
-			currentPage = Calendar
-		}
+		setPage(Calendar)
 	)
-	router('/dashboard', () => {
-		currentPage = Dashboard
-	})
+	router('/dashboard', setPage(Dashboard))
 	
   router.start()
 </script>
