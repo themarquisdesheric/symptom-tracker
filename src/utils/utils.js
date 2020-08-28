@@ -1,5 +1,6 @@
 import { addMinutes, parse, format, differenceInMinutes } from 'date-fns'
-import { push } from 'svelte-spa-router'
+import page from 'page'
+import path from 'path'
 import { PAIN_TYPES } from './constants'
 
 export const dehyphenate = (date) =>
@@ -19,6 +20,9 @@ export const getTodaysDate = () =>
 // format: 2020-08-07
 export const getToday = () =>
   format(new Date(), 'yyyy-MM-dd')
+
+export const getMonth = (date = new Date()) =>
+  format(date, 'MM-yyyy')
 
 const today = getToday()
 
@@ -126,5 +130,16 @@ export const goToPastEntry = (date) => {
   // this means 07-18 returns 7-17 so need to pass in slash separated values instead 
   const newDate = new Date(date.split('-').join('/'))
 
-  push(`/entry/${getFormattedDate(newDate)}`)
+  page(`/entry/${getFormattedDate(newDate)}`)
+}
+
+export const checkIfPastEntry = (pathname) => {
+  if (pathname.includes('entry')) {
+    const todaysDate = getTodaysDate()
+    const entryDate = path.basename(pathname)
+    
+    return todaysDate !== entryDate
+  }
+  
+  return false
 }

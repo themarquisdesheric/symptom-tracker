@@ -70,7 +70,7 @@ figure { margin: 0; }
 .entry-form .autocomplete.svelte-autocomplete .results-list,
 .search-modifiers .search-autocomplete.svelte-autocomplete .results-list { top: 39px; }
 
-.entry-form .autocomplete.svelte-autocomplete input { min-width: 221px; }
+.entry-form .autocomplete.svelte-autocomplete input { min-width: 216px; }
 
 /* ============================================== utility classes ============================================== */
 
@@ -152,4 +152,6 @@ figure { margin: 0; }
 	input[type="number"]::-webkit-outer-spin-button {  
 		opacity: 1;
 	}
+
+	.entry-form .autocomplete.svelte-autocomplete input { min-width: 220px; }
 }
