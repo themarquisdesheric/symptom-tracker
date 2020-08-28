@@ -57,7 +57,7 @@
 <NavBar {pathname} />
 <div class="outer-border">
 	<div class:search-results={showSearchResults} class="inner">
-		<svelte:component this={currentPage} {params} />
+		<svelte:component this={currentPage} {params} {pathname} />
 	</div>
 </div>
 <footer />

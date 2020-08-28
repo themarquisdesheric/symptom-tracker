@@ -4,7 +4,7 @@
 	import PastEntryBanner from './entry-form/PastEntryBanner.svelte'
 	import { getTodaysDate, getMonth } from '../utils/utils'
 
-	export let pathname
+	export let pathname	
 </script>
 
 
@@ -45,7 +45,7 @@
 		</a>
 	</div>
 </nav>
-<PastEntryBanner />
+<PastEntryBanner {pathname} />
 
 
 <style>

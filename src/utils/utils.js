@@ -1,5 +1,6 @@
 import { addMinutes, parse, format, differenceInMinutes } from 'date-fns'
 import page from 'page'
+import path from 'path'
 import { PAIN_TYPES } from './constants'
 
 export const dehyphenate = (date) =>
@@ -130,4 +131,15 @@ export const goToPastEntry = (date) => {
   const newDate = new Date(date.split('-').join('/'))
 
   page(`/entry/${getFormattedDate(newDate)}`)
+}
+
+export const checkIfPastEntry = (pathname) => {
+  if (pathname.includes('entry')) {
+    const todaysDate = getTodaysDate()
+    const entryDate = path.basename(pathname)
+    
+    return todaysDate !== entryDate
+  }
+  
+  return false
 }
