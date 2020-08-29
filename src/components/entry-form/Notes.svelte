@@ -79,6 +79,7 @@
   label {
     width: 100%;
     position: relative;
+    font-weight: 300;
   }
 
   .label { margin-bottom: 1rem; }

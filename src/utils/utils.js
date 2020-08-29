@@ -133,7 +133,7 @@ export const goToPastEntry = (date) => {
   page(`/entry/${getFormattedDate(newDate)}`)
 }
 
-export const checkIfPastEntry = (pathname) => {
+export const getIsPastEntry = (pathname) => {
   if (pathname.includes('entry')) {
     const todaysDate = getTodaysDate()
     const entryDate = path.basename(pathname)
