@@ -31,7 +31,6 @@
       />
     </label>
   </div>
-  <div class="pee-chart">pee/poo chart from 5am - 10pm</div>
 </section>
 
 
@@ -45,7 +44,6 @@
 		display: flex;
 		justify-content: space-between;
     align-items: center;
-    padding-bottom: .5rem;
   }
 
   .void-buttons {
@@ -86,13 +84,6 @@
   }
 
 	label * { font-weight: normal; }
-
-	.pee-chart {
-		border: 1px solid;
-		border-radius: .25rem;
-    padding: 1rem;
-		background: #fff;
-  }
 
   @media (width: 375px) {
     /* fix iOS safari bug */

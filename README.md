@@ -1,5 +1,7 @@
 # Symptom Tracker
 
+**WORK IN PROGRESS/PAUSED DUE TO OTHER PRIORITIES**
+
 A symptom tracking + health dashboard app for [The Chronic](https://www.thechronic.info)
 
 ## Tech Stack
@@ -21,3 +23,13 @@ To start the app, run `npm run dev` then navigate to http://localhost:8080
 This app is tested with [Jest](https://jestjs.io/) 
 
 To run unit tests, run `npm test`
+
+## UI
+
+<img src="./public/screenshots/home.png" width="500" />
+<img src="./public/screenshots/home-bottom.png" width="500" />
+<br />
+<img src="./public/screenshots/pee-chart.png" width="500" />
+<img src="./public/screenshots/search.png" width="500" />
+
+<img src="./public/screenshots/search-results.png" width="500" />
