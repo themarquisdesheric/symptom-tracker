@@ -26,10 +26,10 @@ To run unit tests, run `npm test`
 
 ## UI
 
-<img src="./public/screenshots/home.png" width="500" />
-<img src="./public/screenshots/home-bottom.png" width="500" />
+<img src="./public/screenshots/home.png" width="300" />
+<img src="./public/screenshots/home-bottom.png" width="300" />
 <br />
-<img src="./public/screenshots/pee-chart.png" width="500" />
-<img src="./public/screenshots/search.png" width="500" />
+<img src="./public/screenshots/pee-chart.png" width="300" />
+<img src="./public/screenshots/search.png" width="300" />
 
-<img src="./public/screenshots/search-results.png" width="500" />
+<img src="./public/screenshots/search-results.png" width="300" />
