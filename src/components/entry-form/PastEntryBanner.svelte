@@ -1,22 +1,25 @@
 <script>
-  import { location } from 'svelte-spa-router'
-	import { format } from 'date-fns'
+  import { format } from 'date-fns'
   import path from 'path'
-  import isPastEntry from '../../stores/isPastEntry'
   import PastEntryTrigger from './../PastEntryTrigger.svelte'
   import BackInTimeIcon from '../icons/BackInTimeIcon.svelte'
+  import { getIsPastEntry } from '../../utils/utils'
+
+  export let pathname
 
   let prettyEntryDate
+  let isPastEntry = false
   
-  $: if ($location.includes('entry')) {
-    const entryDate = path.basename($location)
+  $: if (pathname.includes('entry')) {
+    const entryDate = path.basename(pathname)
     
     prettyEntryDate = format(new Date(entryDate), 'M/d/y')
+    isPastEntry = getIsPastEntry(pathname)
   }
 </script>
 
 
-{#if $isPastEntry}
+{#if isPastEntry}
   <div class="flex-h-center">
     <PastEntryTrigger id="past-entry-banner">
       <span class="flex-v-center">

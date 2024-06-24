@@ -1,14 +1,13 @@
 <script>
-  import { push, replace, location } from 'svelte-spa-router'  
   import { format } from 'date-fns'
-  import path from 'path'
+  import page from 'page'
   import entries from '../stores/entries'
   import DatePickerTrigger from './DatePickerTrigger.svelte'
   import PastEntryTrigger from './PastEntryTrigger.svelte'
   import EntryCard from './EntryCard.svelte'
   import FilterIcon from './icons/FilterIcon.svelte'
   import BackInTimeIcon from './icons/BackInTimeIcon.svelte'
-  import { formatMonth, dehyphenate, isMonthDateMatch } from '../utils/utils'
+  import { formatMonth, dehyphenate, isMonthDateMatch, getMonth } from '../utils/utils'
 
   export let params = {}
 
@@ -17,9 +16,6 @@
   let notCurrentYear
   let prettyMonth
   let monthDigits
-
-  const getMonth = (date = new Date()) =>
-    format(date, 'MM-yyyy')
 
   const setMonth = (date = new Date()) => {
     const year = format(date, 'yyyy')
@@ -30,7 +26,7 @@
   }
 
   const handleMonthChange = ({ target }) => {
-    push(`/calendar/${getMonth(dehyphenate(target.value))}`)
+    page(`/calendar/${getMonth(dehyphenate(target.value))}`)
   }
 
   const filterEntries = (date) =>
@@ -42,14 +38,10 @@
       , []
     )
 
-  $: if (!params.date) {
-    replace(`/calendar/${getMonth()}`)
-    setMonth()
-  } else {
-    const date = path.basename($location)
-    const formattedDate = `${date.slice(0, 2)}-01-${date.slice(3)}`
-    setMonth(new Date(formattedDate))
-  }
+  const { date } = params
+  const formattedDate = `${date.slice(0, 2)}-01-${date.slice(3)}`
+  
+  setMonth(new Date(formattedDate))
 
   $: filteredEntries = filterEntries(monthDigits)
 </script>
@@ -84,6 +76,7 @@
 
 
 <style>
+  header,
   button {
     display: flex;
     justify-content: space-between;

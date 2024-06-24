@@ -1,10 +1,7 @@
 <script>
-  import { replace, location } from 'svelte-spa-router'
-  import path from 'path'
-
+  import page from 'page'
   import entry from '../../stores/entry'
   import entries from '../../stores/entries'
-  import isPastEntry from '../../stores/isPastEntry'
   import initialEntryState from '../../stores/initialEntryState'
   import Voids from './Voids.svelte'
   import Allergens from './Allergens.svelte'
@@ -13,9 +10,10 @@
   import MensesCycle from './MensesCycle.svelte'
   import Medications from './Medications.svelte'
   import Notes from './Notes.svelte'
-  import { getTodaysDate } from '../../utils/utils'
+  import { getTodaysDate, getIsPastEntry } from '../../utils/utils'
 
   export let params = {}
+  export let pathname = ''
 
   let editingEntry = false
   
@@ -25,10 +23,10 @@
   if (!params.date) {
     const todaysDate = getTodaysDate()
     
-    replace(`/entry/${todaysDate}`)
+    page.redirect(`/entry/${todaysDate}`)
   }
 
-  $: entryDate = path.basename($location)
+  $: entryDate = params.date
   
   $: if (entryDate && entryDate !== $entry.date) {
     const currentEntry = $entries[entryDate]
@@ -41,11 +39,13 @@
       editingEntry = true
     }
   }
+
+  $: isPastEntry = getIsPastEntry(pathname)
 </script>
 
 
 <div
-  class:edit-lock={$isPastEntry && !editingEntry}
+  class:edit-lock={isPastEntry && !editingEntry}
   class="entry-form"
 >
   <Voids />
@@ -54,7 +54,7 @@
   <Symptoms />
   <MensesCycle />
   <Medications />
-  <Notes {editingEntry} {setEditingEntry} />
+  <Notes {editingEntry} {setEditingEntry} {isPastEntry} />
 </div>
 
 

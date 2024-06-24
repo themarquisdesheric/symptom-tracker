@@ -1,11 +1,11 @@
 <script>
   import entry from '../../stores/entry'
   import entries from '../../stores/entries'
-  import isPastEntry from '../../stores/isPastEntry'
   import EditIcon from '../icons/EditIcon.svelte'
 
   export let setEditingEntry
   export let editingEntry
+  export let isPastEntry
 
   let editing = null
 
@@ -56,7 +56,7 @@
   </div>
 
   <div>
-    {#if editingEntry || !$isPastEntry}
+    {#if editingEntry || !isPastEntry}
       <button on:click={handleSave} class="save-button box-shadow">
         Save
       </button>
@@ -79,6 +79,7 @@
   label {
     width: 100%;
     position: relative;
+    font-weight: 300;
   }
 
   .label { margin-bottom: 1rem; }

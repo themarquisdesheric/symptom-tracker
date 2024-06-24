@@ -1,18 +1,16 @@
 <script>
-  import { link } from 'svelte-spa-router'
-	import active from 'svelte-spa-router/active'
 	import PencilIcon from './icons/PencilIcon.svelte'
 	import CalendarIcon from './icons/CalendarIcon.svelte'
 	import PastEntryBanner from './entry-form/PastEntryBanner.svelte'
-	import { getTodaysDate } from '../utils/utils'
+	import { getTodaysDate, getMonth } from '../utils/utils'
 
-	const todaysDate = getTodaysDate()
+	export let pathname	
 </script>
 
 
 <nav>
 	<div>
-		<a href="/entry/{todaysDate}" use:link use:active={"/entry/*"}>
+		<a href="/entry/{getTodaysDate()}" class:active={/(entry)/.test(pathname)}>
 			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 				viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
 			<path d="M14.249,0.438L0.438,14.251c-0.584,0.584-0.584,1.538,0.002,2.124l3.185,3.187
@@ -25,7 +23,7 @@
 				l-1.896-1.898l0.759-0.758L16.071,3.171z"/>
 			</svg>
 		</a>
-		<a href="/search" use:link use:active>
+		<a href="/search" class:active={/(search)/.test(pathname)}>
 			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
 				y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
 			<path d="M17.545,15.467l-3.779-3.779c0.57-0.935,0.898-2.035,0.898-3.21c0-3.417-2.961-6.377-6.378-6.377
@@ -35,10 +33,10 @@
 				C6.111,12.76,4.004,10.652,4.004,8.287z"/>
 			</svg>
 		</a>
-		<a href="/calendar" use:link use:active={'/calendar/*'}>
+		<a href={`/calendar/${getMonth()}`} class:active={/(calendar)/.test(pathname)}>
 			<CalendarIcon />
 		</a>
-		<a href="/dashboard" use:link use:active>
+		<a href="/dashboard" class:active={/(dashboard)/.test(pathname)}>
 			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 				viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
 			<path d="M17,1h-2c-0.552,0-1,0.447-1,1v16.992h4V2C18,1.447,17.553,1,17,1z M11,7H9C8.448,7,8,7.447,8,8v10.992h4V8
@@ -47,7 +45,7 @@
 		</a>
 	</div>
 </nav>
-<PastEntryBanner />
+<PastEntryBanner {pathname} />
 
 
 <style>
